@@ -167,7 +167,7 @@ wget('https://piston-meta.mojang.com/mc/game/version_manifest_v2.json', function
                                 //console.log("generating launch script (2/2)")
                                 mainClass = shit.mainClass
                                 //console.log("ree")
-                                fs.writeFileSync('versions/' + res2.version + '/! run.cmd', "set /p username=<../../cum.txt\n" + java + args, { flag: 'a' })
+                                fs.writeFileSync('versions/' + res2.version + '/! run.cmd', "set /p username=<../../username.txt\n" + java + args, { flag: 'a' })
                                 function downloadLib(list, i) {
                                     //console.log(i + " " + shit.libraries.length)
                                     if (shit.libraries.length - 1 == i) {
