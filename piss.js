@@ -135,9 +135,11 @@ wget('https://piston-meta.mojang.com/mc/game/version_manifest_v2.json', function
                                     args = args.replaceAll(' --versionType ${version_type}', '')
                                     //args += ' -Djava.library.path="' + __dirname + '\\natives" -Dorg.lwjgl.librarypath="' + __dirname + '\\natives"'
                                 } else {
-                                    args = ""
-                                    for (i = shit.arguments.game.length-1; i > -1; i--) {
+                                    args = ' -cp "*" -Djava.library.path="' + __dirname + '\\natives" ' + shit.mainClass + " "
+                                    for (i = shit.arguments.game.length-1; i > -1; i-=2) {
                                         if (typeof shit.arguments.game[i] == 'string') {
+                                            args += " "
+                                            args += shit.arguments.game[i-1]
                                             args += " "
                                             args += shit.arguments.game[i]
                                         }
@@ -156,6 +158,8 @@ wget('https://piston-meta.mojang.com/mc/game/version_manifest_v2.json', function
                                     args = args.replaceAll(' --xuid ${auth_xuid}','')
                                     args = args.replaceAll(' --userType ${user_type}','')
                                     args = args.replaceAll(' --versionType ${version_type}', '')
+                                    args = args.replaceAll(' -Dminecraft.launcher.brand=${launcher_name}','')
+                                    args = args.replaceAll(' -Dminecraft.launcher.version=${launcher_version}','')
                                 }
                                 /*for (i = 0; i < shit.libraries; i++) {
                                     /*wget({
