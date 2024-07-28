@@ -4,6 +4,7 @@ let proc = require('child_process')
 let fs = require('fs')
 let versions;
 let user;
+let testshit;
 //let data = require('./data.json')
 //let version;
 wget('https://piston-meta.mojang.com/mc/game/version_manifest_v2.json', function (e, res, body) {
@@ -24,7 +25,7 @@ wget('https://piston-meta.mojang.com/mc/game/version_manifest_v2.json', function
                 version = versions.versions.filter(function (d) { return res2.version == d.id });
                 wget(version[0].url, function (e3, res3, body2) {
                     if (e3) {
-                        console.log('mojang pissed himself')
+                        console.log('mojang pissed himself and this shit will close')
                         process.exit(1)
                     } else {
                         shit = JSON.parse(body2)
@@ -180,7 +181,7 @@ wget('https://piston-meta.mojang.com/mc/game/version_manifest_v2.json', function
                                         process.exit(1)
                                     } else {
                                         if (Object.keys(shit.libraries[i].downloads).includes("artifact")) {
-                                            console.log("downloading jar (" + (i + 1) + "/" + shit.libraries.length + ")")
+                                            console.log("downloading that jar: (" + (i + 1) + "/" + shit.libraries.length + ")")
                                             download = proc.spawn('aria2c', ['-x16', '-s16', '-m16', shit.libraries[i].downloads.artifact.url, '--dir=versions/' + res2.version], { shell: true, detached: true })
                                             download.on('close', function (c3) {
                                                 downloadLib(shit.libraries, ++i)
