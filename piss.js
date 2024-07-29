@@ -6,7 +6,7 @@ let versions;
 let user;
 //let data = require('./data.json')
 //let version;
-wget({url:'https://piston-meta.mojang.com/mc/game/version_manifest_v2.json',dest:'json'}, function (e, res, body) {
+wget({url:'https://piston-meta.mojang.com/mc/game/version_manifest_v2.json',dest:'json/'}, function (e, res, body) {
     if (e) {
         console.log('mojang pissed himself')
         process.exit(1)
@@ -22,7 +22,7 @@ wget({url:'https://piston-meta.mojang.com/mc/game/version_manifest_v2.json',dest
             if (body.includes(res2.version)) {
                 let startTime = Date.now()
                 version = versions.versions.filter(function (d) { return res2.version == d.id });
-                wget({url:version[0].url,dest:'json'}, function (e3, res3, body2) {
+                wget({url:version[0].url,dest:'json/'}, function (e3, res3, body2) {
                     if (e3) {
                         console.log('mojang pissed himself')
                         process.exit(1)
