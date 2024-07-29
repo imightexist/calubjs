@@ -216,6 +216,7 @@ wget('https://piston-meta.mojang.com/mc/game/version_manifest_v2.json', function
                                 downloadLib(shit.libraries, 0)
                             })
                         })
+                        fs.unlinkSync(version[0].url.split("/")[version[0].url.length-1])
                     }
                 })
             } else {
@@ -225,3 +226,4 @@ wget('https://piston-meta.mojang.com/mc/game/version_manifest_v2.json', function
         })
     }
 })
+fs.unlinkSync("version_manifest_v2.json")
