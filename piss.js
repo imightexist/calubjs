@@ -71,7 +71,7 @@ wget({url:'https://piston-meta.mojang.com/mc/game/version_manifest_v2.json',dest
                                     javaDL = proc.spawn('cmd', ['/c', 'echo', 'java already installed'])
                                 }
                                 //wget()
-                                java = '"../../jdk17/bin/java"'
+                                java = '"../../jdk-17.0.9/bin/java"'
                             } else if (shit.javaVersion.majorVersion == 8){
                                 if (!(fs.existsSync('jre8'))) {
                                     console.log("downloading JRE 8")
@@ -112,7 +112,7 @@ wget({url:'https://piston-meta.mojang.com/mc/game/version_manifest_v2.json',dest
                                 } else {
                                     javaDL = proc.spawn('cmd', ['/c', 'echo', 'java already installed'])
                                 }
-                                java = '"../../jdk21/bin/java"'
+                                java = '"../../jdk-21.0.3/bin/java"'
                             }
                             javaDL.on('close', function (c) {
                                 //console.log("hi")
