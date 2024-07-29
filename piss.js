@@ -46,7 +46,7 @@ wget({url:'https://piston-meta.mojang.com/mc/game/version_manifest_v2.json',dest
                             if (shit.javaVersion.majorVersion == 17) {
                                 //console.log('java 17 has no 32-bit')
                                 //process.exit(1)
-                                if (!(fs.existsSync("jdk17"))) {
+                                if (!(fs.existsSync("jdk-17.0.9"))) {
                                     console.log("downloading JDK 17")
                                     /*wget({
                                         url: 'https://download.oracle.com/java/17/archive/jdk-17.0.9_windows-x64_bin.zip',
@@ -99,7 +99,7 @@ wget({url:'https://piston-meta.mojang.com/mc/game/version_manifest_v2.json',dest
                                 }
                                 java = '"../../jre8/bin/java"'
                             }else if (shit.javaVersion.majorVersion == 21){
-                                if (!(fs.existsSync('jdk21'))) {
+                                if (!(fs.existsSync('jdk-21.0.3'))) {
                                     console.log("downloading JDK 21")
                                     javaDL = proc.spawn('aria2c', ['-x16', '-s16', '-m16', 'https://download.oracle.com/java/21/archive/jdk-21.0.3_windows-x64_bin.zip', '--out=jdk21.zip'], { shell: true, detached: true })
                                     javaZIP = 'jdk21.zip'
