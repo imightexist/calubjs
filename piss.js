@@ -72,7 +72,7 @@ wget('https://piston-meta.mojang.com/mc/game/version_manifest_v2.json', function
                                 }
                                 //wget()
                                 java = '"../../jdk17.0.9/bin/java"'
-                            } else {
+                            } else if (shit.javaVersion.majorVersion == 8){
                                 if (!(fs.existsSync('jre8'))) {
                                     console.log("downloading JRE 8")
                                     /*wget({
@@ -98,16 +98,35 @@ wget('https://piston-meta.mojang.com/mc/game/version_manifest_v2.json', function
                                     javaDL = proc.spawn('cmd', ['/c', 'echo', 'java already installed'])
                                 }
                                 java = '"../../jre8/bin/java"'
+                            }else if (shit.javaVersion.majorVersion == 21){
+                                if (!(fs.existsSync('jdk21'))) {
+                                    console.log("downloading JDK 21")
+                                    javaDL = proc.spawn('aria2c', ['-x16', '-s16', '-m16', 'https://download.oracle.com/java/21/archive/jdk-21.0.3_windows-x64_bin.zip', '--out=jdk21.zip'], { shell: true, detached: true })
+                                    javaZIP = 'jdk21.zip'
+                                    /*javaDL.on('close', function (c) {
+                                        proc.spawnSync('7z', ['x', 'jre8.zip', '-ojre8'],{shell:true,detached:true})
+                                        fs.unlinkSync('jre8.zip')
+                                    })*/
+                                    //data.java.push(8)
+                                    //fs.writeFileSync('data.json', JSON.stringify(data))
+                                } else {
+                                    javaDL = proc.spawn('cmd', ['/c', 'echo', 'java already installed'])
+                                }
+                                java = '"../../jdk21/bin/java"'
                             }
                             javaDL.on('close', function (c) {
                                 //console.log("hi")
                                 if (javaZIP == "jdk17.zip") {
                                     console.log("extracting JDK 17")
-                                    proc.spawnSync('7z', ['x', javaZIP], { shell: true, detached: true })
+                                    proc.spawnSync('7z', ['x', javaZIP, '-ojdk17'], { shell: true, detached: true })
                                     fs.unlinkSync(javaZIP)
                                 } else if (javaZIP == "jre8.zip") {
                                     console.log("extracting JRE 8")
                                     proc.spawnSync('7z', ['x', javaZIP, '-ojre8'], { shell: true, detached: true })
+                                    fs.unlinkSync(javaZIP)
+                                }else if (javaZIP = "jdk21.zip"){
+                                    console.log("extracting JDK 21")
+                                    proc.spawnSync('7z', ['x', javaZIP, '-ojdk21'], { shell: true, detached: true })
                                     fs.unlinkSync(javaZIP)
                                 }
                                 console.log("generating launch script")
@@ -179,8 +198,12 @@ wget('https://piston-meta.mojang.com/mc/game/version_manifest_v2.json', function
                                         console.log('finished in ' + (Date.now() - startTime) / 1000 + "s")
                                         process.exit(1)
                                     } else {
+                                        if (Object.keys(shit.libraries[i].downloads).includes("classifiers")){
+                                            console.log("downloaded native jar: " + shit.libraries[i].downloads.classifiers["natives-windows"].url.split("/")[shit.libraries[i].downloads.classifiers["natives-windows"].url.split("/").length-1])
+                                            download = proc.spawn('aria2c', ['-x16', '-s16', '-m16', shit.libraries[i].downloads.classifiers["natives-windows"].url, '--dir=versions/' + res2.version], { shell: true, detached: true })
+                                        }
                                         if (Object.keys(shit.libraries[i].downloads).includes("artifact")) {
-                                            console.log("downloading jar (" + (i + 1) + "/" + shit.libraries.length + ")")
+                                            console.log("downloading jar (" + (i + 1) + "/" + shit.libraries.length-1 + "): " + shit.libraries[i].downloads.artifact.url.split("/")[shit.libraries[i].downloads.artifact.url.split("/").length-1])
                                             download = proc.spawn('aria2c', ['-x16', '-s16', '-m16', shit.libraries[i].downloads.artifact.url, '--dir=versions/' + res2.version], { shell: true, detached: true })
                                             download.on('close', function (c3) {
                                                 downloadLib(shit.libraries, ++i)
