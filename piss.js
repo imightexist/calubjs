@@ -124,7 +124,7 @@ wget({url:'https://piston-meta.mojang.com/mc/game/version_manifest_v2.json',dest
                                     console.log("extracting JRE 8")
                                     proc.spawnSync('7z', ['x', javaZIP, '-ojre8'], { shell: true, detached: true })
                                     fs.unlinkSync(javaZIP)
-                                }else if (javaZIP = "jdk21.zip"){
+                                }else if (javaZIP == "jdk21.zip"){
                                     console.log("extracting JDK 21")
                                     proc.spawnSync('7z', ['x', javaZIP, '-ojdk21'], { shell: true, detached: true })
                                     fs.unlinkSync(javaZIP)
