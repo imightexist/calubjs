@@ -211,6 +211,8 @@ wget({url:'https://piston-meta.mojang.com/mc/game/version_manifest_v2.json',dest
                                                         download.on('close', function (c3) {
                                                             downloadLib(shit.libraries, ++i)
                                                         })
+                                                    }else{
+                                                        downloadLib(shit.libraries,++i)
                                                     }
                                                 }else{
                                                     console.log("downloading jar (" + (i + 1) + "/" + (shit.libraries.length-1) + "): " + shit.libraries[i].downloads.artifact.url.split("/")[shit.libraries[i].downloads.artifact.url.split("/").length-1])
