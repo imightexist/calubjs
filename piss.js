@@ -46,7 +46,7 @@ wget('https://piston-meta.mojang.com/mc/game/version_manifest_v2.json', function
                             if (shit.javaVersion.majorVersion == 17) {
                                 //console.log('java 17 has no 32-bit')
                                 //process.exit(1)
-                                if (!(fs.existsSync("jdk17.0.9"))) {
+                                if (!(fs.existsSync("jdk17"))) {
                                     console.log("downloading JDK 17")
                                     /*wget({
                                         url: 'https://download.oracle.com/java/17/archive/jdk-17.0.9_windows-x64_bin.zip',
