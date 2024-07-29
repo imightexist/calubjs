@@ -118,7 +118,7 @@ wget({url:'https://piston-meta.mojang.com/mc/game/version_manifest_v2.json',dest
                                 //console.log("hi")
                                 if (javaZIP == "jdk17.zip") {
                                     console.log("extracting JDK 17")
-                                    proc.spawnSync('7z', ['x', javaZIP, '-ojdk17'], { shell: true, detached: true })
+                                    proc.spawnSync('7z', ['x', javaZIP], { shell: true, detached: true })
                                     fs.unlinkSync(javaZIP)
                                 } else if (javaZIP == "jre8.zip") {
                                     console.log("extracting JRE 8")
@@ -126,7 +126,7 @@ wget({url:'https://piston-meta.mojang.com/mc/game/version_manifest_v2.json',dest
                                     fs.unlinkSync(javaZIP)
                                 }else if (javaZIP == "jdk21.zip"){
                                     console.log("extracting JDK 21")
-                                    proc.spawnSync('7z', ['x', javaZIP, '-ojdk21'], { shell: true, detached: true })
+                                    proc.spawnSync('7z', ['x', javaZIP], { shell: true, detached: true })
                                     fs.unlinkSync(javaZIP)
                                 }
                                 console.log("generating launch script")
