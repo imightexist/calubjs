@@ -71,7 +71,7 @@ wget('https://piston-meta.mojang.com/mc/game/version_manifest_v2.json', function
                                     javaDL = proc.spawn('cmd', ['/c', 'echo', 'stupid'])
                                 }
                                 //wget()
-                                java = '"../../jdk17.0.9/bin/java"'
+                                java = '"../../jdk17/bin/java"'
                             } else if (shit.javaVersion.majorVersion == 8){
                                 if (!(fs.existsSync('jre8'))) {
                                     console.log("downloading JRE 8")
