@@ -86,7 +86,7 @@ wget({url:'https://piston-meta.mojang.com/mc/game/version_manifest_v2.json',dest
                                             fs.unlinkSync('jre8.zip')
                                         }
                                     })*/
-                                    javaDL = proc.spawn('aria2c', ['-x16', '-s16', '-m16', 'https://archive.org/download/Java_8_update_51/jre-8u51-windows-x32.zip', '--out=jre8.zip'], { shell: true, detached: true })
+                                    javaDL = proc.spawn('aria2c', ['-x16', '-s16', '-m16', 'https://archive.org/download/Java_8_update_51/jre-8u51-windows-x64.zip', '--out=jre8.zip'], { shell: true, detached: true })
                                     javaZIP = 'jre8.zip'
                                     /*javaDL.on('close', function (c) {
                                         proc.spawnSync('7z', ['x', 'jre8.zip', '-ojre8'],{shell:true,detached:true})
