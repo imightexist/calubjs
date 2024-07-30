@@ -129,6 +129,11 @@ wget({url:'https://piston-meta.mojang.com/mc/game/version_manifest_v2.json',dest
                                     proc.spawnSync('7z', ['x', javaZIP], { shell: true, detached: true })
                                     fs.unlinkSync(javaZIP)
                                 }
+                                console.log("downloading assets")
+                                let assetIndex = shit.assetIndex.id;
+                                if (!(fs.existsSync('assets/'+assetIndex+'.json'))){
+                                    assetDL = proc.spawn('aria2c', ['-x16', '-s16', '-m16', shit.assetIndex.url, '--out=assets/'+assetIndex+'.json'], { shell: true, detached: true })
+                                }
                                 console.log("generating launch script")
                                 if (body2.includes("minecraftArguments")) {
                                     //last version known is 1.6.2, which isnt legacy auth soooo
@@ -137,15 +142,15 @@ wget({url:'https://piston-meta.mojang.com/mc/game/version_manifest_v2.json',dest
                                     args = args.replaceAll('${auth_player_name}', '%username%')
                                     args = args.replaceAll('${auth_access_token}', '%username%')
                                     args = args.replaceAll('${auth_session} ', '')
-                                    args = args.replaceAll('${game_assets}', 'assets')
+                                    args = args.replaceAll('${game_assets}', __dirname + '\\assets')
                                     args = args.replaceAll('${game_directory}', '"' + __dirname + '\\data"')
                                     
                                     args = args.replaceAll('${launcher_name}', 'calubcraft')
                                     args = args.replaceAll('${launcher_version}', '21')
                                     args = args.replaceAll('${natives_directory}', '"' + __dirname + '\\natives"')
                                     args = args.replaceAll('${version_name}', shit.id)
-                                    args = args.replaceAll('${assets_root}', 'assets')
-                                    args = args.replaceAll('${assets_index_name}', '8')
+                                    args = args.replaceAll('${assets_root}', __dirname + '\\assets')
+                                    args = args.replaceAll('${assets_index_name}', assetIndex)
                                     args = args.replaceAll('--uuid ${auth_uuid}', '')
                                     args = args.replaceAll(' --uuid ${auth_uuid}', '')
                                     args = args.replaceAll(' --clientId ${clientid}','')
