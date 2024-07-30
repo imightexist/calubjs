@@ -131,7 +131,7 @@ wget({url:'https://piston-meta.mojang.com/mc/game/version_manifest_v2.json',dest
                                 }
                                 console.log("downloading assets")
                                 let assetIndex = shit.assetIndex.id;
-                                if (!(fs.existsSync('assets/'+assetIndex+'.json'))){
+                                if (!(fs.existsSync('assets/indexes/'+assetIndex+'.json'))){
                                     assetDL = proc.spawn('aria2c', ['-x16', '-s16', '-m16', shit.assetIndex.url, '--out=assets/indexes/'+assetIndex+'.json'], { shell: true, detached: true })
                                 }
                                 console.log("generating launch script")
