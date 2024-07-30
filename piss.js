@@ -193,48 +193,47 @@ wget({url:'https://piston-meta.mojang.com/mc/game/version_manifest_v2.json',dest
                                 fs.writeFileSync('versions/' + res2.version + '/! run.cmd', "set /p username=<../../username.txt\n" + java + args, { flag: 'a' })
                                 function downloadLib(list, i) {
                                     //console.log(i + " " + shit.libraries.length)
-                                    if (shit.libraries.length - 1 == i) {
-                                        console.log()
-                                        console.log('finished in ' + (Date.now() - startTime) / 1000 + "s")
-                                        process.exit(1)
-                                    } else {
-                                        if (Object.keys(shit.libraries[i].downloads).includes("classifiers")){
-                                            if (Object.keys(shit.libraries[i].downloads.classifiers).includes("natives-windows")){
-                                                if (Object.keys(shit.libraries[i].downloads.classifiers["natives-windows"]).includes("url")){
-                                                    console.log("downloaded native jar: " + shit.libraries[i].downloads.classifiers["natives-windows"].url.split("/")[shit.libraries[i].downloads.classifiers["natives-windows"].url.split("/").length-1])
-                                                    download = proc.spawn('aria2c', ['-x16', '-s16', '-m16', shit.libraries[i].downloads.classifiers["natives-windows"].url, '--dir=versions/' + res2.version], { shell: true, detached: true })
-                                                }
+                                    if (Object.keys(shit.libraries[i].downloads).includes("classifiers")){
+                                        if (Object.keys(shit.libraries[i].downloads.classifiers).includes("natives-windows")){
+                                            if (Object.keys(shit.libraries[i].downloads.classifiers["natives-windows"]).includes("url")){
+                                                console.log("downloaded native jar: " + shit.libraries[i].downloads.classifiers["natives-windows"].url.split("/")[shit.libraries[i].downloads.classifiers["natives-windows"].url.split("/").length-1])
+                                                download = proc.spawn('aria2c', ['-x16', '-s16', '-m16', shit.libraries[i].downloads.classifiers["natives-windows"].url, '--dir=versions/' + res2.version], { shell: true, detached: true })
                                             }
                                         }
-                                        if (Object.keys(shit.libraries[i].downloads).includes("artifact")) {
-                                            if (Object.keys(shit.libraries[i]).includes("rules")){
-                                                if (Object.keys(shit.libraries[i].rules[0]).includes("os")){
-                                                    if (shit.libraries[i].rules[0].os.name == "windows" && shit.libraries[i].name.endsWith("windows")){
-                                                        console.log("downloading jar (" + (i + 1) + "/" + (shit.libraries.length-1) + "): " + shit.libraries[i].downloads.artifact.url.split("/")[shit.libraries[i].downloads.artifact.url.split("/").length-1])
-                                                        download = proc.spawn('aria2c', ['-x16', '-s16', '-m16', shit.libraries[i].downloads.artifact.url, '--dir=versions/' + res2.version], { shell: true, detached: true })
-                                                        download.on('close', function (c3) {
-                                                            downloadLib(shit.libraries, ++i)
-                                                        })
-                                                    }else{
-                                                        downloadLib(shit.libraries,++i)
-                                                    }
-                                                }else{
-                                                    console.log("downloading jar (" + (i + 1) + "/" + (shit.libraries.length-1) + "): " + shit.libraries[i].downloads.artifact.url.split("/")[shit.libraries[i].downloads.artifact.url.split("/").length-1])
+                                    }
+                                    if (Object.keys(shit.libraries[i].downloads).includes("artifact")) {
+                                        if (Object.keys(shit.libraries[i]).includes("rules")){
+                                            if (Object.keys(shit.libraries[i].rules[0]).includes("os")){
+                                                if (shit.libraries[i].rules[0].os.name == "windows" && shit.libraries[i].name.endsWith("windows")){
+                                                    console.log("downloading jar (" + (i + 1) + "/" + shit.libraries.length + "): " + shit.libraries[i].downloads.artifact.url.split("/")[shit.libraries[i].downloads.artifact.url.split("/").length-1])
                                                     download = proc.spawn('aria2c', ['-x16', '-s16', '-m16', shit.libraries[i].downloads.artifact.url, '--dir=versions/' + res2.version], { shell: true, detached: true })
                                                     download.on('close', function (c3) {
                                                         downloadLib(shit.libraries, ++i)
                                                     })
+                                                }else{
+                                                    downloadLib(shit.libraries,++i)
                                                 }
                                             }else{
-                                                console.log("downloading jar (" + (i + 1) + "/" + (shit.libraries.length-1) + "): " + shit.libraries[i].downloads.artifact.url.split("/")[shit.libraries[i].downloads.artifact.url.split("/").length-1])
+                                                console.log("downloading jar (" + (i + 1) + "/" + shit.libraries.length + "): " + shit.libraries[i].downloads.artifact.url.split("/")[shit.libraries[i].downloads.artifact.url.split("/").length-1])
                                                 download = proc.spawn('aria2c', ['-x16', '-s16', '-m16', shit.libraries[i].downloads.artifact.url, '--dir=versions/' + res2.version], { shell: true, detached: true })
                                                 download.on('close', function (c3) {
                                                     downloadLib(shit.libraries, ++i)
                                                 })
                                             }
                                         }else{
-                                            downloadLib(shit.libraries,++i)
+                                            console.log("downloading jar (" + (i + 1) + "/" + shit.libraries.length + "): " + shit.libraries[i].downloads.artifact.url.split("/")[shit.libraries[i].downloads.artifact.url.split("/").length-1])
+                                            download = proc.spawn('aria2c', ['-x16', '-s16', '-m16', shit.libraries[i].downloads.artifact.url, '--dir=versions/' + res2.version], { shell: true, detached: true })
+                                            download.on('close', function (c3) {
+                                                downloadLib(shit.libraries, ++i)
+                                            })
                                         }
+                                    }else{
+                                        downloadLib(shit.libraries,++i)
+                                    }
+                                    if (shit.libraries.length - 1 == i) {
+                                        console.log()
+                                        console.log('finished in ' + (Date.now() - startTime) / 1000 + "s")
+                                        process.exit(1)
                                     }
                                 }
                                 downloadLib(shit.libraries, 0)
