@@ -173,7 +173,7 @@ wget({url:'https://piston-meta.mojang.com/mc/game/version_manifest_v2.json',dest
                                     args = args.replaceAll('${natives_directory}', '"' + __dirname + '\\natives"')
                                     args = args.replaceAll('${auth_player_name}', '%username%')
                                     args = args.replaceAll('${auth_access_token}', '%username%')
-                                    args = args.replaceAll('${assets_root}', '"' + __dirname + 'assets"')
+                                    args = args.replaceAll('${assets_root}', '"' + __dirname + '\\assets"')
                                     args = args.replaceAll('${game_directory}', '"' + __dirname + '\\data"')
                                     args = args.replaceAll('${version_name}', shit.id)
                                     args = args.replaceAll('${assets_index_name}', assetIndex)
