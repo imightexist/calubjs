@@ -198,6 +198,11 @@ wget({url:'https://piston-meta.mojang.com/mc/game/version_manifest_v2.json',dest
                                 fs.writeFileSync('versions/' + res2.version + '/! run.cmd', "set /p username=<../../username.txt\n" + java + args, { flag: 'a' })
                                 function downloadLib(list, i) {
                                     //console.log(i + " " + shit.libraries.length)
+                                    if (shit.libraries.length == i) {
+                                        console.log()
+                                        console.log('finished in ' + (Date.now() - startTime) / 1000 + "s")
+                                        process.exit(1)
+                                    }
                                     if (Object.keys(shit.libraries[i].downloads).includes("classifiers")){
                                         if (Object.keys(shit.libraries[i].downloads.classifiers).includes("natives-windows")){
                                             if (Object.keys(shit.libraries[i].downloads.classifiers["natives-windows"]).includes("url")){
@@ -234,11 +239,6 @@ wget({url:'https://piston-meta.mojang.com/mc/game/version_manifest_v2.json',dest
                                         }
                                     }else{
                                         downloadLib(shit.libraries,++i)
-                                    }
-                                    if (shit.libraries.length - 1 == i) {
-                                        console.log()
-                                        console.log('finished in ' + (Date.now() - startTime) / 1000 + "s")
-                                        process.exit(1)
                                     }
                                 }
                                 downloadLib(shit.libraries, 0)
