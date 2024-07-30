@@ -199,8 +199,8 @@ wget({url:'https://piston-meta.mojang.com/mc/game/version_manifest_v2.json',dest
                                         process.exit(1)
                                     } else {
                                         if (Object.keys(shit.libraries[i].downloads).includes("classifiers")){
-                                            if (Object.keys(shit.libraries[i].downloads.classifiers).includes("native-windows")){
-                                                if (Object.keys(shit.libraries[i].downloads.classifiers["native-windows"]).includes("url")){
+                                            if (Object.keys(shit.libraries[i].downloads.classifiers).includes("natives-windows")){
+                                                if (Object.keys(shit.libraries[i].downloads.classifiers["natives-windows"]).includes("url")){
                                                     console.log("downloaded native jar: " + shit.libraries[i].downloads.classifiers["natives-windows"].url.split("/")[shit.libraries[i].downloads.classifiers["natives-windows"].url.split("/").length-1])
                                                     download = proc.spawn('aria2c', ['-x16', '-s16', '-m16', shit.libraries[i].downloads.classifiers["natives-windows"].url, '--dir=versions/' + res2.version], { shell: true, detached: true })
                                                 }
