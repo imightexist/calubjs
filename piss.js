@@ -132,7 +132,7 @@ wget({url:'https://piston-meta.mojang.com/mc/game/version_manifest_v2.json',dest
                                 console.log("downloading assets")
                                 let assetIndex = shit.assetIndex.id;
                                 if (!(fs.existsSync('assets/'+assetIndex+'.json'))){
-                                    assetDL = proc.spawn('aria2c', ['-x16', '-s16', '-m16', shit.assetIndex.url, '--out=assets/'+assetIndex+'.json'], { shell: true, detached: true })
+                                    assetDL = proc.spawn('aria2c', ['-x16', '-s16', '-m16', shit.assetIndex.url, '--out=assets/indexes/'+assetIndex+'.json'], { shell: true, detached: true })
                                 }
                                 console.log("generating launch script")
                                 if (body2.includes("minecraftArguments")) {
