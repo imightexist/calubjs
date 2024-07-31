@@ -131,9 +131,18 @@ wget({url:'https://piston-meta.mojang.com/mc/game/version_manifest_v2.json',dest
                                 }
                                 console.log("downloading assets")
                                 let assetIndex = shit.assetIndex.id;
-                                if (!(fs.existsSync('data/assets/indexes/'+assetIndex+'.json'))){
-                                    assetDL = proc.spawn('aria2c', ['-x16', '-s16', '-m16', shit.assetIndex.url, '--out=data/assets/indexes/'+assetIndex+'.json'], { shell: true, detached: true })
-                                }
+                                /*if (!(fs.existsSync('data/assets/indexes/'+assetIndex+'.json'))){
+                                    assetDL = proc.spawn('aria2c', ['-x16', '-s16', '-m16', shit.assetIndex.url, '--out=assets/indexes/'+assetIndex+'.json'], { shell: true, detached: true })
+                                }*/
+                                wget({url:shit.assetIndex.url,dest:'assets/indexes/'},function(e5,res5,body5){
+                                    objects = Object.values(JSON.parse(body5).objects)
+                                    objects.forEach(function(file){
+                                        hash = file.hash
+                                        folder = hash.charAt(0)+hash.charAt(1)
+                                        proc.spawn('aria2c', ['-x16', '-s16', '-m16', 'https://resources.download.minecraft.net/'+folder+'/'+hash, '--out=assets/objects/'+folder+'/'+hash+'.json'], { shell: true, detached: true })
+                                    })
+                                })
+                                    
                                 console.log("generating launch script")
                                 if (body2.includes("minecraftArguments")) {
                                     //last version known is 1.6.2, which isnt legacy auth soooo
@@ -142,14 +151,14 @@ wget({url:'https://piston-meta.mojang.com/mc/game/version_manifest_v2.json',dest
                                     args = args.replaceAll('${auth_player_name}', '%username%')
                                     args = args.replaceAll('${auth_access_token}', '%username%')
                                     args = args.replaceAll('${auth_session} ', '')
-                                    args = args.replaceAll('${game_assets}', '"' + __dirname + '\\data\\assets"')
+                                    args = args.replaceAll('${game_assets}', '"' + __dirname + '\\assets"')
                                     args = args.replaceAll('${game_directory}', '"' + __dirname + '\\data"')
                                     
                                     args = args.replaceAll('${launcher_name}', 'calubcraft')
                                     args = args.replaceAll('${launcher_version}', '21')
                                     args = args.replaceAll('${natives_directory}', '"' + __dirname + '\\natives"')
                                     args = args.replaceAll('${version_name}', shit.id)
-                                    args = args.replaceAll('${assets_root}', '"' + __dirname + '\\data\\assets"')
+                                    args = args.replaceAll('${assets_root}', '"' + __dirname + '\\assets"')
                                     args = args.replaceAll('${assets_index_name}', assetIndex)
                                     args = args.replaceAll('--uuid ${auth_uuid}', '')
                                     args = args.replaceAll(' --uuid ${auth_uuid}', '')
@@ -173,7 +182,7 @@ wget({url:'https://piston-meta.mojang.com/mc/game/version_manifest_v2.json',dest
                                     args = args.replaceAll('${natives_directory}', '"' + __dirname + '\\natives"')
                                     args = args.replaceAll('${auth_player_name}', '%username%')
                                     args = args.replaceAll('${auth_access_token}', '%username%')
-                                    args = args.replaceAll('${assets_root}', '"' + __dirname + '\\data\\assets"')
+                                    args = args.replaceAll('${assets_root}', '"' + __dirname + '\\assets"')
                                     args = args.replaceAll('${game_directory}', '"' + __dirname + '\\data"')
                                     args = args.replaceAll('${version_name}', shit.id)
                                     args = args.replaceAll('${assets_index_name}', assetIndex)
