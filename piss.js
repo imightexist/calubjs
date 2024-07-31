@@ -135,6 +135,7 @@ wget({url:'https://piston-meta.mojang.com/mc/game/version_manifest_v2.json',dest
                                     assetDL = proc.spawn('aria2c', ['-x16', '-s16', '-m16', shit.assetIndex.url, '--out=assets/indexes/'+assetIndex+'.json'], { shell: true, detached: true })
                                 }*/
                                 wget({url:shit.assetIndex.url,dest:'assets/indexes/'},function(e5,res5,body5){
+                                    filenames = Object.keys(JSON.parse(body5).objects)
                                     objects = Object.values(JSON.parse(body5).objects)
                                     function downloadAsset(j){
                                         if (objects.length == j){
@@ -251,11 +252,13 @@ wget({url:'https://piston-meta.mojang.com/mc/game/version_manifest_v2.json',dest
                                             hash = file.hash
                                             folder = hash.charAt(0)+hash.charAt(1)
                                             if (!(fs.existsSync("assets/objects/"+folder+"/"+hash))){
-                                                console.log("downloading asset ("+(j+1)+"/"+objects.length+")")
-                                                assetDL = proc.spawn('aria2c', ['-x16', '-s16', '-m16', 'https://resources.download.minecraft.net/'+folder+'/'+hash, '--out=assets/objects/'+folder+'/'+hash+'.json'], { shell: true, detached: true })
-                                                assetDL.on('close',function(c4){
-                                                    downloadAsset(++j)
-                                                })
+                                                if (filename[j].endsWith(".png") || filename[j].endsWith(".icns")){
+                                                    console.log("downloading asset ("+(j+1)+"/"+objects.length+")")
+                                                    assetDL = proc.spawn('aria2c', ['-x16', '-s16', '-m16', 'https://resources.download.minecraft.net/'+folder+'/'+hash, '--out=assets/objects/'+folder+'/'+hash+'.json'], { shell: true, detached: true })
+                                                    assetDL.on('close',function(c4){
+                                                        downloadAsset(++j)
+                                                    })
+                                                }
                                             }else{
                                                 downloadAsset(++j);
                                             }
