@@ -258,6 +258,8 @@ wget({url:'https://piston-meta.mojang.com/mc/game/version_manifest_v2.json',dest
                                                     assetDL.on('close',function(c4){
                                                         downloadAsset(++j)
                                                     })
+                                                }else{
+                                                    downloadAsset(++j)
                                                 }
                                             }else{
                                                 downloadAsset(++j);
