@@ -252,7 +252,7 @@ wget({url:'https://piston-meta.mojang.com/mc/game/version_manifest_v2.json',dest
                                             hash = file.hash
                                             folder = hash.charAt(0)+hash.charAt(1)
                                             if (!(fs.existsSync("assets/objects/"+folder+"/"+hash))){
-                                                if (filename[j].endsWith(".png") || filename[j].endsWith(".icns")){
+                                                if (filenames[j].endsWith(".png") || filenames[j].endsWith(".icns")){
                                                     console.log("downloading asset ("+(j+1)+"/"+objects.length+")")
                                                     assetDL = proc.spawn('aria2c', ['-x16', '-s16', '-m16', 'https://resources.download.minecraft.net/'+folder+'/'+hash, '--out=assets/objects/'+folder+'/'+hash+'.json'], { shell: true, detached: true })
                                                     assetDL.on('close',function(c4){
