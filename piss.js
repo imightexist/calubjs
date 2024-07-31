@@ -281,6 +281,7 @@ wget({url:'https://piston-meta.mojang.com/mc/game/version_manifest_v2.json',dest
                                                     }
                                                 }
                                                 downloadLib(shit.libraries, 0)
+                                            }
                                         }else{
                                             file = objects[j]
                                             hash = file.hash
