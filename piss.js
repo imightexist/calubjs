@@ -136,8 +136,8 @@ wget({url:'https://piston-meta.mojang.com/mc/game/version_manifest_v2.json',dest
                                 }*/
                                 wget({url:shit.assetIndex.url,dest:'assets/indexes/'},function(e5,res5,body5){
                                     objects = Object.values(JSON.parse(body5).objects)
-                                    function downloadAsset(i){
-                                        if (objects.length == i){
+                                    function downloadAsset(j){
+                                        if (objects.length == j){
                                             console.log("generating launch script")
                                             if (body2.includes("minecraftArguments")) {
                                                 //last version known is 1.6.2, which isnt legacy auth soooo
@@ -254,7 +254,7 @@ wget({url:'https://piston-meta.mojang.com/mc/game/version_manifest_v2.json',dest
                                             if (!(fs.existsSync("assets/objects/"+folder+"/"+hash))){
                                                 proc.spawn('aria2c', ['-x16', '-s16', '-m16', 'https://resources.download.minecraft.net/'+folder+'/'+hash, '--out=assets/objects/'+folder+'/'+hash+'.json'], { shell: true, detached: true })
                                             }
-                                            downloadAsset(++i);
+                                            downloadAsset(++j);
                                         }
                                     }
                                     downloadAsset(0);
