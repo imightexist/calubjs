@@ -255,8 +255,8 @@ wget({url:'https://piston-meta.mojang.com/mc/game/version_manifest_v2.json',dest
                                             }
                                             downloadAsset(++i);
                                         }
-                                        downloadAsset(0);
                                     }
+                                    downloadAsset(0);
                                 })
                             })
                         })
