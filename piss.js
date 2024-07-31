@@ -278,6 +278,7 @@ wget({url:'https://piston-meta.mojang.com/mc/game/version_manifest_v2.json',dest
                                                         }else{
                                                             downloadLib(shit.libraries,++i)
                                                         }
+                                                    }
                                                 }
                                                 downloadLib(shit.libraries, 0)
                                         }else{
