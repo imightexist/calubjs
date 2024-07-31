@@ -213,40 +213,69 @@ wget({url:'https://piston-meta.mojang.com/mc/game/version_manifest_v2.json',dest
                                                         if (Object.keys(shit.libraries[i].downloads.classifiers["natives-windows"]).includes("url")){
                                                             console.log("downloaded native jar: " + shit.libraries[i].downloads.classifiers["natives-windows"].url.split("/")[shit.libraries[i].downloads.classifiers["natives-windows"].url.split("/").length-1])
                                                             download = proc.spawn('aria2c', ['-x16', '-s16', '-m16', shit.libraries[i].downloads.classifiers["natives-windows"].url, '--dir=versions/' + res2.version], { shell: true, detached: true })
+                                                        }else{
+                                                            if (Object.keys(shit.libraries[i].downloads).includes("artifact")) {
+                                                                if (Object.keys(shit.libraries[i]).includes("rules")){
+                                                                    if (Object.keys(shit.libraries[i].rules[0]).includes("os")){
+                                                                        if (shit.libraries[i].rules[0].os.name == "windows" && shit.libraries[i].name.endsWith("windows")){
+                                                                            console.log("downloading jar (" + (i + 1) + "/" + shit.libraries.length + "): " + shit.libraries[i].downloads.artifact.url.split("/")[shit.libraries[i].downloads.artifact.url.split("/").length-1])
+                                                                            download = proc.spawn('aria2c', ['-x16', '-s16', '-m16', shit.libraries[i].downloads.artifact.url, '--dir=versions/' + res2.version], { shell: true, detached: true })
+                                                                            download.on('close', function (c3) {
+                                                                                downloadLib(shit.libraries, ++i)
+                                                                            })
+                                                                        }else{
+                                                                            downloadLib(shit.libraries,++i)
+                                                                        }
+                                                                    }else{
+                                                                        console.log("downloading jar (" + (i + 1) + "/" + shit.libraries.length + "): " + shit.libraries[i].downloads.artifact.url.split("/")[shit.libraries[i].downloads.artifact.url.split("/").length-1])
+                                                                        download = proc.spawn('aria2c', ['-x16', '-s16', '-m16', shit.libraries[i].downloads.artifact.url, '--dir=versions/' + res2.version], { shell: true, detached: true })
+                                                                        download.on('close', function (c3) {
+                                                                            downloadLib(shit.libraries, ++i)
+                                                                        })
+                                                                    }
+                                                                }else{
+                                                                    console.log("downloading jar (" + (i + 1) + "/" + shit.libraries.length + "): " + shit.libraries[i].downloads.artifact.url.split("/")[shit.libraries[i].downloads.artifact.url.split("/").length-1])
+                                                                    download = proc.spawn('aria2c', ['-x16', '-s16', '-m16', shit.libraries[i].downloads.artifact.url, '--dir=versions/' + res2.version], { shell: true, detached: true })
+                                                                    download.on('close', function (c3) {
+                                                                        downloadLib(shit.libraries, ++i)
+                                                                    })
+                                                                }
+                                                            }else{
+                                                                downloadLib(shit.libraries,++i)
+                                                            }
                                                         }
-                                                    }
-                                                }
-                                                if (Object.keys(shit.libraries[i].downloads).includes("artifact")) {
-                                                    if (Object.keys(shit.libraries[i]).includes("rules")){
-                                                        if (Object.keys(shit.libraries[i].rules[0]).includes("os")){
-                                                            if (shit.libraries[i].rules[0].os.name == "windows" && shit.libraries[i].name.endsWith("windows")){
+                                                    }else{
+                                                        if (Object.keys(shit.libraries[i].downloads).includes("artifact")) {
+                                                            if (Object.keys(shit.libraries[i]).includes("rules")){
+                                                                if (Object.keys(shit.libraries[i].rules[0]).includes("os")){
+                                                                    if (shit.libraries[i].rules[0].os.name == "windows" && shit.libraries[i].name.endsWith("windows")){
+                                                                        console.log("downloading jar (" + (i + 1) + "/" + shit.libraries.length + "): " + shit.libraries[i].downloads.artifact.url.split("/")[shit.libraries[i].downloads.artifact.url.split("/").length-1])
+                                                                        download = proc.spawn('aria2c', ['-x16', '-s16', '-m16', shit.libraries[i].downloads.artifact.url, '--dir=versions/' + res2.version], { shell: true, detached: true })
+                                                                        download.on('close', function (c3) {
+                                                                            downloadLib(shit.libraries, ++i)
+                                                                        })
+                                                                    }else{
+                                                                        downloadLib(shit.libraries,++i)
+                                                                    }
+                                                                }else{
+                                                                    console.log("downloading jar (" + (i + 1) + "/" + shit.libraries.length + "): " + shit.libraries[i].downloads.artifact.url.split("/")[shit.libraries[i].downloads.artifact.url.split("/").length-1])
+                                                                    download = proc.spawn('aria2c', ['-x16', '-s16', '-m16', shit.libraries[i].downloads.artifact.url, '--dir=versions/' + res2.version], { shell: true, detached: true })
+                                                                    download.on('close', function (c3) {
+                                                                        downloadLib(shit.libraries, ++i)
+                                                                    })
+                                                                }
+                                                            }else{
                                                                 console.log("downloading jar (" + (i + 1) + "/" + shit.libraries.length + "): " + shit.libraries[i].downloads.artifact.url.split("/")[shit.libraries[i].downloads.artifact.url.split("/").length-1])
                                                                 download = proc.spawn('aria2c', ['-x16', '-s16', '-m16', shit.libraries[i].downloads.artifact.url, '--dir=versions/' + res2.version], { shell: true, detached: true })
                                                                 download.on('close', function (c3) {
                                                                     downloadLib(shit.libraries, ++i)
                                                                 })
-                                                            }else{
-                                                                downloadLib(shit.libraries,++i)
                                                             }
                                                         }else{
-                                                            console.log("downloading jar (" + (i + 1) + "/" + shit.libraries.length + "): " + shit.libraries[i].downloads.artifact.url.split("/")[shit.libraries[i].downloads.artifact.url.split("/").length-1])
-                                                            download = proc.spawn('aria2c', ['-x16', '-s16', '-m16', shit.libraries[i].downloads.artifact.url, '--dir=versions/' + res2.version], { shell: true, detached: true })
-                                                            download.on('close', function (c3) {
-                                                                downloadLib(shit.libraries, ++i)
-                                                            })
+                                                            downloadLib(shit.libraries,++i)
                                                         }
-                                                    }else{
-                                                        console.log("downloading jar (" + (i + 1) + "/" + shit.libraries.length + "): " + shit.libraries[i].downloads.artifact.url.split("/")[shit.libraries[i].downloads.artifact.url.split("/").length-1])
-                                                        download = proc.spawn('aria2c', ['-x16', '-s16', '-m16', shit.libraries[i].downloads.artifact.url, '--dir=versions/' + res2.version], { shell: true, detached: true })
-                                                        download.on('close', function (c3) {
-                                                            downloadLib(shit.libraries, ++i)
-                                                        })
-                                                    }
-                                                }else{
-                                                    downloadLib(shit.libraries,++i)
                                                 }
-                                            }
-                                            downloadLib(shit.libraries, 0)
+                                                downloadLib(shit.libraries, 0)
                                         }else{
                                             file = objects[j]
                                             hash = file.hash
