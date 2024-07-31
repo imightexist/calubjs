@@ -43,8 +43,8 @@ wget({url:'https://piston-meta.mojang.com/mc/game/version_manifest_v2.json',dest
                         let clientDL = proc.spawn('aria2c', ['-x16', '-s16', '-m16', shit.downloads.client.url, '--dir=versions/' + res2.version], { shell: true, detached: true })
                         clientDL.on('close', function (c2) {
                             let javaDL, javaZIP;
-                            if (!(body2.includes("javaVerson"))){
-                                shit.javaVersion.majorVersion = 8
+                            if (!(body2.includes("javaVersion"))){
+                                shit.javaVersion = {majorVersion:8}
                             }
                             if (shit.javaVersion.majorVersion == 17 || shit.javaVersion.majorVersion == 16) {
                                 //console.log('java 17 has no 32-bit')
