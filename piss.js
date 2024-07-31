@@ -136,121 +136,125 @@ wget({url:'https://piston-meta.mojang.com/mc/game/version_manifest_v2.json',dest
                                 }*/
                                 wget({url:shit.assetIndex.url,dest:'assets/indexes/'},function(e5,res5,body5){
                                     objects = Object.values(JSON.parse(body5).objects)
-                                    objects.forEach(function(file){
-                                        hash = file.hash
-                                        folder = hash.charAt(0)+hash.charAt(1)
-                                        proc.spawn('aria2c', ['-x16', '-s16', '-m16', 'https://resources.download.minecraft.net/'+folder+'/'+hash, '--out=assets/objects/'+folder+'/'+hash+'.json'], { shell: true, detached: true })
-                                    })
-                                })
-                                    
-                                console.log("generating launch script")
-                                if (body2.includes("minecraftArguments")) {
-                                    //last version known is 1.6.2, which isnt legacy auth soooo
-                                    //uses launchwrapper
-                                    args = ' -cp "*" -Djava.library.path="' + __dirname + '\\natives" -Dorg.lwjgl.librarypath="' + __dirname + '\\natives" ' + shit.mainClass + " " + shit.minecraftArguments
-                                    args = args.replaceAll('${auth_player_name}', '%username%')
-                                    args = args.replaceAll('${auth_access_token}', '%username%')
-                                    args = args.replaceAll('${auth_session} ', '')
-                                    args = args.replaceAll('${game_assets}', '"' + __dirname + '\\assets"')
-                                    args = args.replaceAll('${game_directory}', '"' + __dirname + '\\data"')
-                                    
-                                    args = args.replaceAll('${launcher_name}', 'calubcraft')
-                                    args = args.replaceAll('${launcher_version}', '21')
-                                    args = args.replaceAll('${natives_directory}', '"' + __dirname + '\\natives"')
-                                    args = args.replaceAll('${version_name}', shit.id)
-                                    args = args.replaceAll('${assets_root}', '"' + __dirname + '\\assets"')
-                                    args = args.replaceAll('${assets_index_name}', assetIndex)
-                                    args = args.replaceAll('--uuid ${auth_uuid}', '')
-                                    args = args.replaceAll(' --uuid ${auth_uuid}', '')
-                                    args = args.replaceAll(' --clientId ${clientid}','')
-                                    args = args.replaceAll(' --xuid ${auth_xuid}','')
-                                    args = args.replaceAll(' --userType ${user_type}','')
-                                    args = args.replaceAll(' --versionType ${version_type}', '')
-                                    //args += ' -Djava.library.path="' + __dirname + '\\natives" -Dorg.lwjgl.librarypath="' + __dirname + '\\natives"'
-                                } else {
-                                    args = ' -cp "*" -Djava.library.path="' + __dirname + '\\natives" ' + shit.mainClass + " "
-                                    for (i = shit.arguments.game.length-1; i > -1; i-=2) {
-                                        if (typeof shit.arguments.game[i] == 'string') {
-                                            args += " "
-                                            args += shit.arguments.game[i-1]
-                                            args += " "
-                                            args += shit.arguments.game[i]
-                                        }
-                                    }
-                                    args = args.replaceAll('${launcher_name}', 'calubcraft')
-                                    args = args.replaceAll('${launcher_version}', '21')
-                                    args = args.replaceAll('${natives_directory}', '"' + __dirname + '\\natives"')
-                                    args = args.replaceAll('${auth_player_name}', '%username%')
-                                    args = args.replaceAll('${auth_access_token}', '%username%')
-                                    args = args.replaceAll('${assets_root}', '"' + __dirname + '\\assets"')
-                                    args = args.replaceAll('${game_directory}', '"' + __dirname + '\\data"')
-                                    args = args.replaceAll('${version_name}', shit.id)
-                                    args = args.replaceAll('${assets_index_name}', assetIndex)
-                                    args = args.replaceAll(' --uuid ${auth_uuid}', '')
-                                    args = args.replaceAll(' --clientId ${clientid}','')
-                                    args = args.replaceAll(' --xuid ${auth_xuid}','')
-                                    args = args.replaceAll(' --userType ${user_type}','')
-                                    args = args.replaceAll(' --versionType ${version_type}', '')
-                                    args = args.replaceAll(' -Dminecraft.launcher.brand=${launcher_name}','')
-                                    args = args.replaceAll(' -Dminecraft.launcher.version=${launcher_version}','')
-                                }
-                                /*for (i = 0; i < shit.libraries; i++) {
-                                    /*wget({
-                                        dest: './versions' + res2.version,
-                                        url: shit.libraries[i].downloads.artifact.url
-                                    })
-                                    proc.spawnSync('aria2c', ['-x16', '-s16', '-m16', shit.libraries[i].downloads.artifact.url, '--dir=versions/' + res2.version], { shell: true, detached: true })
-                                }*/
-                                //console.log("generating launch script (2/2)")
-                                mainClass = shit.mainClass
-                                //console.log("ree")
-                                fs.writeFileSync('versions/' + res2.version + '/! run.cmd', "set /p username=<../../username.txt\n" + java + args, { flag: 'a' })
-                                function downloadLib(list, i) {
-                                    //console.log(i + " " + shit.libraries.length)
-                                    if (shit.libraries.length == i) {
-                                        console.log()
-                                        console.log('finished in ' + (Date.now() - startTime) / 1000 + "s")
-                                        process.exit(1)
-                                    }
-                                    if (Object.keys(shit.libraries[i].downloads).includes("classifiers")){
-                                        if (Object.keys(shit.libraries[i].downloads.classifiers).includes("natives-windows")){
-                                            if (Object.keys(shit.libraries[i].downloads.classifiers["natives-windows"]).includes("url")){
-                                                console.log("downloaded native jar: " + shit.libraries[i].downloads.classifiers["natives-windows"].url.split("/")[shit.libraries[i].downloads.classifiers["natives-windows"].url.split("/").length-1])
-                                                download = proc.spawn('aria2c', ['-x16', '-s16', '-m16', shit.libraries[i].downloads.classifiers["natives-windows"].url, '--dir=versions/' + res2.version], { shell: true, detached: true })
+                                    function downloadAsset(i){
+                                        if (objects.length == i){
+                                            console.log("generating launch script")
+                                            if (body2.includes("minecraftArguments")) {
+                                                //last version known is 1.6.2, which isnt legacy auth soooo
+                                                //uses launchwrapper
+                                                args = ' -cp "*" -Djava.library.path="' + __dirname + '\\natives" -Dorg.lwjgl.librarypath="' + __dirname + '\\natives" ' + shit.mainClass + " " + shit.minecraftArguments
+                                                args = args.replaceAll('${auth_player_name}', '%username%')
+                                                args = args.replaceAll('${auth_access_token}', '%username%')
+                                                args = args.replaceAll('${auth_session} ', '')
+                                                args = args.replaceAll('${game_assets}', '"' + __dirname + '\\assets"')
+                                                args = args.replaceAll('${game_directory}', '"' + __dirname + '\\data"')
+                                                
+                                                args = args.replaceAll('${launcher_name}', 'calubcraft')
+                                                args = args.replaceAll('${launcher_version}', '21')
+                                                args = args.replaceAll('${natives_directory}', '"' + __dirname + '\\natives"')
+                                                args = args.replaceAll('${version_name}', shit.id)
+                                                args = args.replaceAll('${assets_root}', '"' + __dirname + '\\assets"')
+                                                args = args.replaceAll('${assets_index_name}', assetIndex)
+                                                args = args.replaceAll('--uuid ${auth_uuid}', '')
+                                                args = args.replaceAll(' --uuid ${auth_uuid}', '')
+                                                args = args.replaceAll(' --clientId ${clientid}','')
+                                                args = args.replaceAll(' --xuid ${auth_xuid}','')
+                                                args = args.replaceAll(' --userType ${user_type}','')
+                                                args = args.replaceAll(' --versionType ${version_type}', '')
+                                                //args += ' -Djava.library.path="' + __dirname + '\\natives" -Dorg.lwjgl.librarypath="' + __dirname + '\\natives"'
+                                            } else {
+                                                args = ' -cp "*" -Djava.library.path="' + __dirname + '\\natives" ' + shit.mainClass + " "
+                                                for (i = shit.arguments.game.length-1; i > -1; i-=2) {
+                                                    if (typeof shit.arguments.game[i] == 'string') {
+                                                        args += " "
+                                                        args += shit.arguments.game[i-1]
+                                                        args += " "
+                                                        args += shit.arguments.game[i]
+                                                    }
+                                                }
+                                                args = args.replaceAll('${launcher_name}', 'calubcraft')
+                                                args = args.replaceAll('${launcher_version}', '21')
+                                                args = args.replaceAll('${natives_directory}', '"' + __dirname + '\\natives"')
+                                                args = args.replaceAll('${auth_player_name}', '%username%')
+                                                args = args.replaceAll('${auth_access_token}', '%username%')
+                                                args = args.replaceAll('${assets_root}', '"' + __dirname + '\\assets"')
+                                                args = args.replaceAll('${game_directory}', '"' + __dirname + '\\data"')
+                                                args = args.replaceAll('${version_name}', shit.id)
+                                                args = args.replaceAll('${assets_index_name}', assetIndex)
+                                                args = args.replaceAll(' --uuid ${auth_uuid}', '')
+                                                args = args.replaceAll(' --clientId ${clientid}','')
+                                                args = args.replaceAll(' --xuid ${auth_xuid}','')
+                                                args = args.replaceAll(' --userType ${user_type}','')
+                                                args = args.replaceAll(' --versionType ${version_type}', '')
+                                                args = args.replaceAll(' -Dminecraft.launcher.brand=${launcher_name}','')
+                                                args = args.replaceAll(' -Dminecraft.launcher.version=${launcher_version}','')
                                             }
-                                        }
-                                    }
-                                    if (Object.keys(shit.libraries[i].downloads).includes("artifact")) {
-                                        if (Object.keys(shit.libraries[i]).includes("rules")){
-                                            if (Object.keys(shit.libraries[i].rules[0]).includes("os")){
-                                                if (shit.libraries[i].rules[0].os.name == "windows" && shit.libraries[i].name.endsWith("windows")){
-                                                    console.log("downloading jar (" + (i + 1) + "/" + shit.libraries.length + "): " + shit.libraries[i].downloads.artifact.url.split("/")[shit.libraries[i].downloads.artifact.url.split("/").length-1])
-                                                    download = proc.spawn('aria2c', ['-x16', '-s16', '-m16', shit.libraries[i].downloads.artifact.url, '--dir=versions/' + res2.version], { shell: true, detached: true })
-                                                    download.on('close', function (c3) {
-                                                        downloadLib(shit.libraries, ++i)
-                                                    })
+                                            /*for (i = 0; i < shit.libraries; i++) {
+                                                /*wget({
+                                                    dest: './versions' + res2.version,
+                                                    url: shit.libraries[i].downloads.artifact.url
+                                                })
+                                                proc.spawnSync('aria2c', ['-x16', '-s16', '-m16', shit.libraries[i].downloads.artifact.url, '--dir=versions/' + res2.version], { shell: true, detached: true })
+                                            }*/
+                                            //console.log("generating launch script (2/2)")
+                                            mainClass = shit.mainClass
+                                            //console.log("ree")
+                                            fs.writeFileSync('versions/' + res2.version + '/! run.cmd', "set /p username=<../../username.txt\n" + java + args, { flag: 'a' })
+                                            function downloadLib(list, i) {
+                                                //console.log(i + " " + shit.libraries.length)
+                                                if (shit.libraries.length == i) {
+                                                    console.log()
+                                                    console.log('finished in ' + (Date.now() - startTime) / 1000 + "s")
+                                                    process.exit(1)
+                                                }
+                                                if (Object.keys(shit.libraries[i].downloads).includes("classifiers")){
+                                                    if (Object.keys(shit.libraries[i].downloads.classifiers).includes("natives-windows")){
+                                                        if (Object.keys(shit.libraries[i].downloads.classifiers["natives-windows"]).includes("url")){
+                                                            console.log("downloaded native jar: " + shit.libraries[i].downloads.classifiers["natives-windows"].url.split("/")[shit.libraries[i].downloads.classifiers["natives-windows"].url.split("/").length-1])
+                                                            download = proc.spawn('aria2c', ['-x16', '-s16', '-m16', shit.libraries[i].downloads.classifiers["natives-windows"].url, '--dir=versions/' + res2.version], { shell: true, detached: true })
+                                                        }
+                                                    }
+                                                }
+                                                if (Object.keys(shit.libraries[i].downloads).includes("artifact")) {
+                                                    if (Object.keys(shit.libraries[i]).includes("rules")){
+                                                        if (Object.keys(shit.libraries[i].rules[0]).includes("os")){
+                                                            if (shit.libraries[i].rules[0].os.name == "windows" && shit.libraries[i].name.endsWith("windows")){
+                                                                console.log("downloading jar (" + (i + 1) + "/" + shit.libraries.length + "): " + shit.libraries[i].downloads.artifact.url.split("/")[shit.libraries[i].downloads.artifact.url.split("/").length-1])
+                                                                download = proc.spawn('aria2c', ['-x16', '-s16', '-m16', shit.libraries[i].downloads.artifact.url, '--dir=versions/' + res2.version], { shell: true, detached: true })
+                                                                download.on('close', function (c3) {
+                                                                    downloadLib(shit.libraries, ++i)
+                                                                })
+                                                            }else{
+                                                                downloadLib(shit.libraries,++i)
+                                                            }
+                                                        }else{
+                                                            console.log("downloading jar (" + (i + 1) + "/" + shit.libraries.length + "): " + shit.libraries[i].downloads.artifact.url.split("/")[shit.libraries[i].downloads.artifact.url.split("/").length-1])
+                                                            download = proc.spawn('aria2c', ['-x16', '-s16', '-m16', shit.libraries[i].downloads.artifact.url, '--dir=versions/' + res2.version], { shell: true, detached: true })
+                                                            download.on('close', function (c3) {
+                                                                downloadLib(shit.libraries, ++i)
+                                                            })
+                                                        }
+                                                    }else{
+                                                        console.log("downloading jar (" + (i + 1) + "/" + shit.libraries.length + "): " + shit.libraries[i].downloads.artifact.url.split("/")[shit.libraries[i].downloads.artifact.url.split("/").length-1])
+                                                        download = proc.spawn('aria2c', ['-x16', '-s16', '-m16', shit.libraries[i].downloads.artifact.url, '--dir=versions/' + res2.version], { shell: true, detached: true })
+                                                        download.on('close', function (c3) {
+                                                            downloadLib(shit.libraries, ++i)
+                                                        })
+                                                    }
                                                 }else{
                                                     downloadLib(shit.libraries,++i)
                                                 }
-                                            }else{
-                                                console.log("downloading jar (" + (i + 1) + "/" + shit.libraries.length + "): " + shit.libraries[i].downloads.artifact.url.split("/")[shit.libraries[i].downloads.artifact.url.split("/").length-1])
-                                                download = proc.spawn('aria2c', ['-x16', '-s16', '-m16', shit.libraries[i].downloads.artifact.url, '--dir=versions/' + res2.version], { shell: true, detached: true })
-                                                download.on('close', function (c3) {
-                                                    downloadLib(shit.libraries, ++i)
-                                                })
                                             }
+                                            downloadLib(shit.libraries, 0)
                                         }else{
-                                            console.log("downloading jar (" + (i + 1) + "/" + shit.libraries.length + "): " + shit.libraries[i].downloads.artifact.url.split("/")[shit.libraries[i].downloads.artifact.url.split("/").length-1])
-                                            download = proc.spawn('aria2c', ['-x16', '-s16', '-m16', shit.libraries[i].downloads.artifact.url, '--dir=versions/' + res2.version], { shell: true, detached: true })
-                                            download.on('close', function (c3) {
-                                                downloadLib(shit.libraries, ++i)
-                                            })
+                                            hash = file.hash
+                                            folder = hash.charAt(0)+hash.charAt(1)
+                                            console.log("downloading asset ("+(i+1)+"/"+objects.length+")")
+                                            proc.spawn('aria2c', ['-x16', '-s16', '-m16', 'https://resources.download.minecraft.net/'+folder+'/'+hash, '--out=assets/objects/'+folder+'/'+hash+'.json'], { shell: true, detached: true })
+                                            downloadAsset(++i);
                                         }
-                                    }else{
-                                        downloadLib(shit.libraries,++i)
                                     }
-                                }
-                                downloadLib(shit.libraries, 0)
+                                })
                             })
                         })
                         //fs.unlinkSync(version[0].url.split("/")[version[0].url.length-1])
