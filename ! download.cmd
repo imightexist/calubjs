@@ -1,2 +1,1 @@
-"node\node" piss.js
-@pause
+node ./piss.js
