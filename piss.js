@@ -247,7 +247,7 @@ wget({url:'https://piston-meta.mojang.com/mc/game/version_manifest_v2.json',dest
                                             }
                                             downloadLib(shit.libraries, 0)
                                         }else{
-                                            file = objects[i]
+                                            file = objects[j]
                                             hash = file.hash
                                             folder = hash.charAt(0)+hash.charAt(1)
                                             console.log("downloading asset ("+(i+1)+"/"+objects.length+")")
