@@ -162,6 +162,7 @@ wget({url:'https://piston-meta.mojang.com/mc/game/version_manifest_v2.json',dest
                                                 args = args.replaceAll(' --xuid ${auth_xuid}','')
                                                 args = args.replaceAll(' --userType ${user_type}','')
                                                 args = args.replaceAll(' --versionType ${version_type}', '')
+                                                args = args.replaceAll(' --userProperties ${user_properties}', '')
                                                 //args += ' -Djava.library.path="' + __dirname + '\\natives" -Dorg.lwjgl.librarypath="' + __dirname + '\\natives"'
                                             } else {
                                                 args = ' -cp "*" -Djava.library.path="'+__dirname+'\\versions\\'+res2.version+'\\natives" ' + shit.mainClass + " "
