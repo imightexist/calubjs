@@ -143,7 +143,7 @@ wget({url:'https://piston-meta.mojang.com/mc/game/version_manifest_v2.json',dest
                                             if (body2.includes("minecraftArguments")) {
                                                 //last version known is 1.6.2, which isnt legacy auth soooo
                                                 //uses launchwrapper
-                                                args = ' -cp "*" -Djava.library.path="' + __dirname + '\\natives" -Dorg.lwjgl.librarypath="' + __dirname + '\\natives" ' + shit.mainClass + " " + shit.minecraftArguments
+                                                args = ' -cp "*" -Djava.library.path="natives" -Dorg.lwjgl.librarypath="natives" ' + shit.mainClass + " " + shit.minecraftArguments
                                                 args = args.replaceAll('${auth_player_name}', '%username%')
                                                 args = args.replaceAll('${auth_access_token}', '%username%')
                                                 args = args.replaceAll('${auth_session} ', '')
@@ -152,7 +152,7 @@ wget({url:'https://piston-meta.mojang.com/mc/game/version_manifest_v2.json',dest
                                                 
                                                 args = args.replaceAll('${launcher_name}', 'calubcraft')
                                                 args = args.replaceAll('${launcher_version}', '21')
-                                                args = args.replaceAll('${natives_directory}', '"' + __dirname + '\\natives"')
+                                                args = args.replaceAll('${natives_directory}', 'natives')
                                                 args = args.replaceAll('${version_name}', shit.id)
                                                 args = args.replaceAll('${assets_root}', '"' + __dirname + '\\assets"')
                                                 args = args.replaceAll('${assets_index_name}', assetIndex)
@@ -164,7 +164,7 @@ wget({url:'https://piston-meta.mojang.com/mc/game/version_manifest_v2.json',dest
                                                 args = args.replaceAll(' --versionType ${version_type}', '')
                                                 //args += ' -Djava.library.path="' + __dirname + '\\natives" -Dorg.lwjgl.librarypath="' + __dirname + '\\natives"'
                                             } else {
-                                                args = ' -cp "*" -Djava.library.path="' + __dirname + '\\natives" ' + shit.mainClass + " "
+                                                args = ' -cp "*" -Djava.library.path="natives" ' + shit.mainClass + " "
                                                 for (i = shit.arguments.game.length-1; i > -1; i-=2) {
                                                     if (typeof shit.arguments.game[i] == 'string') {
                                                         args += " "
@@ -175,7 +175,7 @@ wget({url:'https://piston-meta.mojang.com/mc/game/version_manifest_v2.json',dest
                                                 }
                                                 args = args.replaceAll('${launcher_name}', 'calubcraft')
                                                 args = args.replaceAll('${launcher_version}', '21')
-                                                args = args.replaceAll('${natives_directory}', '"' + __dirname + '\\natives"')
+                                                args = args.replaceAll('${natives_directory}', 'natives')
                                                 args = args.replaceAll('${auth_player_name}', '%username%')
                                                 args = args.replaceAll('${auth_access_token}', '%username%')
                                                 args = args.replaceAll('${assets_root}', '"' + __dirname + '\\assets"')
@@ -213,6 +213,10 @@ wget({url:'https://piston-meta.mojang.com/mc/game/version_manifest_v2.json',dest
                                                         if (Object.keys(shit.libraries[i].downloads.classifiers["natives-windows"]).includes("url")){
                                                             console.log("downloaded native jar: " + shit.libraries[i].downloads.classifiers["natives-windows"].url.split("/")[shit.libraries[i].downloads.classifiers["natives-windows"].url.split("/").length-1])
                                                             download = proc.spawn('aria2c', ['-x16', '-s16', '-m16', shit.libraries[i].downloads.classifiers["natives-windows"].url, '--dir=versions/' + res2.version], { shell: true, detached: true })
+                                                            download.on('close',function(c3){
+                                                                proc.spawn('7z',['x',shit.libraries[i].downloads.classifiers["natives-windows"].url.split("/")[shit.libraries[i].downloads.classifiers["natives-windows"].url.split("/").length-1],'-oversions/'+res2.version+'/natives'],{shell:true,detached:true})
+                                                                downloadLib(shit.libraries,++i)
+                                                            })
                                                         }else{
                                                             if (Object.keys(shit.libraries[i].downloads).includes("artifact")) {
                                                                 if (Object.keys(shit.libraries[i]).includes("rules")){
