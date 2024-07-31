@@ -253,6 +253,7 @@ wget({url:'https://piston-meta.mojang.com/mc/game/version_manifest_v2.json',dest
                                             proc.spawn('aria2c', ['-x16', '-s16', '-m16', 'https://resources.download.minecraft.net/'+folder+'/'+hash, '--out=assets/objects/'+folder+'/'+hash+'.json'], { shell: true, detached: true })
                                             downloadAsset(++i);
                                         }
+                                        downloadAsset(0);
                                     }
                                 })
                             })
