@@ -71,7 +71,7 @@ wget({url:'https://piston-meta.mojang.com/mc/game/version_manifest_v2.json',dest
                                     //data.java.push(17)
                                     //fs.writeFileSync('data.json', JSON.stringify(data))
                                 } else {
-                                    javaDL = proc.spawn('cmd', ['/c', 'echo', 'java already installed'])
+                                    javaDL = proc.spawn('bash', ['echo', 'java already installed'])
                                 }
                                 //wget()
                                 java = '"../../jdk-17.0.9/bin/java"'
@@ -87,7 +87,7 @@ wget({url:'https://piston-meta.mojang.com/mc/game/version_manifest_v2.json',dest
                                     //data.java.push(8)
                                     //fs.writeFileSync('data.json', JSON.stringify(data))
                                 } else {
-                                    javaDL = proc.spawn('cmd', ['/c', 'echo', 'java already installed'])
+                                    javaDL = proc.spawn('bash', ['echo', 'java already installed'])
                                 }
                                 java = '"../../jdk-21.0.3/bin/java"'
                             }else if (shit.javaVersion.majorVersion == 8){
@@ -113,7 +113,7 @@ wget({url:'https://piston-meta.mojang.com/mc/game/version_manifest_v2.json',dest
                                     //data.java.push(8)
                                     //fs.writeFileSync('data.json', JSON.stringify(data))
                                 } else {
-                                    javaDL = proc.spawn('cmd', ['/c', 'echo', 'java already installed'])
+                                    javaDL = proc.spawn('bash', [ 'echo', 'java already installed'])
                                 }
                                 java = '"../../jre8/bin/java"'
                             }
