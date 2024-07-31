@@ -43,6 +43,9 @@ wget({url:'https://piston-meta.mojang.com/mc/game/version_manifest_v2.json',dest
                         let clientDL = proc.spawn('aria2c', ['-x16', '-s16', '-m16', shit.downloads.client.url, '--dir=versions/' + res2.version], { shell: true, detached: true })
                         clientDL.on('close', function (c2) {
                             let javaDL, javaZIP;
+                            if (!(body2.includes("javaVerson"))){
+                                shit.javaVersion.majorVersion = 8
+                            }
                             if (shit.javaVersion.majorVersion == 17 || shit.javaVersion.majorVersion == 16) {
                                 //console.log('java 17 has no 32-bit')
                                 //process.exit(1)
@@ -72,7 +75,22 @@ wget({url:'https://piston-meta.mojang.com/mc/game/version_manifest_v2.json',dest
                                 }
                                 //wget()
                                 java = '"../../jdk-17.0.9/bin/java"'
-                            } else if (shit.javaVersion.majorVersion == 8){
+                            }else if (shit.javaVersion.majorVersion == 21){
+                                if (!(fs.existsSync('jdk-21.0.3'))) {
+                                    console.log("downloading JDK 21")
+                                    javaDL = proc.spawn('aria2c', ['-x16', '-s16', '-m16', 'https://download.oracle.com/java/21/archive/jdk-21.0.3_windows-x64_bin.zip', '--out=jdk21.zip'], { shell: true, detached: true })
+                                    javaZIP = 'jdk21.zip'
+                                    /*javaDL.on('close', function (c) {
+                                        proc.spawnSync('7z', ['x', 'jre8.zip', '-ojre8'],{shell:true,detached:true})
+                                        fs.unlinkSync('jre8.zip')
+                                    })*/
+                                    //data.java.push(8)
+                                    //fs.writeFileSync('data.json', JSON.stringify(data))
+                                } else {
+                                    javaDL = proc.spawn('cmd', ['/c', 'echo', 'java already installed'])
+                                }
+                                java = '"../../jdk-21.0.3/bin/java"'
+                            }else if (shit.javaVersion.majorVersion == 8){
                                 if (!(fs.existsSync('jre8'))) {
                                     console.log("downloading JRE 8")
                                     /*wget({
@@ -98,21 +116,6 @@ wget({url:'https://piston-meta.mojang.com/mc/game/version_manifest_v2.json',dest
                                     javaDL = proc.spawn('cmd', ['/c', 'echo', 'java already installed'])
                                 }
                                 java = '"../../jre8/bin/java"'
-                            }else if (shit.javaVersion.majorVersion == 21){
-                                if (!(fs.existsSync('jdk-21.0.3'))) {
-                                    console.log("downloading JDK 21")
-                                    javaDL = proc.spawn('aria2c', ['-x16', '-s16', '-m16', 'https://download.oracle.com/java/21/archive/jdk-21.0.3_windows-x64_bin.zip', '--out=jdk21.zip'], { shell: true, detached: true })
-                                    javaZIP = 'jdk21.zip'
-                                    /*javaDL.on('close', function (c) {
-                                        proc.spawnSync('7z', ['x', 'jre8.zip', '-ojre8'],{shell:true,detached:true})
-                                        fs.unlinkSync('jre8.zip')
-                                    })*/
-                                    //data.java.push(8)
-                                    //fs.writeFileSync('data.json', JSON.stringify(data))
-                                } else {
-                                    javaDL = proc.spawn('cmd', ['/c', 'echo', 'java already installed'])
-                                }
-                                java = '"../../jdk-21.0.3/bin/java"'
                             }
                             javaDL.on('close', function (c) {
                                 //console.log("hi")
