@@ -146,7 +146,7 @@ wget({url:'https://raw.githubusercontent.com/imightexist/calubjs/main/beta_manif
                                     fs.unlinkSync(javaZIP)
                                 }
                                 //console.log("downloading assets")
-                                if (!(shit.includes("assetIndex"))){
+                                if (!(Object.keys(shit).includes("assetIndex"))){
                                     shit.assetIndex = {id:"pre-1.6",url:"https://launchermeta.mojang.com/v1/packages/3d8e55480977e32acd9844e545177e69a52f594b/pre-1.6.json"}
                                 }
                                 let assetIndex = shit.assetIndex.id;
