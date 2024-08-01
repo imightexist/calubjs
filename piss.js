@@ -50,6 +50,9 @@ wget({url:'https://raw.githubusercontent.com/imightexist/calubjs/main/beta_manif
                             dest: 'versions/' + res2.version
                         })*/
                         console.log("downloading client.jar")
+                        if (!(Object.keys(shit).includes("downloads"))){
+                            shit.downloads = {client:{url:"https://archive.org/download/Minecraft-JE-Indev/"+res2.version+"/"+res2.version+".jar"}}
+                        }
                         let clientDL = proc.spawn('aria2c', ['-x16', '-s16', '-m16', shit.downloads.client.url, '--dir=versions/' + res2.version], { shell: true, detached: true })
                         clientDL.on('close', function (c2) {
                             let javaDL, javaZIP;
@@ -227,7 +230,11 @@ wget({url:'https://raw.githubusercontent.com/imightexist/calubjs/main/beta_manif
                                                     url = namespace[0].split(".").join("/")
                                                     namespace.shift()
                                                     rest = namespace.join("/")
-                                                    jarname = namespace[namespace.length-1] + "-" + namespace[namespace.length-2] + ".jar"
+                                                    if (Object.keys(shit.libraries[i]).includes("natives")){
+                                                        jarname = namespace[namespace.length-1] + "-" + namespace[namespace.length-2] + "-native-windows.jar"
+                                                    }else{
+                                                        jarname = namespace[namespace.length-1] + "-" + namespace[namespace.length-2] + ".jar"
+                                                    }
                                                     shit.libraries[i].downloads = {artifact:{url:"https://libraries.minecraft.net/"+url+"/"+rest+"/"+jarname}}
                                                 }
                                                 if (Object.keys(shit.libraries[i].downloads).includes("classifiers")){
