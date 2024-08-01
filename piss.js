@@ -146,6 +146,9 @@ wget({url:'https://raw.githubusercontent.com/imightexist/calubjs/main/beta_manif
                                     fs.unlinkSync(javaZIP)
                                 }
                                 //console.log("downloading assets")
+                                if (!(shit.includes("assetIndex"))){
+                                    shit.assetIndex = {id:"pre-1.6",url:"https://launchermeta.mojang.com/v1/packages/3d8e55480977e32acd9844e545177e69a52f594b/pre-1.6.json"}
+                                }
                                 let assetIndex = shit.assetIndex.id;
                                 /*if (!(fs.existsSync('data/assets/indexes/'+assetIndex+'.json'))){
                                     assetDL = proc.spawn('aria2c', ['-x16', '-s16', '-m16', shit.assetIndex.url, '--out=assets/indexes/'+assetIndex+'.json'], { shell: true, detached: true })
