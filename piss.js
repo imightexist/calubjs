@@ -25,7 +25,7 @@ wget({url:'https://raw.githubusercontent.com/imightexist/calubjs/main/beta_manif
             prompt.start()
             prompt.get(['version'], function (e2, res2) {
                 console.log();
-                if (!(versions.versions.includes(res2.version))) {
+                if (!(body.includes(res2.version)) && !(body6.includes(res2.version))) {
                     console.log('fake!')
                     process.exit(1)
                 }
