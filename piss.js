@@ -235,7 +235,7 @@ wget({url:'https://piston-meta.mojang.com/mc/game/version_manifest_v2.json',dest
                                                                         console.log("downloading jar (" + (i + 1) + "/" + shit.libraries.length + "): " + shit.libraries[i].downloads.artifact.url.split("/")[shit.libraries[i].downloads.artifact.url.split("/").length-1])
                                                                         download = proc.spawn('aria2c', ['-x16', '-s16', '-m16', shit.libraries[i].downloads.artifact.url, '--dir=versions/' + res2.version], { shell: true, detached: true })
                                                                         download.on('close', function (c3) {
-                                                                            if (shit.libraries[i].name.endsWith("natives-windows"){
+                                                                            if (shit.libraries[i].name.endsWith("natives-windows")){
                                                                                 proc.spawn('7z',['x','-aoa','versions/'+res2.version+'/'+semen,'-oversions/'+res2.version+'/natives'],{shell:true,detached:true})
                                                                             }
                                                                             downloadLib(shit.libraries, ++i)
