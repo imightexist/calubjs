@@ -222,6 +222,14 @@ wget({url:'https://raw.githubusercontent.com/imightexist/calubjs/main/beta_manif
                                                     console.log('finished in ' + (Date.now() - startTime) / 1000 + "s")
                                                     process.exit(1)
                                                 }
+                                                if (!(Object.keys(shit.libraries[i]).includes("downloads"))){
+                                                    namespace = shit.libraries[i].split(":")
+                                                    url = namespace[0].split(".").join("/")
+                                                    namespace.shift()
+                                                    rest = namespace.join("/")
+                                                    jarname = namespace[namespace.length-1] + "-" + namespace[namespace.length-2] + ".jar"
+                                                    shit.libraries[i].downloads = {artifact:{url:"https://libraries.minecraft.net/"+url+"/"+rest+"/"+jarname}}
+                                                }
                                                 if (Object.keys(shit.libraries[i].downloads).includes("classifiers")){
                                                     if (Object.keys(shit.libraries[i].downloads.classifiers).includes("natives-windows")){
                                                         if (Object.keys(shit.libraries[i].downloads.classifiers["natives-windows"]).includes("url")){
