@@ -1,5 +1,5 @@
 {
-  "versions": [
+  "versions":[
     {
       "id":"in-20091223-2",
       "type":"old_alpha",
@@ -114,6 +114,6 @@
       "id":"in-20100223",
       "type":"old_alpha",
       "url":"https://archive.org/download/Minecraft-JE-Indev/in-20100223/in-20100223.json"
-    },
+    }
   ]
 }
