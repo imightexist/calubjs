@@ -229,7 +229,7 @@ wget({url:'https://raw.githubusercontent.com/imightexist/calubjs/main/beta_manif
                                                     process.exit(1)
                                                 }
                                                 if (!(Object.keys(shit.libraries[i]).includes("downloads"))){
-                                                    namespace = shit.libraries[i].split(":")
+                                                    namespace = shit.libraries[i].name.split(":")
                                                     url = namespace[0].split(".").join("/")
                                                     namespace.shift()
                                                     rest = namespace.join("/")
