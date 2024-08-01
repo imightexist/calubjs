@@ -17,7 +17,7 @@ wget({url:'https://raw.githubusercontent.com/imightexist/calubjs/main/beta_manif
             //console.log(body)
             versions = JSON.parse(body)
             betaVersions.forEach(function(d){
-                versions.push(d)
+                versions.versions.push(d)
             })
             //console.log(versions)qwerweqW
             console.log("Latest release: " + versions.latest.release)
