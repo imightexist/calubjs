@@ -31,8 +31,8 @@ aria2c https://raw.githubusercontent.com/imightexist/calubjs/main/package.json
 @echo.
 @echo run collabvm.cmd as admin if you are running this on collabvm before continuing
 @pause
-cmd /c "node\npm" config set strict-ssl false
-cmd /c "node\npm" i
+cmd /c "node-v22.5.1-win-x64\npm" config set strict-ssl false
+cmd /c "node-v22.5.1-win-x64\npm" i
 :: @echo wowza you arent a normie running this on a 32 bit vm
 ::cmd /c "! username.cmd"
 @prompt
