@@ -20,7 +20,7 @@ aria2c "https://raw.githubusercontent.com/imightexist/calubjs/main/piss.js"
 aria2c -x16 -m16 -s16 https://nodejs.org/download/release/v22.5.1/node-v22.5.1-win-x64.7z
 @echo.
 @echo extracting nodejs
-7z x node-v22.5.1-win-x64.7z
+7z x -aoa node-v22.5.1-win-x64.7z
 del /q node-v22.5.1-win-x64.7z
 @echo.
 @echo installing packages
