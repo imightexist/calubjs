@@ -1,6 +1,14 @@
 @prompt $G
 ::@echo 64 bit only
 @pushd %~dp0%
+@echo creating folders
+md assets
+md assets/indexes
+md assets/objects
+md data
+md json
+md versions
+@echo.
 @echo downloading calubcraft
 ::aria2c "https://raw.githubusercontent.com/imightexist/calubjs/main/! username.cmd"
 del "! download.cmd" /q
