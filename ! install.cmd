@@ -3,8 +3,8 @@
 @pushd %~dp0%
 @echo creating folders
 md assets
-md assets/indexes
-md assets/objects
+md assets\indexes
+md assets\objects
 md data
 md json
 md versions
