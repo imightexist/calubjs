@@ -1,6 +1,4 @@
 pushd %~dp0%
-echo make sure you are running install.cmd first
-pause
 aria2c http://router.collabnet.local/penis.crt
 cmd /c "node\npm" config set cafile "%cd%\penis.crt"
 takeown /f C:\windows\syswow64\opengl32.dll
