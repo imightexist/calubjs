@@ -1,2 +1,2 @@
 # calubjs
-this branch is legit only for storing mesa3d
+this branch is only for storing mesa3d
