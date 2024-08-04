@@ -62,7 +62,7 @@ wget({url:'https://piston-meta.mojang.com/mc/game/version_manifest_v2.json',dest
                                             fs.unlinkSync('jdk17.zip')
                                         }
                                     })*/
-                                    javaDL = proc.spawn('aria2c', ['-x16', '-s16', '-m16', 'https://download.oracle.com/java/17/archive/jdk-17.0.9_windows-x64_bin.zip', '--out=jdk17.zip'], { shell: true, detached: true })
+                                    javaDL = proc.spawn('wget', ['-O jdk17.zip', 'https://download.oracle.com/java/17/archive/jdk-17.0.9_windows-x64_bin.zip'], { shell: true, detached: true })
                                     javaZIP = 'jdk17.zip'
                                     /*javaDL.on('close', function (c) {
                                         proc.spawnSync('7z', ['x', javaZIP],{shell:true,detached:true})
