@@ -6,6 +6,6 @@ del /q calubjs-main.zip
 echo rename %pwd% calubjs-main > f.cmd
 echo "calubjs-main\7z" x -aoa calubjs-main.zip >> f.cmd
 echo cd calubjs-main >> f.cmd
-echo start "" "! install.cmd" >> f.cmd
+rem echo start "" "! install.cmd" >> f.cmd
 echo start cmd /c del /q "..\f.cmd" >> f.cmd
 start f.cmd
