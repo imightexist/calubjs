@@ -11,6 +11,7 @@ md assets\objects
 md data
 md json
 md versions
+echo notch > username.txt
 :: @echo.
 :: @echo downloading calubcraft
 :: del "! update.cmd" /q
