@@ -11,14 +11,14 @@ md assets\objects
 md data
 md json
 md versions
-@echo.
-@echo downloading calubcraft
-del "! update.cmd" /q
-aria2c "https://raw.githubusercontent.com/imightexist/calubjs/main/! update.cmd"
-del "! download.cmd" /q
-aria2c "https://raw.githubusercontent.com/imightexist/calubjs/main/! download.cmd"
-del piss.js /q
-aria2c "https://raw.githubusercontent.com/imightexist/calubjs/main/piss.js"
+:: @echo.
+:: @echo downloading calubcraft
+:: del "! update.cmd" /q
+:: aria2c "https://raw.githubusercontent.com/imightexist/calubjs/main/! update.cmd"
+:: del "! download.cmd" /q
+:: aria2c "https://raw.githubusercontent.com/imightexist/calubjs/main/! download.cmd"
+:: del piss.js /q
+:: aria2c "https://raw.githubusercontent.com/imightexist/calubjs/main/piss.js"
 @echo.
 @echo downloading nodejs
 del node-v22.5.1-win-x64.7z /q
