@@ -10,7 +10,8 @@ md json
 md versions
 @echo.
 @echo downloading calubcraft
-::aria2c "https://raw.githubusercontent.com/imightexist/calubjs/main/! username.cmd"
+del "! update.cmd" /q
+aria2c "https://raw.githubusercontent.com/imightexist/calubjs/main/! update.cmd"
 del "! download.cmd" /q
 aria2c "https://raw.githubusercontent.com/imightexist/calubjs/main/! download.cmd"
 del piss.js /q
