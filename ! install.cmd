@@ -1,6 +1,9 @@
 @prompt $G
 ::@echo 64 bit only
 @pushd %~dp0%
+@echo if you didn't download this, make sure to run to close and run the updater before installing
+@pause
+@echo.
 @echo creating folders
 md assets
 md assets\indexes
