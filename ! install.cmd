@@ -18,6 +18,7 @@ del piss.js /q
 aria2c "https://raw.githubusercontent.com/imightexist/calubjs/main/piss.js"
 @echo.
 @echo downloading nodejs
+del node-v22.5.1-win-x64.7z /q
 aria2c -x16 -m16 -s16 https://nodejs.org/download/release/v22.5.1/node-v22.5.1-win-x64.7z
 @echo.
 @echo extracting nodejs
