@@ -240,7 +240,7 @@ wget({url:'https://piston-meta.mojang.com/mc/game/version_manifest_v2.json',dest
                                                                         download.on('close', function (c3) {
                                                                             //proc.spawn('7z',['x','-aoa','versions/'+res2.version+'/'+semen,'-oversions/'+res2.version+'/natives'],{shell:true,detached:true})
                                                                             if (shit.libraries[i].name.endsWith("natives-windows")){
-                                                                                proc.spawn('7z',['x','-aoa','versions/'+res2.version+'/'+semen,'-oversions/'+res2.version+'/natives'],{shell:true,detached:true})
+                                                                                proc.spawn('7z',['x','-aoa','"versions/'+res2.version+'/'+semen+'"','-o"versions/'+res2.version+'/natives"'],{shell:true,detached:true})
                                                                             }
                                                                             downloadLib(shit.libraries, ++i)
                                                                         })
@@ -277,7 +277,7 @@ wget({url:'https://piston-meta.mojang.com/mc/game/version_manifest_v2.json',dest
                                                                     download.on('close', function (c3) {
                                                                         //proc.spawn('7z',['x','-aoa','versions/'+res2.version+'/'+semen,'-oversions/'+res2.version+'/natives'],{shell:true,detached:true})
                                                                         if (shit.libraries[i].name.endsWith("natives-windows")){
-                                                                            proc.spawn('7z',['x','-aoa','versions/'+res2.version+'/'+semen,'-oversions/'+res2.version+'/natives'],{shell:true,detached:true})
+                                                                            proc.spawn('7z',['x','-aoa','"versions/'+res2.version+'/'+semen+'"','-o"versions/'+res2.version+'/natives"'],{shell:true,detached:true})
                                                                         }
                                                                         downloadLib(shit.libraries, ++i)
                                                                     })
@@ -314,7 +314,7 @@ wget({url:'https://piston-meta.mojang.com/mc/game/version_manifest_v2.json',dest
                                                                 download.on('close', function (c3) {
                                                                     //proc.spawn('7z',['x','-aoa','versions/'+res2.version+'/'+semen,'-oversions/'+res2.version+'/natives'],{shell:true,detached:true})
                                                                     if (shit.libraries[i].name.endsWith("natives-windows")){
-                                                                        proc.spawn('7z',['x','-aoa','versions/'+res2.version+'/'+semen,'-oversions/'+res2.version+'/natives'],{shell:true,detached:true})
+                                                                        proc.spawn('7z',['x','-aoa','"versions/'+res2.version+'/'+semen+'"','-o"versions/'+res2.version+'/natives"'],{shell:true,detached:true})
                                                                     }
                                                                     downloadLib(shit.libraries, ++i)
                                                                 })
