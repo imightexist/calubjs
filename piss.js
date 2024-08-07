@@ -225,7 +225,7 @@ wget({url:'https://piston-meta.mojang.com/mc/game/version_manifest_v2.json',dest
                                                         console.log("downloading native jar: " + nativejar)
                                                         download = proc.spawn('aria2c', ['-x16', '-s16', '-m16', shit.libraries[i].downloads.classifiers["natives-windows"].url, '--dir="versions/' + res2.version + '"'], { shell: true, detached: true })
                                                         download.on('close',function(c3){
-                                                            proc.spawn('7z',['x','-aoa','versions/'+res2.version+'/'+nativejar,'-oversions/'+res2.version+'/natives'],{shell:true,detached:true})
+                                                            proc.spawn('7z',['x','-aoa','"versions/'+res2.version+'/'+nativejar+'"','-o"versions/'+res2.version+'/natives"'],{shell:true,detached:true})
                                                             downloadLib(shit.libraries,++i)
                                                         })
                                                     }else{
