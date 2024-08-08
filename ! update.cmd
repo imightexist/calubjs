@@ -11,3 +11,4 @@ rem echo start "" "! install.cmd" >> f.cmd
 echo @title you can close this window now >> f.cmd
 echo start cmd /c del /q "..\f.cmd" >> f.cmd
 start f.cmd
+@prompt
