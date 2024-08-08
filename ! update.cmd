@@ -5,6 +5,7 @@ del /q calubjs-main.zip
 "%pwd%\aria2c" -x16 -m16 -s16 https://github.com/imightexist/calubjs/archive/refs/heads/main.zip --out=calubjs-main.zip
 echo rename %pwd% calubjs-main > f.cmd
 echo "calubjs-main\7z" x -aoa calubjs-main.zip >> f.cmd
+echo del /q calubjs-main.zip >> f.cmd
 echo cd calubjs-main >> f.cmd
 rem echo start "" "! install.cmd" >> f.cmd
 echo start cmd /c del /q "..\f.cmd" >> f.cmd
