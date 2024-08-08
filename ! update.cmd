@@ -8,5 +8,6 @@ echo "calubjs-main\7z" x -aoa calubjs-main.zip >> f.cmd
 echo del /q calubjs-main.zip >> f.cmd
 echo cd calubjs-main >> f.cmd
 rem echo start "" "! install.cmd" >> f.cmd
+echo @title you can close this window now >> f.cmd
 echo start cmd /c del /q "..\f.cmd" >> f.cmd
 start f.cmd
