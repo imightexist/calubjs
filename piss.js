@@ -154,7 +154,7 @@ wget({url:'https://piston-meta.mojang.com/mc/game/version_manifest_v2.json',dest
                                             args = ' -cp "*" -Djava.library.path="'+__dirname+'\\versions\\'+res2.version+'\\natives" -Dorg.lwjgl.librarypath="'+__dirname+'\\versions\\'+res2.version+'\\natives" ' + shit.mainClass + " " + shit.minecraftArguments
                                             args = args.replaceAll('${auth_player_name}', '%username%')
                                             args = args.replaceAll('${auth_access_token}', '%username%')
-                                            args = args.replaceAll('${auth_session}', '')
+                                            args = args.replaceAll(' --session ${auth_session}', '')
                                             args = args.replaceAll('${game_assets}', '"' + __dirname + '\\assets"')
                                             args = args.replaceAll('${game_directory}', '"' + __dirname + '\\data"')
                                             
