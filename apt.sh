@@ -1,7 +1,9 @@
 echo installing node.js packages
-sudo apt install nodejs npm aria2 -y > /dev/null
+sudo apt install nodejs npm -y > /dev/null
 npm config set strict-ssl false
 npm i
+echo installing aria2c
+sudo apt install aria2 -y > /dev/null
 echo installing mesa3d
 sudo add-apt-repository ppa:kisak/kisak-mesa > /dev/null
 sudo apt update > /dev/null
