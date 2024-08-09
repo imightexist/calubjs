@@ -45,19 +45,6 @@ wget({url:'https://piston-meta.mojang.com/mc/game/version_manifest_v2.json',dest
                         clientDL.on('close', function (c2) {
                             (function(){
                                 //console.log("hi")
-                                if (javaZIP == "jdk17.zip") {
-                                    console.log("extracting JDK 17")
-                                    proc.spawnSync('7z', ['x', javaZIP], { shell: true, detached: true })
-                                    fs.unlinkSync(javaZIP)
-                                } else if (javaZIP == "jre8.zip") {
-                                    console.log("extracting JRE 8")
-                                    proc.spawnSync('7z', ['x', javaZIP, '-ojre8'], { shell: true, detached: true })
-                                    fs.unlinkSync(javaZIP)
-                                }else if (javaZIP == "jdk21.zip"){
-                                    console.log("extracting JDK 21")
-                                    proc.spawnSync('7z', ['x', javaZIP], { shell: true, detached: true })
-                                    fs.unlinkSync(javaZIP)
-                                }
                                 //console.log("downloading assets")
                                 let assetIndex = shit.assetIndex.id;
                                 /*if (!(fs.existsSync('data/assets/indexes/'+assetIndex+'.json'))){
