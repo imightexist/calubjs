@@ -4,6 +4,8 @@ npm config set strict-ssl false
 npm i
 echo installing aria2c
 pacman -Sy aria2 --needed --noconfirm > /dev/null
+echo installing java
+pacman -Sy openjdk-17-jdk openjdk-21-jdk openjdk-8-jre --needed --noconfirm > /dev/null
 echo installing mesa3d
 pacman -Sy mesa --needed --noconfirm > /dev/null
 chmod +x download.sh
