@@ -1,5 +1,5 @@
 echo installing node.js packages
-sudo apt install nodejs npm -y > /dev/null
+sudo apt install nodejs npm aria2 -y > /dev/null
 npm config set strict-ssl false
 npm i
 echo installing mesa3d
