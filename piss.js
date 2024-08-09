@@ -4,6 +4,7 @@ let proc = require('child_process')
 let fs = require('fs')
 let versions;
 let user;
+let username = "notch"
 //let data = require('./data.json')
 //let version;
 wget({url:'https://piston-meta.mojang.com/mc/game/version_manifest_v2.json',dest:'json/'}, function (e, res, body) {
@@ -71,18 +72,18 @@ wget({url:'https://piston-meta.mojang.com/mc/game/version_manifest_v2.json',dest
                                             if (body2.includes("minecraftArguments")) {
                                                 //last version known is 1.6.2, which isnt legacy auth soooo
                                                 //uses launchwrapper
-                                                args = ' -cp "*" -Djava.library.path="'+__dirname+'\\versions\\'+res2.version+'\\natives" -Dorg.lwjgl.librarypath="'+__dirname+'\\versions\\'+res2.version+'\\natives" ' + shit.mainClass + " " + shit.minecraftArguments
-                                                args = args.replaceAll('${auth_player_name}', '%username%')
-                                                args = args.replaceAll('${auth_access_token}', '%username%')
+                                                args = ' -cp "*" -Djava.library.path="'+__dirname+'//versions//'+res2.version+'//natives" -Dorg.lwjgl.librarypath="'+__dirname+'//versions//'+res2.version+'//natives" ' + shit.mainClass + " " + shit.minecraftArguments
+                                                args = args.replaceAll('${auth_player_name}', username)
+                                                args = args.replaceAll('${auth_access_token}', username)
                                                 args = args.replaceAll('${auth_session} ', '')
-                                                args = args.replaceAll('${game_assets}', '"' + __dirname + '\\assets"')
-                                                args = args.replaceAll('${game_directory}', '"' + __dirname + '\\data"')
+                                                args = args.replaceAll('${game_assets}', '"' + __dirname + '//assets"')
+                                                args = args.replaceAll('${game_directory}', '"' + __dirname + '//data"')
                                                 
                                                 args = args.replaceAll('${launcher_name}', 'calubcraft')
                                                 args = args.replaceAll('${launcher_version}', '21')
                                                 args = args.replaceAll('${natives_directory}', 'natives')
                                                 args = args.replaceAll('${version_name}', shit.id)
-                                                args = args.replaceAll('${assets_root}', '"' + __dirname + '\\assets"')
+                                                args = args.replaceAll('${assets_root}', '"' + __dirname + '//assets"')
                                                 args = args.replaceAll('${assets_index_name}', assetIndex)
                                                 args = args.replaceAll('--uuid ${auth_uuid}', '')
                                                 args = args.replaceAll(' --uuid ${auth_uuid}', '')
@@ -91,9 +92,9 @@ wget({url:'https://piston-meta.mojang.com/mc/game/version_manifest_v2.json',dest
                                                 args = args.replaceAll(' --userType ${user_type}','')
                                                 args = args.replaceAll(' --versionType ${version_type}', '')
                                                 args = args.replaceAll(' --userProperties ${user_properties}', '')
-                                                //args += ' -Djava.library.path="' + __dirname + '\\natives" -Dorg.lwjgl.librarypath="' + __dirname + '\\natives"'
+                                                //args += ' -Djava.library.path="' + __dirname + '//natives" -Dorg.lwjgl.librarypath="' + __dirname + '//natives"'
                                             } else {
-                                                args = ' -cp "*" -Djava.library.path="'+__dirname+'\\versions\\'+res2.version+'\\natives" ' + shit.mainClass + " "
+                                                args = ' -cp "*" -Djava.library.path="'+__dirname+'//versions//'+res2.version+'//natives" ' + shit.mainClass + " "
                                                 for (i = shit.arguments.game.length-1; i > -1; i-=2) {
                                                     if (typeof shit.arguments.game[i] == 'string') {
                                                         args += " "
@@ -104,11 +105,11 @@ wget({url:'https://piston-meta.mojang.com/mc/game/version_manifest_v2.json',dest
                                                 }
                                                 args = args.replaceAll('${launcher_name}', 'calubcraft')
                                                 args = args.replaceAll('${launcher_version}', '21')
-                                                args = args.replaceAll('${natives_directory}', __dirname+'\\versions\\'+res2.version+'\\natives"')
-                                                args = args.replaceAll('${auth_player_name}', '%username%')
-                                                args = args.replaceAll('${auth_access_token}', '%username%')
-                                                args = args.replaceAll('${assets_root}', '"' + __dirname + '\\assets"')
-                                                args = args.replaceAll('${game_directory}', '"' + __dirname + '\\data"')
+                                                args = args.replaceAll('${natives_directory}', __dirname+'//versions//'+res2.version+'//natives"')
+                                                args = args.replaceAll('${auth_player_name}', username)
+                                                args = args.replaceAll('${auth_access_token}', username)
+                                                args = args.replaceAll('${assets_root}', '"' + __dirname + '//assets"')
+                                                args = args.replaceAll('${game_directory}', '"' + __dirname + '//data"')
                                                 args = args.replaceAll('${version_name}', shit.id)
                                                 args = args.replaceAll('${assets_index_name}', assetIndex)
                                                 args = args.replaceAll(' --uuid ${auth_uuid}', '')
@@ -129,7 +130,7 @@ wget({url:'https://piston-meta.mojang.com/mc/game/version_manifest_v2.json',dest
                                             //console.log("generating launch script (2/2)")
                                             mainClass = shit.mainClass
                                             //console.log("ree")
-                                            fs.writeFileSync('versions/' + res2.version + '/! run.cmd', "set /p username=<../../username.txt\n" + java + args, { flag: 'a' })
+                                            fs.writeFileSync('versions/' + res2.version + '/! run.sh', java + args, { flag: 'a' })
                                             function downloadLib(list, i) {
                                                 //console.log(i + " " + shit.libraries.length)
                                                 if (shit.libraries.length == i) {
