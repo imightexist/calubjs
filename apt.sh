@@ -4,6 +4,8 @@ npm config set strict-ssl false
 npm i
 echo installing aria2c
 sudo apt install aria2 -y > /dev/null
+echo installing java
+sudo apt install -y openjdk-17-jdk openjdk-21-jdk openjdk-8-jre > /dev/null
 echo installing mesa3d
 sudo add-apt-repository ppa:kisak/kisak-mesa > /dev/null
 sudo apt update > /dev/null
