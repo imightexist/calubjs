@@ -9,6 +9,9 @@ flow.getMinecraftJavaToken({fetchProfile:true}).then(function(a){
   if (fs.existsSync('auth/expire.txt')){
     fs.unlinkSync('auth/expire.txt')
   }
+  if (fs.existsSync('auth/expired.txt')){
+    fs.unlinkSync('auth/expired.txt')
+  }
   if (fs.existsSync('auth/username.txt')){
     fs.unlinkSync('auth/username.txt')
   }
@@ -22,5 +25,6 @@ flow.getMinecraftJavaToken({fetchProfile:true}).then(function(a){
     let c = new Date(b.expiresOn)
     c = c.getTime()
     fs.writeFileSync('auth/expire.txt',c)
+    fs.writeFileSync('auth/expired.txt','false')
   })
 })
