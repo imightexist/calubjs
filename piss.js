@@ -153,7 +153,7 @@ wget({url:'https://piston-meta.mojang.com/mc/game/version_manifest_v2.json',dest
                                             //uses launchwrapper
                                             args = ' -cp "*" -Djava.library.path="'+__dirname+'\\versions\\'+res2.version+'\\natives" -Dorg.lwjgl.librarypath="'+__dirname+'\\versions\\'+res2.version+'\\natives" ' + shit.mainClass + " " + shit.minecraftArguments
                                             args = args.replaceAll('${auth_player_name}', '%username%')
-                                            args = args.replaceAll('${auth_access_token}', '%username%')
+                                            args = args.replaceAll('${auth_access_token}', '%token%')
                                             args = args.replaceAll(' --session ${auth_session}', '')
                                             args = args.replaceAll('${game_assets}', '"' + __dirname + '\\assets"')
                                             args = args.replaceAll('${game_directory}', '"' + __dirname + '\\data"')
@@ -164,8 +164,9 @@ wget({url:'https://piston-meta.mojang.com/mc/game/version_manifest_v2.json',dest
                                             args = args.replaceAll('${version_name}', shit.id)
                                             args = args.replaceAll('${assets_root}', '"' + __dirname + '\\assets"')
                                             args = args.replaceAll('${assets_index_name}', assetIndex)
-                                            args = args.replaceAll('--uuid ${auth_uuid}', '')
-                                            args = args.replaceAll(' --uuid ${auth_uuid}', '')
+                                            //args = args.replaceAll('--uuid ${auth_uuid}', '')
+                                            //args = args.replaceAll(' --uuid ${auth_uuid}', '')
+                                            args = args.replaceAll('${auth_uuid}', '%uuid%')
                                             args = args.replaceAll(' --clientId ${clientid}','')
                                             args = args.replaceAll(' --xuid ${auth_xuid}','')
                                             args = args.replaceAll(' --userType ${user_type}','')
@@ -189,12 +190,12 @@ wget({url:'https://piston-meta.mojang.com/mc/game/version_manifest_v2.json',dest
                                             args = args.replaceAll('${launcher_version}', '21')
                                             args = args.replaceAll('${natives_directory}', __dirname+'\\versions\\'+res2.version+'\\natives"')
                                             args = args.replaceAll('${auth_player_name}', '%username%')
-                                            args = args.replaceAll('${auth_access_token}', '%username%')
+                                            args = args.replaceAll('${auth_access_token}', '%token%')
                                             args = args.replaceAll('${assets_root}', '"' + __dirname + '\\assets"')
                                             args = args.replaceAll('${game_directory}', '"' + __dirname + '\\data"')
                                             args = args.replaceAll('${version_name}', shit.id)
                                             args = args.replaceAll('${assets_index_name}', assetIndex)
-                                            args = args.replaceAll(' --uuid ${auth_uuid}', '')
+                                            args = args.replaceAll('${auth_uuid}', '%uuid%')
                                             args = args.replaceAll(' --clientId ${clientid}','')
                                             args = args.replaceAll(' --xuid ${auth_xuid}','')
                                             args = args.replaceAll(' --userType ${user_type}','')
@@ -215,7 +216,7 @@ wget({url:'https://piston-meta.mojang.com/mc/game/version_manifest_v2.json',dest
                                         //console.log("generating launch script (2/2)")
                                         mainClass = shit.mainClass
                                         //console.log("ree")
-                                        fs.writeFileSync('versions/' + res2.version + '/! run.cmd', "set /p username=<../../auth/username.txt\n" + java + args, { flag: 'a' })
+                                        fs.writeFileSync('versions/' + res2.version + '/! run.cmd', "set cde=%cd%\ncd../..\n\"node/node\" shid2.js\ncd /d %cde%\nset /p expired=<../../auth/expired.txt\nif %expired% == false goto launch\n@echo your minecraft token has expired. run \"! login.cmd\" to enable online mode\n@pause\n:launch\nset /p username=<../../auth/username.txt\nset /p token=<../../auth/token.txt\nset /p uuid=<../../auth/uuid.txt\n" + java + args, { flag: 'a' })
                                         function downloadLib(list, i) {
                                             //console.log(i + " " + shit.libraries.length)
                                             if (shit.libraries.length == i) {
