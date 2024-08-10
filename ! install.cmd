@@ -13,6 +13,10 @@ md data
 md json
 md versions
 echo notch > auth\username.txt
+echo notch > auth\uuid.txt
+echo notch > auth\token.txt
+echo 0 > auth\expire.txt
+echo true > auth\expired.txt
 :: @echo.
 :: @echo downloading calubcraft
 :: del "! update.cmd" /q
