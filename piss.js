@@ -5,6 +5,7 @@ let fs = require('fs')
 let versions;
 let user;
 let demo = true;
+let username = "notch";
 //let data = require('./data.json')
 //let version;
 if (demo){
@@ -51,82 +52,7 @@ wget({url:'https://piston-meta.mojang.com/mc/game/version_manifest_v2.json',dest
                     console.log("downloading client.jar")
                     let clientDL = proc.spawn('aria2c', ['-x16', '-s16', '-m16', shit.downloads.client.url, '--dir="versions/' + res2.version + '"'], { shell: true, detached: true })
                     clientDL.on('close', function (c2) {
-                        let javaDL, javaZIP;
-                        if (!(body2.includes("javaVersion"))){
-                            shit.javaVersion = {majorVersion:8}
-                        }
-                        if (shit.javaVersion.majorVersion == 17 || shit.javaVersion.majorVersion == 16) {
-                            //console.log('java 17 has no 32-bit')
-                            //process.exit(1)
-                            if (!(fs.existsSync("jdk-17.0.9"))) {
-                                console.log("downloading JDK 17")
-                                /*wget({
-                                    url: 'https://download.oracle.com/java/17/archive/jdk-17.0.9_windows-x64_bin.zip',
-                                    dest: './jdk17.zip'
-                                }, function (e4, res4, body3) {
-                                    if (e4) {
-                                        console.log('oracle pissed himself')
-                                    } else {
-                                        proc.spawnSync('7z', ['x', 'jdk17.zip'])
-                                        fs.unlinkSync('jdk17.zip')
-                                    }
-                                })*/
-                                javaDL = proc.spawn('aria2c', ['-x16', '-s16', '-m16', 'https://download.oracle.com/java/17/archive/jdk-17.0.9_windows-x64_bin.zip', '--out=jdk17.zip'], { shell: true, detached: true })
-                                javaZIP = 'jdk17.zip'
-                                /*javaDL.on('close', function (c) {
-                                    proc.spawnSync('7z', ['x', javaZIP],{shell:true,detached:true})
-                                    fs.unlinkSync(javaZIP)
-                                })*/
-                                //data.java.push(17)
-                                //fs.writeFileSync('data.json', JSON.stringify(data))
-                            } else {
-                                javaDL = proc.spawn('cmd', ['/c', 'echo', 'java already installed'])
-                            }
-                            //wget()
-                            java = '"../../jdk-17.0.9/bin/java"'
-                        }else if (shit.javaVersion.majorVersion == 21){
-                            if (!(fs.existsSync('jdk-21.0.3'))) {
-                                console.log("downloading JDK 21")
-                                javaDL = proc.spawn('aria2c', ['-x16', '-s16', '-m16', 'https://download.oracle.com/java/21/archive/jdk-21.0.3_windows-x64_bin.zip', '--out=jdk21.zip'], { shell: true, detached: true })
-                                javaZIP = 'jdk21.zip'
-                                /*javaDL.on('close', function (c) {
-                                    proc.spawnSync('7z', ['x', 'jre8.zip', '-ojre8'],{shell:true,detached:true})
-                                    fs.unlinkSync('jre8.zip')
-                                })*/
-                                //data.java.push(8)
-                                //fs.writeFileSync('data.json', JSON.stringify(data))
-                            } else {
-                                javaDL = proc.spawn('cmd', ['/c', 'echo', 'java already installed'])
-                            }
-                            java = '"../../jdk-21.0.3/bin/java"'
-                        }else if (shit.javaVersion.majorVersion == 8){
-                            if (!(fs.existsSync('jre8'))) {
-                                console.log("downloading JRE 8")
-                                /*wget({
-                                    url: 'https://archive.org/download/Java_8_update_51/jre-8u51-windows-x32.zip',
-                                    dest: './jre8.zip'
-                                }, function (e4, res4, body3) {
-                                    if (e4) {
-                                        console.log('archive.org pissed himself')
-                                    } else {
-                                        proc.spawnSync('7z', ['x', 'jre8.zip', '-ojre8'])
-                                        fs.unlinkSync('jre8.zip')
-                                    }
-                                })*/
-                                javaDL = proc.spawn('aria2c', ['-x16', '-s16', '-m16', 'https://archive.org/download/Java_8_update_51/jre-8u51-windows-x64.zip', '--out=jre8.zip'], { shell: true, detached: true })
-                                javaZIP = 'jre8.zip'
-                                /*javaDL.on('close', function (c) {
-                                    proc.spawnSync('7z', ['x', 'jre8.zip', '-ojre8'],{shell:true,detached:true})
-                                    fs.unlinkSync('jre8.zip')
-                                })*/
-                                //data.java.push(8)
-                                //fs.writeFileSync('data.json', JSON.stringify(data))
-                            } else {
-                                javaDL = proc.spawn('cmd', ['/c', 'echo', 'java already installed'])
-                            }
-                            java = '"../../jre8/bin/java"'
-                        }
-                        javaDL.on('close', function (c) {
+                        (function(){
                             //console.log("hi")
                             if (javaZIP == "jdk17.zip") {
                                 console.log("extracting JDK 17")
@@ -155,22 +81,22 @@ wget({url:'https://piston-meta.mojang.com/mc/game/version_manifest_v2.json',dest
                                         if (body2.includes("minecraftArguments")) {
                                             //last version known is 1.6.2, which isnt legacy auth soooo
                                             //uses launchwrapper
-                                            args = ' -cp "*" -Djava.library.path="'+__dirname+'\\versions\\'+res2.version+'\\natives" -Dorg.lwjgl.librarypath="'+__dirname+'\\versions\\'+res2.version+'\\natives" ' + shit.mainClass + " " + shit.minecraftArguments
-                                            args = args.replaceAll('${auth_player_name}', '%username%')
-                                            args = args.replaceAll('${auth_access_token}', '%token%')
+                                            args = ' -cp "*" -Djava.library.path="'+__dirname+'//versions//'+res2.version+'//natives" -Dorg.lwjgl.librarypath="'+__dirname+'//versions//'+res2.version+'//natives" ' + shit.mainClass + " " + shit.minecraftArguments
+                                            args = args.replaceAll('${auth_player_name}', username)
+                                            args = args.replaceAll('${auth_access_token}', username)
                                             args = args.replaceAll(' --session ${auth_session}', '')
-                                            args = args.replaceAll('${game_assets}', '"' + __dirname + '\\assets"')
-                                            args = args.replaceAll('${game_directory}', '"' + __dirname + '\\data"')
+                                            args = args.replaceAll('${game_assets}', '"' + __dirname + '//assets"')
+                                            args = args.replaceAll('${game_directory}', '"' + __dirname + '//data"')
                                             
                                             args = args.replaceAll('${launcher_name}', 'calubcraft')
                                             args = args.replaceAll('${launcher_version}', '21')
                                             args = args.replaceAll('${natives_directory}', 'natives')
                                             args = args.replaceAll('${version_name}', shit.id)
-                                            args = args.replaceAll('${assets_root}', '"' + __dirname + '\\assets"')
+                                            args = args.replaceAll('${assets_root}', '"' + __dirname + '//assets"')
                                             args = args.replaceAll('${assets_index_name}', assetIndex)
                                             //args = args.replaceAll('--uuid ${auth_uuid}', '')
                                             //args = args.replaceAll(' --uuid ${auth_uuid}', '')
-                                            args = args.replaceAll(' --uuid ${auth_uuid}', '%uuid%')
+                                            args = args.replaceAll(' --uuid ${auth_uuid}', '')
                                             args = args.replaceAll(' --clientId ${clientid}','')
                                             args = args.replaceAll(' --xuid ${auth_xuid}','')
                                             args = args.replaceAll(' --userType ${user_type}','')
@@ -179,9 +105,9 @@ wget({url:'https://piston-meta.mojang.com/mc/game/version_manifest_v2.json',dest
                                             if (demo){
                                                 args += " --demo"
                                             }
-                                            //args += ' -Djava.library.path="' + __dirname + '\\natives" -Dorg.lwjgl.librarypath="' + __dirname + '\\natives"'
+                                            //args += ' -Djava.library.path="' + __dirname + '//natives" -Dorg.lwjgl.librarypath="' + __dirname + '//natives"'
                                         } else {
-                                            args = ' -cp "*" -Djava.library.path="'+__dirname+'\\versions\\'+res2.version+'\\natives" ' + shit.mainClass + " "
+                                            args = ' -cp "*" -Djava.library.path="'+__dirname+'//versions//'+res2.version+'//natives" ' + shit.mainClass + " "
                                             for (i = shit.arguments.game.length-1; i > -1; i-=2) {
                                                 if (typeof shit.arguments.game[i] == 'string') {
                                                     args += " "
@@ -192,14 +118,14 @@ wget({url:'https://piston-meta.mojang.com/mc/game/version_manifest_v2.json',dest
                                             }
                                             args = args.replaceAll('${launcher_name}', 'calubcraft')
                                             args = args.replaceAll('${launcher_version}', '21')
-                                            args = args.replaceAll('${natives_directory}', __dirname+'\\versions\\'+res2.version+'\\natives"')
-                                            args = args.replaceAll('${auth_player_name}', '%username%')
-                                            args = args.replaceAll('${auth_access_token}', '%token%')
-                                            args = args.replaceAll('${assets_root}', '"' + __dirname + '\\assets"')
-                                            args = args.replaceAll('${game_directory}', '"' + __dirname + '\\data"')
+                                            args = args.replaceAll('${natives_directory}', __dirname+'//versions//'+res2.version+'//natives"')
+                                            args = args.replaceAll('${auth_player_name}', username)
+                                            args = args.replaceAll('${auth_access_token}', username)
+                                            args = args.replaceAll('${assets_root}', '"' + __dirname + '//assets"')
+                                            args = args.replaceAll('${game_directory}', '"' + __dirname + '//data"')
                                             args = args.replaceAll('${version_name}', shit.id)
                                             args = args.replaceAll('${assets_index_name}', assetIndex)
-                                            args = args.replaceAll(' --uuid ${auth_uuid}', '%uuid%')
+                                            args = args.replaceAll(' --uuid ${auth_uuid}', '')
                                             args = args.replaceAll(' --clientId ${clientid}','')
                                             args = args.replaceAll(' --xuid ${auth_xuid}','')
                                             args = args.replaceAll(' --userType ${user_type}','')
@@ -220,7 +146,7 @@ wget({url:'https://piston-meta.mojang.com/mc/game/version_manifest_v2.json',dest
                                         //console.log("generating launch script (2/2)")
                                         mainClass = shit.mainClass
                                         //console.log("ree")
-                                        fs.writeFileSync('versions/' + res2.version + '/! run.cmd', "set cde=%cd%\ncd../..\n\"node/node\" shid2.js\ncd /d %cde%\nset /p expired=<../../auth/expired.txt\nif %expired% == false goto launch\nset \"uuid=\"\n@echo.\n@echo your minecraft token has expired. run \"! login.cmd\" to enable online mode\n@pause\n:launch\nset /p username=<../../auth/username.txt\nset /p token=<../../auth/token.txt\nset /p uuid=<../../auth/uuid.txt\n" + java + args, { flag: 'a' })
+                                        fs.writeFileSync('versions/' + res2.version + '/run.sh', java + args, { flag: 'a' })
                                         function downloadLib(list, i) {
                                             //console.log(i + " " + shit.libraries.length)
                                             if (shit.libraries.length == i) {
@@ -229,11 +155,11 @@ wget({url:'https://piston-meta.mojang.com/mc/game/version_manifest_v2.json',dest
                                                 process.exit(1)
                                             }
                                             if (Object.keys(shit.libraries[i].downloads).includes("classifiers")){
-                                                if (Object.keys(shit.libraries[i].downloads.classifiers).includes("natives-windows")){
-                                                    if (Object.keys(shit.libraries[i].downloads.classifiers["natives-windows"]).includes("url")){
-                                                        nativejar = shit.libraries[i].downloads.classifiers["natives-windows"].url.split("/")[shit.libraries[i].downloads.classifiers["natives-windows"].url.split("/").length-1]
+                                                if (Object.keys(shit.libraries[i].downloads.classifiers).includes("natives-linux")){
+                                                    if (Object.keys(shit.libraries[i].downloads.classifiers["natives-linux"]).includes("url")){
+                                                        nativejar = shit.libraries[i].downloads.classifiers["natives-linux"].url.split("/")[shit.libraries[i].downloads.classifiers["natives-linux"].url.split("/").length-1]
                                                         console.log("downloading native jar: " + nativejar)
-                                                        download = proc.spawn('aria2c', ['-x16', '-s16', '-m16', shit.libraries[i].downloads.classifiers["natives-windows"].url, '--dir="versions/' + res2.version + '"'], { shell: true, detached: true })
+                                                        download = proc.spawn('aria2c', ['-x16', '-s16', '-m16', shit.libraries[i].downloads.classifiers["natives-linux"].url, '--dir="versions/' + res2.version + '"'], { shell: true, detached: true })
                                                         download.on('close',function(c3){
                                                             proc.spawn('7z',['x','-aoa','"versions/'+res2.version+'/'+nativejar+'"','-o"versions/'+res2.version+'/natives"'],{shell:true,detached:true})
                                                             downloadLib(shit.libraries,++i)
@@ -242,14 +168,14 @@ wget({url:'https://piston-meta.mojang.com/mc/game/version_manifest_v2.json',dest
                                                         if (Object.keys(shit.libraries[i].downloads).includes("artifact")) {
                                                             if (Object.keys(shit.libraries[i]).includes("rules")){
                                                                 if (Object.keys(shit.libraries[i].rules[0]).includes("os")){
-                                                                    if (shit.libraries[i].rules[0].os.name == "windows" && shit.libraries[i].name.endsWith("windows")){
+                                                                    if (shit.libraries[i].rules[0].os.name == "linux" && shit.libraries[i].name.endsWith("linux")){
                                                                         let semen = shit.libraries[i].downloads.artifact.url.split("/")[shit.libraries[i].downloads.artifact.url.split("/").length-1]
                                                                         //console.log("downloading jar (" + (i + 1) + "/" + shit.libraries.length + "): " + shit.libraries[i].downloads.artifact.url.split("/")[shit.libraries[i].downloads.artifact.url.split("/").length-1])
                                                                         console.log("downloading native jar: " + semen)
                                                                         download = proc.spawn('aria2c', ['-x16', '-s16', '-m16', shit.libraries[i].downloads.artifact.url, '--dir="versions/' + res2.version + '"'], { shell: true, detached: true })
                                                                         download.on('close', function (c3) {
                                                                             //proc.spawn('7z',['x','-aoa','versions/'+res2.version+'/'+semen,'-oversions/'+res2.version+'/natives'],{shell:true,detached:true})
-                                                                            if (shit.libraries[i].name.endsWith("natives-windows")){
+                                                                            if (shit.libraries[i].name.endsWith("natives-linux")){
                                                                                 proc.spawn('7z',['x','-aoa','"versions/'+res2.version+'/'+semen+'"','-o"versions/'+res2.version+'/natives"'],{shell:true,detached:true})
                                                                             }
                                                                             downloadLib(shit.libraries, ++i)
@@ -279,14 +205,14 @@ wget({url:'https://piston-meta.mojang.com/mc/game/version_manifest_v2.json',dest
                                                     if (Object.keys(shit.libraries[i].downloads).includes("artifact")) {
                                                         if (Object.keys(shit.libraries[i]).includes("rules")){
                                                             if (Object.keys(shit.libraries[i].rules[0]).includes("os")){
-                                                                if (shit.libraries[i].rules[0].os.name == "windows" && shit.libraries[i].name.endsWith("windows")){
+                                                                if (shit.libraries[i].rules[0].os.name == "linux" && shit.libraries[i].name.endsWith("linux")){
                                                                     let semen = shit.libraries[i].downloads.artifact.url.split("/")[shit.libraries[i].downloads.artifact.url.split("/").length-1]
                                                                     //console.log("downloading jar (" + (i + 1) + "/" + shit.libraries.length + "): " + shit.libraries[i].downloads.artifact.url.split("/")[shit.libraries[i].downloads.artifact.url.split("/").length-1])
                                                                     console.log("downloading native jar: " + semen)
                                                                     download = proc.spawn('aria2c', ['-x16', '-s16', '-m16', shit.libraries[i].downloads.artifact.url, '--dir="versions/' + res2.version + '"'], { shell: true, detached: true })
                                                                     download.on('close', function (c3) {
                                                                         //proc.spawn('7z',['x','-aoa','versions/'+res2.version+'/'+semen,'-oversions/'+res2.version+'/natives'],{shell:true,detached:true})
-                                                                        if (shit.libraries[i].name.endsWith("natives-windows")){
+                                                                        if (shit.libraries[i].name.endsWith("natives-linux")){
                                                                             proc.spawn('7z',['x','-aoa','"versions/'+res2.version+'/'+semen+'"','-o"versions/'+res2.version+'/natives"'],{shell:true,detached:true})
                                                                         }
                                                                         downloadLib(shit.libraries, ++i)
@@ -316,14 +242,14 @@ wget({url:'https://piston-meta.mojang.com/mc/game/version_manifest_v2.json',dest
                                                 if (Object.keys(shit.libraries[i].downloads).includes("artifact")) {
                                                     if (Object.keys(shit.libraries[i]).includes("rules")){
                                                         if (Object.keys(shit.libraries[i].rules[0]).includes("os")){
-                                                            if (shit.libraries[i].rules[0].os.name == "windows" && shit.libraries[i].name.endsWith("windows")){
+                                                            if (shit.libraries[i].rules[0].os.name == "linux" && shit.libraries[i].name.endsWith("linux")){
                                                                 let semen = shit.libraries[i].downloads.artifact.url.split("/")[shit.libraries[i].downloads.artifact.url.split("/").length-1]
                                                                 //console.log("downloading jar (" + (i + 1) + "/" + shit.libraries.length + "): " + shit.libraries[i].downloads.artifact.url.split("/")[shit.libraries[i].downloads.artifact.url.split("/").length-1])
                                                                 console.log("downloading native jar: " + semen)
                                                                 download = proc.spawn('aria2c', ['-x16', '-s16', '-m16', shit.libraries[i].downloads.artifact.url, '--dir="versions/' + res2.version + '"'], { shell: true, detached: true })
                                                                 download.on('close', function (c3) {
                                                                     //proc.spawn('7z',['x','-aoa','versions/'+res2.version+'/'+semen,'-oversions/'+res2.version+'/natives'],{shell:true,detached:true})
-                                                                    if (shit.libraries[i].name.endsWith("natives-windows")){
+                                                                    if (shit.libraries[i].name.endsWith("natives-linux")){
                                                                         proc.spawn('7z',['x','-aoa','"versions/'+res2.version+'/'+semen+'"','-o"versions/'+res2.version+'/natives"'],{shell:true,detached:true})
                                                                     }
                                                                     downloadLib(shit.libraries, ++i)
@@ -370,7 +296,7 @@ wget({url:'https://piston-meta.mojang.com/mc/game/version_manifest_v2.json',dest
                                 }
                                 downloadAsset(0);
                             })
-                        })
+                        })()
                     })
                     //fs.unlinkSync(version[0].url.split("/")[version[0].url.length-1])
                 }
