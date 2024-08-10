@@ -5,13 +5,14 @@
 @pause
 @echo.
 @echo creating folders
+md auth
 md assets
 md assets\indexes
 md assets\objects
 md data
 md json
 md versions
-echo notch > username.txt
+echo notch > auth\username.txt
 :: @echo.
 :: @echo downloading calubcraft
 :: del "! update.cmd" /q
