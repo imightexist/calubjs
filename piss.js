@@ -7,6 +7,10 @@ let user;
 let demo = true;
 //let data = require('./data.json')
 //let version;
+if (demo){
+    console.log('demo mode is on! its turned on by default just in case mojan wants to go nintendo mode')
+    console.log()
+}
 wget({url:'https://piston-meta.mojang.com/mc/game/version_manifest_v2.json',dest:'json/'}, function (e, res, body) {
     if (e) {
         console.log('mojang pissed himself')
@@ -166,7 +170,7 @@ wget({url:'https://piston-meta.mojang.com/mc/game/version_manifest_v2.json',dest
                                             args = args.replaceAll('${assets_index_name}', assetIndex)
                                             //args = args.replaceAll('--uuid ${auth_uuid}', '')
                                             //args = args.replaceAll(' --uuid ${auth_uuid}', '')
-                                            args = args.replaceAll('${auth_uuid}', '%uuid%')
+                                            args = args.replaceAll(' --uuid ${auth_uuid}', '%uuid%')
                                             args = args.replaceAll(' --clientId ${clientid}','')
                                             args = args.replaceAll(' --xuid ${auth_xuid}','')
                                             args = args.replaceAll(' --userType ${user_type}','')
@@ -195,7 +199,7 @@ wget({url:'https://piston-meta.mojang.com/mc/game/version_manifest_v2.json',dest
                                             args = args.replaceAll('${game_directory}', '"' + __dirname + '\\data"')
                                             args = args.replaceAll('${version_name}', shit.id)
                                             args = args.replaceAll('${assets_index_name}', assetIndex)
-                                            args = args.replaceAll('${auth_uuid}', '%uuid%')
+                                            args = args.replaceAll(' --uuid ${auth_uuid}', '%uuid%')
                                             args = args.replaceAll(' --clientId ${clientid}','')
                                             args = args.replaceAll(' --xuid ${auth_xuid}','')
                                             args = args.replaceAll(' --userType ${user_type}','')
@@ -216,7 +220,7 @@ wget({url:'https://piston-meta.mojang.com/mc/game/version_manifest_v2.json',dest
                                         //console.log("generating launch script (2/2)")
                                         mainClass = shit.mainClass
                                         //console.log("ree")
-                                        fs.writeFileSync('versions/' + res2.version + '/! run.cmd', "set cde=%cd%\ncd../..\n\"node/node\" shid2.js\ncd /d %cde%\nset /p expired=<../../auth/expired.txt\nif %expired% == false goto launch\n@echo your minecraft token has expired. run \"! login.cmd\" to enable online mode\n@pause\n:launch\nset /p username=<../../auth/username.txt\nset /p token=<../../auth/token.txt\nset /p uuid=<../../auth/uuid.txt\n" + java + args, { flag: 'a' })
+                                        fs.writeFileSync('versions/' + res2.version + '/! run.cmd', "set cde=%cd%\ncd../..\n\"node/node\" shid2.js\ncd /d %cde%\nset /p expired=<../../auth/expired.txt\nif %expired% == false goto launch\nset \"uuid=\"\n@echo.\nj@echo your minecraft token has expired. run \"! login.cmd\" to enable online mode\n@pause\n:launch\nset /p username=<../../auth/username.txt\nset /p token=<../../auth/token.txt\nset /p uuid=<../../auth/uuid.txt\n" + java + args, { flag: 'a' })
                                         function downloadLib(list, i) {
                                             //console.log(i + " " + shit.libraries.length)
                                             if (shit.libraries.length == i) {
