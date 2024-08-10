@@ -18,7 +18,7 @@ flow.getMinecraftJavaToken({fetchProfile:true}).then(function(a){
   if (fs.existsSync('auth/token.txt')){
     fs.unlinkSync('auth/token.txt')
   }
-  fs.writeFileSync('auth/uuid.txt',a.profile.id)
+  fs.writeFileSync('auth/uuid.txt'," --uuid "+a.profile.id)
   fs.writeFileSync('auth/token.txt',a.token)
   fs.writeFileSync('auth/username.txt',a.profile.name)
   flow.getXboxToken().then(function(b){
