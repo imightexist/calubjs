@@ -6,6 +6,8 @@ let versions;
 let user;
 let demo = true;
 let username = "notch";
+let token = username;
+let uuid = ""; // add "--uuid " before your uuid so it recognizes it
 //let data = require('./data.json')
 //let version;
 if (demo){
@@ -54,19 +56,6 @@ wget({url:'https://piston-meta.mojang.com/mc/game/version_manifest_v2.json',dest
                     clientDL.on('close', function (c2) {
                         (function(){
                             //console.log("hi")
-                            if (javaZIP == "jdk17.zip") {
-                                console.log("extracting JDK 17")
-                                proc.spawnSync('7z', ['x', javaZIP], { shell: true, detached: true })
-                                fs.unlinkSync(javaZIP)
-                            } else if (javaZIP == "jre8.zip") {
-                                console.log("extracting JRE 8")
-                                proc.spawnSync('7z', ['x', javaZIP, '-ojre8'], { shell: true, detached: true })
-                                fs.unlinkSync(javaZIP)
-                            }else if (javaZIP == "jdk21.zip"){
-                                console.log("extracting JDK 21")
-                                proc.spawnSync('7z', ['x', javaZIP], { shell: true, detached: true })
-                                fs.unlinkSync(javaZIP)
-                            }
                             //console.log("downloading assets")
                             let assetIndex = shit.assetIndex.id;
                             /*if (!(fs.existsSync('data/assets/indexes/'+assetIndex+'.json'))){
@@ -83,7 +72,7 @@ wget({url:'https://piston-meta.mojang.com/mc/game/version_manifest_v2.json',dest
                                             //uses launchwrapper
                                             args = ' -cp "*" -Djava.library.path="'+__dirname+'//versions//'+res2.version+'//natives" -Dorg.lwjgl.librarypath="'+__dirname+'//versions//'+res2.version+'//natives" ' + shit.mainClass + " " + shit.minecraftArguments
                                             args = args.replaceAll('${auth_player_name}', username)
-                                            args = args.replaceAll('${auth_access_token}', username)
+                                            args = args.replaceAll('${auth_access_token}', token)
                                             args = args.replaceAll(' --session ${auth_session}', '')
                                             args = args.replaceAll('${game_assets}', '"' + __dirname + '//assets"')
                                             args = args.replaceAll('${game_directory}', '"' + __dirname + '//data"')
@@ -96,7 +85,7 @@ wget({url:'https://piston-meta.mojang.com/mc/game/version_manifest_v2.json',dest
                                             args = args.replaceAll('${assets_index_name}', assetIndex)
                                             //args = args.replaceAll('--uuid ${auth_uuid}', '')
                                             //args = args.replaceAll(' --uuid ${auth_uuid}', '')
-                                            args = args.replaceAll(' --uuid ${auth_uuid}', '')
+                                            args = args.replaceAll(' --uuid ${auth_uuid}', uuid)
                                             args = args.replaceAll(' --clientId ${clientid}','')
                                             args = args.replaceAll(' --xuid ${auth_xuid}','')
                                             args = args.replaceAll(' --userType ${user_type}','')
@@ -120,12 +109,12 @@ wget({url:'https://piston-meta.mojang.com/mc/game/version_manifest_v2.json',dest
                                             args = args.replaceAll('${launcher_version}', '21')
                                             args = args.replaceAll('${natives_directory}', __dirname+'//versions//'+res2.version+'//natives"')
                                             args = args.replaceAll('${auth_player_name}', username)
-                                            args = args.replaceAll('${auth_access_token}', username)
+                                            args = args.replaceAll('${auth_access_token}', token)
                                             args = args.replaceAll('${assets_root}', '"' + __dirname + '//assets"')
                                             args = args.replaceAll('${game_directory}', '"' + __dirname + '//data"')
                                             args = args.replaceAll('${version_name}', shit.id)
                                             args = args.replaceAll('${assets_index_name}', assetIndex)
-                                            args = args.replaceAll(' --uuid ${auth_uuid}', '')
+                                            args = args.replaceAll(' --uuid ${auth_uuid}', uuid)
                                             args = args.replaceAll(' --clientId ${clientid}','')
                                             args = args.replaceAll(' --xuid ${auth_xuid}','')
                                             args = args.replaceAll(' --userType ${user_type}','')
