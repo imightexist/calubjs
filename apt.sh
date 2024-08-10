@@ -12,7 +12,7 @@ echo 0 > auth\expire.txt
 echo true > auth\expired.txt
 sudo add-apt-repository ppa:kisak/kisak-mesa
 sudo apt update
-sudo apt install nodejs npm jdk-21-openjdk p7zip-full aria2 -y
+sudo apt install nodejs npm openjdk-21-jdk p7zip-full aria2 -y
 npm config set strict-ssl false
 npm i
 chmod +x download.sh
