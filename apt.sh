@@ -6,7 +6,7 @@ mkdir data
 mkdir json
 mkdir versions
 echo notch > auth/username.txt
-echo notch > auth/uuid.txt
+echo  notch > auth/uuid.txt
 echo notch > auth/token.txt
 echo 0 > auth/expire.txt
 echo true > auth/expired.txt
