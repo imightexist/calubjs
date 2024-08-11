@@ -13,7 +13,7 @@ md data
 md json
 md versions
 if not exist auth\username.txt echo notch > auth\username.txt
-if not exist auth\uuid.txt echo notch > auth\uuid.txt
+if not exist auth\uuid.txt echo  notch > auth\uuid.txt
 if not exist auth\token.txt echo notch > auth\token.txt
 if not exist auth\expire.txt echo 0 > auth\expire.txt
 if not exist auth\expired.txt echo true > auth\expired.txt
