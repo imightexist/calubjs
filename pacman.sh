@@ -10,7 +10,7 @@ echo notch > auth/uuid.txt
 echo notch > auth/token.txt
 echo 0 > auth/expire.txt
 echo true > auth/expired.txt
-pacman -Qq nodejs npm aria2 jdk21-openjdk mesa p7zip > /dev/null
+pacman -Qq nodejs npm aria2 jdk21-openjdk mesa p7zip &> /dev/null
 # im not sure it works
 if [ $? -ne 0 ]; then
   if [ -f "/usr/bin/sudo" ]; then
