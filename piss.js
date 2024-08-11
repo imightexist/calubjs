@@ -5,10 +5,15 @@ let fs = require('fs')
 let versions;
 let user;
 let demo = true;
+let allAssets = false;
 //let data = require('./data.json')
 //let version;
 if (demo){
     console.log('demo mode is on! its turned on by default just in case mojan wants to go nintendo mode')
+    console.log()
+}
+if (!allAssets){
+    console.log('sounds will not be downloaded.. you can turn this off if you wanna')
     console.log()
 }
 wget({url:'https://piston-meta.mojang.com/mc/game/version_manifest_v2.json',dest:'json/'}, function (e, res, body) {
@@ -354,7 +359,7 @@ wget({url:'https://piston-meta.mojang.com/mc/game/version_manifest_v2.json',dest
                                         hash = file.hash
                                         folder = hash.charAt(0)+hash.charAt(1)
                                         if (!(fs.existsSync("assets/objects/"+folder+"/"+hash))){
-                                            if (filenames[j].endsWith(".png") || filenames[j].endsWith(".icns")){
+                                            if (filenames[j].endsWith(".png") || filenames[j].endsWith(".icns") || allAssets){
                                                 console.log("downloading asset ("+(j+1)+"/"+objects.length+")")
                                                 assetDL = proc.spawn('aria2c', ['-x16', '-s16', '-m16', 'https://resources.download.minecraft.net/'+folder+'/'+hash, '--out=assets/objects/'+folder+'/'+hash], { shell: true, detached: true })
                                                 assetDL.on('close',function(c4){
