@@ -5,9 +5,9 @@ let fs = require('fs')
 let versions;
 let user;
 let demo = true;
-let username = "notch";
-let token = username;
-let uuid = ""; // add "--uuid " before your uuid so it recognizes it
+//let username = "notch";
+//let token = username;
+//let uuid = ""; // add "--uuid " before your uuid so it recognizes it
 //let data = require('./data.json')
 //let version;
 if (demo){
@@ -71,8 +71,8 @@ wget({url:'https://piston-meta.mojang.com/mc/game/version_manifest_v2.json',dest
                                             //last version known is 1.6.2, which isnt legacy auth soooo
                                             //uses launchwrapper
                                             args = ' -cp "*" -Djava.library.path="'+__dirname+'//versions//'+res2.version+'//natives" -Dorg.lwjgl.librarypath="'+__dirname+'//versions//'+res2.version+'//natives" ' + shit.mainClass + " " + shit.minecraftArguments
-                                            args = args.replaceAll('${auth_player_name}', username)
-                                            args = args.replaceAll('${auth_access_token}', token)
+                                            args = args.replaceAll('${auth_player_name}', '$username')
+                                            args = args.replaceAll('${auth_access_token}', '$token')
                                             args = args.replaceAll(' --session ${auth_session}', '')
                                             args = args.replaceAll('${game_assets}', '"' + __dirname + '//assets"')
                                             args = args.replaceAll('${game_directory}', '"' + __dirname + '//data"')
@@ -85,7 +85,7 @@ wget({url:'https://piston-meta.mojang.com/mc/game/version_manifest_v2.json',dest
                                             args = args.replaceAll('${assets_index_name}', assetIndex)
                                             //args = args.replaceAll('--uuid ${auth_uuid}', '')
                                             //args = args.replaceAll(' --uuid ${auth_uuid}', '')
-                                            args = args.replaceAll(' --uuid ${auth_uuid}', uuid)
+                                            args = args.replaceAll(' --uuid ${auth_uuid}', '$uuid')
                                             args = args.replaceAll(' --clientId ${clientid}','')
                                             args = args.replaceAll(' --xuid ${auth_xuid}','')
                                             args = args.replaceAll(' --userType ${user_type}','')
@@ -108,13 +108,13 @@ wget({url:'https://piston-meta.mojang.com/mc/game/version_manifest_v2.json',dest
                                             args = args.replaceAll('${launcher_name}', 'calubcraft')
                                             args = args.replaceAll('${launcher_version}', '21')
                                             args = args.replaceAll('${natives_directory}', __dirname+'//versions//'+res2.version+'//natives"')
-                                            args = args.replaceAll('${auth_player_name}', username)
-                                            args = args.replaceAll('${auth_access_token}', token)
+                                            args = args.replaceAll('${auth_player_name}', '$username')
+                                            args = args.replaceAll('${auth_access_token}', '$token')
                                             args = args.replaceAll('${assets_root}', '"' + __dirname + '//assets"')
                                             args = args.replaceAll('${game_directory}', '"' + __dirname + '//data"')
                                             args = args.replaceAll('${version_name}', shit.id)
                                             args = args.replaceAll('${assets_index_name}', assetIndex)
-                                            args = args.replaceAll(' --uuid ${auth_uuid}', uuid)
+                                            args = args.replaceAll(' --uuid ${auth_uuid}', '$uuid')
                                             args = args.replaceAll(' --clientId ${clientid}','')
                                             args = args.replaceAll(' --xuid ${auth_xuid}','')
                                             args = args.replaceAll(' --userType ${user_type}','')
@@ -135,7 +135,7 @@ wget({url:'https://piston-meta.mojang.com/mc/game/version_manifest_v2.json',dest
                                         //console.log("generating launch script (2/2)")
                                         mainClass = shit.mainClass
                                         //console.log("ree")
-                                        fs.writeFileSync('versions/' + res2.version + '/run.sh', "java " + args, { flag: 'a' })
+                                        fs.writeFileSync('versions/' + res2.version + '/run.sh', "cde=$PWD\ncd ../..\nnode shid2.js\ncd $PWD\nexpired=$(cat ../../auth/expired.txt)\nif [$expired = \"false\"]; then\nread -p your minecraft token has expired. run login.sh to enable online mode\nusername=$(cat ../../auth/username.txt)\ntoken=$(cat ../../auth/token.txt)\nuuid=$(cat ../../auth/uuid.txt)\njava " + args, { flag: 'a' })
                                         function downloadLib(list, i) {
                                             //console.log(i + " " + shit.libraries.length)
                                             if (shit.libraries.length == i) {
