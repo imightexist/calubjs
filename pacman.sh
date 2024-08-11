@@ -1,6 +1,6 @@
 if test $(whoami) = "root"
 then
-    echo dont run it as root cuz im a little stoopid
+    echo dont run it as root cuz nikitas is a little stoopid
     read -p "enter to quit"
     exit 1
 fi
