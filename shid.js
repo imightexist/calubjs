@@ -24,7 +24,7 @@ flow.getMinecraftJavaToken({fetchProfile:true}).then(function(a){
   flow.getXboxToken().then(function(b){
     let c = new Date(b.expiresOn)
     c = c.getTime()
-    fs.writeFileSync('auth/expire.txt',c)
+    fs.writeFileSync('auth/expire.txt',String(c))
     fs.writeFileSync('auth/expired.txt','false')
   })
 })
