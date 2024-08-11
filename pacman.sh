@@ -6,7 +6,7 @@ then
 fi
 mkdir -p auth assets/indexes assets/objects data json versions
 echo notch > auth/username.txt
-echo notch > auth/uuid.txt
+echo  notch > auth/uuid.txt
 echo notch > auth/token.txt
 echo 0 > auth/expire.txt
 echo true > auth/expired.txt
