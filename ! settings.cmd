@@ -1,9 +1,9 @@
 @echo off
-echo     (1Y/N)  demo mode
-echo     (2Y/N)  downloading sounds
+echo     (1y/n)  demo mode
+echo     (2y/n)  downloading sounds
 echo        (3)  sign in to minecraft
 echo        (4)  log off minecraft
-echo (5O/A/V/I)  download fOrge/fAbric/Vanilla/Indev
+echo (5o/a/v/i)  download fOrge/fAbric/Vanilla/Indev
 echo.
 set /p a=whad u wanna do: 
 echo.
