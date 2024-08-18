@@ -18,8 +18,8 @@ if not exist auth\uuid.txt echo  notch > auth\uuid.txt
 if not exist auth\token.txt echo notch > auth\token.txt
 if not exist auth\expire.txt echo 0 > auth\expire.txt
 if not exist auth\expired.txt echo true > auth\expired.txt
-if not exist auth\expired.txt echo false > auth\sounds.txt
-if not exist auth\expired.txt echo false > auth\demo.txt
+if not exist auth\sounds.txt echo false > auth\sounds.txt
+if not exist auth\demo.txt echo false > auth\demo.txt
 :: @echo.
 :: @echo downloading calubcraft
 :: del "! update.cmd" /q
