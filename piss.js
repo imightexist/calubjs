@@ -4,11 +4,11 @@ let proc = require('child_process')
 let fs = require('fs')
 let versions;
 let user;
-let demo = true;
-let allAssets = false;
+let demo = fs.readFileSync('auth/demo.txt');
+let allAssets = Boolean(fs.readFileSync('auth/sounds.txt');
 //let data = require('./data.json')
 //let version;
-if (demo){
+if (demo == " --demo"){
     console.log('demo mode is on! its turned on by default just in case mojan wants to go nintendo mode')
     console.log()
 }
@@ -181,9 +181,9 @@ wget({url:'https://piston-meta.mojang.com/mc/game/version_manifest_v2.json',dest
                                             args = args.replaceAll(' --userType ${user_type}','')
                                             args = args.replaceAll(' --versionType ${version_type}', '')
                                             args = args.replaceAll(' --userProperties ${user_properties}', '')
-                                            if (demo){
+                                            /*if (demo){
                                                 args += " --demo"
-                                            }
+                                            }*/
                                             //args += ' -Djava.library.path="' + __dirname + '\\natives" -Dorg.lwjgl.librarypath="' + __dirname + '\\natives"'
                                         } else {
                                             args = ' -cp "*" -Djava.library.path="'+__dirname+'\\versions\\'+res2.version+'\\natives" ' + shit.mainClass + " "
@@ -211,10 +211,11 @@ wget({url:'https://piston-meta.mojang.com/mc/game/version_manifest_v2.json',dest
                                             args = args.replaceAll(' --versionType ${version_type}', '')
                                             args = args.replaceAll(' -Dminecraft.launcher.brand=${launcher_name}','')
                                             args = args.replaceAll(' -Dminecraft.launcher.version=${launcher_version}','')
-                                            if (demo){
+                                            /*if (demo){
                                                 args += " --demo"
-                                            }
+                                            }*/
                                         }
+                                        args += "%demo%"
                                         /*for (i = 0; i < shit.libraries; i++) {
                                             /*wget({
                                                 dest: './versions' + res2.version,
@@ -225,7 +226,7 @@ wget({url:'https://piston-meta.mojang.com/mc/game/version_manifest_v2.json',dest
                                         //console.log("generating launch script (2/2)")
                                         mainClass = shit.mainClass
                                         //console.log("ree")
-                                        fs.writeFileSync('versions/' + res2.version + '/! run.cmd', "set cde=%cd%\ncd../..\n\"node/node\" shid2.js\ncd /d %cde%\nset /p expired=<../../auth/expired.txt\nif %expired% == false goto launch\n@echo.\n@echo your minecraft token has expired. run \"! login.cmd\" to enable online mode\n@pause\n:launch\nset /p username=<../../auth/username.txt\nset /p token=<../../auth/token.txt\nset /p uuid=<../../auth/uuid.txt\n" + java + args, { flag: 'a' })
+                                        fs.writeFileSync('versions/' + res2.version + '/! run.cmd', "set cde=%cd%\ncd../..\n\"node/node\" shid2.js\ncd /d %cde%\nset /p expired=<../../auth/expired.txt\nif %expired% == false goto launch\n@echo.\n@echo your minecraft token has expired. run \"! login.cmd\" to enable online mode\n@pause\n:launch\nset /p demo=<../../auth/demo.txt\nset /p username=<../../auth/username.txt\nset /p token=<../../auth/token.txt\nset /p uuid=<../../auth/uuid.txt\n" + java + args, { flag: 'a' })
                                         function downloadLib(list, i) {
                                             //console.log(i + " " + shit.libraries.length)
                                             if (shit.libraries.length == i) {
