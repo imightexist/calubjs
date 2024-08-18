@@ -4,7 +4,7 @@ let proc = require('child_process')
 let fs = require('fs')
 let versions;
 let user;
-let demo = fs.readFileSync('auth/demo.txt');
+let demo = fs.readFileSync('auth/demo.txt').toString();
 let allAssets = JSON.parse(fs.readFileSync('auth/sounds.txt'));
 //let data = require('./data.json')
 //let version;
