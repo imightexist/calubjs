@@ -11,6 +11,7 @@ md assets\indexes
 md assets\objects
 md data
 md json
+md json\cache
 md versions
 if not exist auth\username.txt echo notch > auth\username.txt
 if not exist auth\uuid.txt echo  notch > auth\uuid.txt
