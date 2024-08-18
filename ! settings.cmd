@@ -3,7 +3,8 @@ echo     (1y/n)  demo mode
 echo     (2y/n)  downloading sounds
 echo        (3)  sign in to minecraft
 echo        (4)  log off minecraft
-echo (5o/a/v/i)  download fOrge/fAbric/Vanilla/Indev
+echo (5o/a/v/i)  download fOrge/fAbric/Vanilla/Indev (not ready yet)
+echo     (6y/n)  make a redistributable install (not ready yet)
 echo.
 set /p a=whad u wanna do: 
 echo.
