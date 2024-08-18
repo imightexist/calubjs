@@ -1,5 +1,5 @@
 let auth = require('prismarine-auth')
-let flow = new auth.Authflow('calubjs','json',{authTitle:auth.Titles.MinecraftJava,deviceType:"Win32",flow:"sisu"})
+let flow = new auth.Authflow('calubjs','json/cache',{authTitle:auth.Titles.MinecraftJava,deviceType:"Win32",flow:"sisu"})
 //let data;
 flow.getMinecraftJavaToken({fetchProfile:true}).then(function(a){
   let fs = require('fs')
