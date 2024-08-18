@@ -8,7 +8,7 @@ let demo = fs.readFileSync('auth/demo.txt');
 let allAssets = JSON.parse(fs.readFileSync('auth/sounds.txt'));
 //let data = require('./data.json')
 //let version;
-if (demo == " --demo"){
+if (demo.startsWith(" --demo")){
     console.log('demo mode is on! its turned on by default just in case mojan wants to go nintendo mode')
     console.log()
 }
