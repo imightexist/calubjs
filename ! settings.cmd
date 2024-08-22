@@ -1,10 +1,12 @@
 @echo off
+:exit2
 echo     (1y/n)  demo mode
 echo     (2y/n)  downloading sounds
 echo        (3)  sign in to minecraft
 echo        (4)  log off minecraft
 echo (5o/a/v/i)  download fOrge/fAbric/Vanilla/Indev (not ready yet)
 echo     (6y/n)  make a redistributable install (not ready yet)
+echo     (7y/n)  betacraft proxy (not ready yet)
 echo.
 set /p a=whad u wanna do: 
 echo.
@@ -42,5 +44,5 @@ echo 0 > auth\expire.txt
 echo true > auth\expired.txt
 goto exit
 :exit
-@echo.
-pause
+echo.
+goto exit2
