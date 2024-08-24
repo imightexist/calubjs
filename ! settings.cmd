@@ -7,6 +7,8 @@ echo        (4)  log off minecraft
 echo (5o/a/v/i)  download fOrge/fAbric/Vanilla/Indev (not ready yet)
 echo     (6y/n)  make a redistributable install (not ready yet)
 echo        (7)  http proxy (not ready yet)
+echo        (8)  delete cache
+echo        (9)  change username (offline mode)
 echo.
 set /p a=whad u wanna do: 
 echo.
@@ -42,6 +44,16 @@ echo  notch > auth\uuid.txt
 echo notch > auth\token.txt
 echo 0 > auth\expire.txt
 echo true > auth\expired.txt
+goto exit
+:8
+del /q json/cache/*.*
+goto exit
+:9
+@set /p b=username: 
+::echo %b% > auth\offline.txt
+echo %b% > auth\username.txt
+echo  %b% > auth\uuid.txt
+echo %b% > auth\token.txt
 goto exit
 :exit
 echo.
