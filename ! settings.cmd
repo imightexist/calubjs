@@ -10,6 +10,7 @@ echo     (6y/n)  make a redistributable install (not ready yet)
 echo        (7)  http proxy (not ready yet)
 echo        (8)  delete cache
 echo        (9)  change username (offline mode)
+echo       (10)  check for updates (not ready yet)
 echo.
 set /p a=whad u wanna do: 
 echo.
@@ -21,6 +22,8 @@ echo.
 @if /i %a% == 2N goto 2n
 @if /i %a% == 3 goto 3
 @if /i %a% == 4 goto 4
+@if /i %a% == 8 goto 8
+@if /i %a% == 9 goto 9
 @echo fake!!
 goto exit
 :1y
