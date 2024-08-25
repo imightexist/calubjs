@@ -2,6 +2,7 @@
 if exist node-v15.8.0-win-x64 goto download
 ::@echo 64 bit only
 @pushd %~dp0%
+@echo.
 @echo if you didn't download this, make sure to run to close and run the updater before installing
 @pause
 @echo.
