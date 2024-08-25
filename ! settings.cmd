@@ -1,5 +1,5 @@
-@echo off
 :exit2
+@echo off
 echo     (1y/n)  demo mode
 echo     (2y/n)  downloading sounds
 echo        (3)  sign in to minecraft
