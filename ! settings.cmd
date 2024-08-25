@@ -1,5 +1,6 @@
-:exit2
+:exit
 @echo off
+@prompt
 echo     (1y/n)  demo mode
 echo     (2y/n)  downloading sounds
 echo        (3)  sign in to minecraft
@@ -13,6 +14,7 @@ echo.
 set /p a=whad u wanna do: 
 echo.
 @echo on
+@prompt $G
 @if /i %a% == 1Y goto 1y
 @if /i %a% == 1N goto 1n
 @if /i %a% == 2Y goto 2y
@@ -55,6 +57,3 @@ echo %b% > auth\username.txt
 echo  %b% > auth\uuid.txt
 echo %b% > auth\token.txt
 goto exit
-:exit
-echo.
-goto exit2
