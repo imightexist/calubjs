@@ -13,7 +13,7 @@ if (demo.startsWith(" --demo")){
     console.log()
 }
 if (!allAssets){
-    console.log('sounds will not be downloaded.. you can turn this off if you wanna')
+    console.log('sounds will not be downloaded.. you can turn this on if you wanna')
     console.log()
 }
 wget({url:'https://piston-meta.mojang.com/mc/game/version_manifest_v2.json',dest:'json/'}, function (e, res, body) {
