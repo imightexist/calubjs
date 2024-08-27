@@ -3,7 +3,7 @@
 @prompt
 echo     (1y/n)  demo mode
 echo     (2y/n)  downloading sounds
-echo        (3)  sign in to minecraft
+echo     (3/3d)  sign in to minecraft (d to delete cache)
 echo        (4)  log off minecraft
 echo (5o/a/v/i)  download fOrge/fAbric/Vanilla/Indev (not ready yet)
 echo     (6y/n)  make a redistributable install (not ready yet)
@@ -21,6 +21,7 @@ echo.
 @if /i %a% == 2Y goto 2y
 @if /i %a% == 2N goto 2n
 @if /i %a% == 3 goto 3
+@if /i %a% == 3d goto 3d
 @if /i %a% == 4 goto 4
 @if /i %a% == 8 goto 8
 @if /i %a% == 9 goto 9
@@ -41,6 +42,11 @@ goto exit
 :3
 set NODE_SKIP_PLATFORM_CHECK=1
 "node-v15.8.0-win-x64\node" shid.js
+goto exit
+:3d
+set NODE_SKIP_PLATFORM_CHECK=1
+"node-v15.8.0-win-x64\node" shid.js
+del /q json\cache\*.*
 goto exit
 :4
 del /q json/cache/*.*
