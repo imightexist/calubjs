@@ -5,12 +5,13 @@ echo     (1y/n)  demo mode
 echo     (2y/n)  downloading sounds
 echo     (3/3d)  sign in to minecraft (d to delete cache)
 echo        (4)  log off minecraft
-echo (5o/a/v/i)  download fOrge/fAbric/Vanilla/Indev (not ready yet)
+echo     (5v/i)  download vanilla/indev (not ready yet)
 echo     (6y/n)  make a redistributable install (not ready yet)
 echo        (7)  http proxy (not ready yet)
 echo        (8)  delete cache
 echo        (9)  change username (offline mode)
 echo       (10)  check for updates (not ready yet)
+echo    (11o/f)  install optifine/fabric (not ready yet)
 echo.
 set /p a=whad u wanna do: 
 echo.
