@@ -27,7 +27,8 @@ echo.
 @if /i %a% == 4 goto 4
 @if /i %a% == 8 goto 8
 @if /i %a% == 9 goto 9
-@if /i %a% == 10 goto 9
+@if /i %a% == 10 "! update.cmd"
+@if /i %a% == 11 goto 11
 @echo fake!!
 goto exit
 :1y
@@ -68,4 +69,11 @@ goto exit
 echo %b% > auth\username.txt
 echo  %b% > auth\uuid.txt
 echo %b% > auth\token.txt
+goto exit
+:11
+md optifine
+md optifine\versions
+echo {"profiles":{}} > optifine\launcher_profiles.json
+@echo.
+@set /p c=minecraft version (you must have minecraft downloaded first): 
 goto exit
