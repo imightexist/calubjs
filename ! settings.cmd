@@ -13,6 +13,7 @@ echo        (9)  change username (offline mode)
 echo       (10)  check for updates
 echo       (11)  install optifine (not ready yet)
 echo    (12a/o)  install fabric/forge (not ready yet)
+echo       (13)  exit
 echo.
 set /p a=whad u wanna do: 
 echo.
@@ -29,6 +30,7 @@ echo.
 @if /i %a% == 9 goto 9
 @if /i %a% == 10 "! update.cmd"
 @if /i %a% == 11 goto 11
+@if /i %a% == 13 exit
 @echo fake!!
 goto exit
 :1y
