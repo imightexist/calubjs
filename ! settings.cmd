@@ -100,6 +100,6 @@ copy /y versions\%c%\natives\*.* versions\%d%\natives
 dir /b /s optifine\libraries\*.jar > optifine\nut.txt
 for /f %%i in (optifine\nut.txt) do copy /y %%i versions\%d%\!%random%.jar
 rem rewrite launch.cmd
-node cum.js %d%
+node cum.js %d% %c%
 rd optifine /q
 goto exit
