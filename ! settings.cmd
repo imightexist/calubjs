@@ -98,7 +98,7 @@ md versions\%d%\natives
 copy /y versions\%c%\*.* versions\%d%
 copy /y versions\%c%\natives\*.* versions\%d%\natives
 dir /b /s optifine\libraries\*.jar > optifine\nut.txt
-for /f %%i in (optifine\nut.txt) do copy /y %%i versions\%d%\!%random%.jar
+for /f %%i in (optifine\nut.txt) do copy /y %%i versions\%d%\!%%i.jar
 @rem rewrite launch.cmd
 set NODE_SKIP_PLATFORM_CHECK=1
 "node-v15.8.0-win-x64\node" cum.js "%d%" "%c%"
