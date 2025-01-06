@@ -13,6 +13,7 @@ echo        (7)  change username (offline mode)
 echo        (8)  check for updates
 echo        (9)  install mods (eg optifine/forge/fabric)
 rem echo    (12a/o)  install fabric/forge (not ready yet)
+rem echo       (10)  change skin
 echo       (10)  exit
 echo.
 set /p a=whad u wanna do: 
@@ -26,11 +27,11 @@ echo.
 @if /i %a% == 3 goto 3
 @if /i %a% == 3d goto 3d
 @if /i %a% == 4 goto 4
-@if /i %a% == 8 goto 8
+@if /i %a% == 6 goto 6
+@if /i %a% == 7 goto 7
+@if /i %a% == 8 "! update.cmd"
 @if /i %a% == 9 goto 9
-@if /i %a% == 10 "! update.cmd"
-@if /i %a% == 11 goto 11
-@if /i %a% == 13 exit
+@if /i %a% == 10 exit
 @echo fake!!
 goto exit
 :1y
