@@ -15,7 +15,7 @@ if (Object.keys(c).includes("arguments")){
   }else if (Object.keys(c).includes("minecraftArguments")){
     let h = a
     c.minecraftArguments.split(" ").forEach(function(g){
-      if (!(h.includes(g)) && !(g.startsWith("${")){
+      if (!(h.includes(g)) && !(g.startsWith("${"))){
         a += " "+g
       }
     })
@@ -23,7 +23,7 @@ if (Object.keys(c).includes("arguments")){
 }else if (Object.keys(c).includes("minecraftArguments")){
   let h = a
   c.minecraftArguments.split(" ").forEach(function(g){
-    if (!(h.includes(g)) && !(g.startsWith("${")){
+    if (!(h.includes(g)) && !(g.startsWith("${"))){
       a += " "+g
     }
   })
