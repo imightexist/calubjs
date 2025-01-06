@@ -90,7 +90,7 @@ copy versions\%c%\client.jar optifine\versions\%c%\%c%.jar
 @echo.
 @echo install da mod to "%cd%\optifine" before continuing
 @pause
-rd optifine\versions\%c% /q
+rd optifine\versions\%c% /s /q
 dir optifine\versions /b > optifine\real.txt
 set /p d=<optifine\real.txt
 md versions\%d%
