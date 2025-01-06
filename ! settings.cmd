@@ -11,7 +11,7 @@ echo        (7)  http proxy (not ready yet)
 echo        (8)  delete cache
 echo        (9)  change username (offline mode)
 echo       (10)  check for updates
-echo       (11)  install optifine (not ready yet)
+echo       (11)  install optifine
 echo    (12a/o)  install fabric/forge (not ready yet)
 echo       (13)  exit
 echo.
