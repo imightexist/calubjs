@@ -3,17 +3,17 @@
 @prompt
 echo     (1y/n)  demo mode
 echo     (2y/n)  downloading sounds
-echo     (3/3d)  sign in to minecraft (d to delete cache)
+echo     (3/3d)  sign in to minecraft/refresh session (d to delete cache)
 echo        (4)  log off minecraft
-echo     (5v/i)  download vanilla/indev (not ready yet)
-echo     (6y/n)  make a redistributable install (not ready yet)
-echo        (7)  http proxy (not ready yet)
-echo        (8)  delete cache
-echo        (9)  change username (offline mode)
-echo       (10)  check for updates
-echo       (11)  install optifine
-echo    (12a/o)  install fabric/forge (not ready yet)
-echo       (13)  exit
+rem echo     (5v/i)  download vanilla/indev (not ready yet)
+rem echo     (5y/n)  make a redistributable install (not ready yet)
+echo        (5)  http proxy (not ready yet)
+echo        (6)  delete cache
+echo        (7)  change username (offline mode)
+echo        (8)  check for updates
+echo        (9)  install mods (eg optifine/forge/fabric)
+rem echo    (12a/o)  install fabric/forge (not ready yet)
+echo       (10)  exit
 echo.
 set /p a=whad u wanna do: 
 echo.
@@ -73,17 +73,32 @@ echo  %b% > auth\uuid.txt
 echo %b% > auth\token.txt
 goto exit
 :11
+@set /p c=minecraft version (you must have it downloaded first): 
+if exist versions\%c% goto 11b
+@echo.
+@echo download %c% first
+goto exit
+:11b
 md optifine
 md optifine\versions
 echo {"profiles":{}} > optifine\launcher_profiles.json
-@echo.
-@set /p c=minecraft version (you must have it downloaded first): 
 md optifine\versions\%c%
-copy json\%c%.json optifine\versions
+copy json\%c%.json optifine\versions\%c%
 copy versions\%c%\client.jar optifine\versions\%c%\%c%.jar
-start "" "https://google.com/search?q=optifine+%c%&btnI"
+rem start "" "https://google.com/search?q=optifine+%c%&btnI"
 @echo.
-@echo install optifine to "%cd%\optifine" before continuing
+@echo install da mod to "%cd%\optifine" before continuing
 @pause
-copy optifine\libraries\optifine\
+rd optifine\versions\%c% /q
+dir optifine\versions /b > optifine\real.txt
+set /p d=<optifine\real.txt
+md versions\%d%
+md versions\%d%\natives
+copy /y versions\%c%\*.* versions\%d%
+copy /y versions\%c%\natives\*.* versions\%d%\natives
+dir /b /s optifine\libraries\*.jar > optifine\nut.txt
+for /f %%i in (optifine\nut.txt) do copy /y %%i versions\%d%\!%random%.jar
+rem rewrite launch.cmd
+node cum.js %d%
+rd optifine /q
 goto exit
