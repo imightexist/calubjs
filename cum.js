@@ -1,7 +1,7 @@
 let fs = require('fs')
 let b = process.argv[2]
 let e = process.argv[3]
-let a = fs.readFileSync('versions/'+b+'/! run.cmd')
+let a = fs.readFileSync('versions/'+b+'/! run.cmd').toString()
 let c = JSON.parse(fs.readFileSync('optifine/versions/'+b+'/'+b+'.json'))
 //let d = a.substring(a.lastIndexOf("\n"))
 let f = JSON.parse(fs.readFileSync('json/'+e+'.json'))
