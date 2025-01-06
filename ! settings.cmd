@@ -81,8 +81,9 @@ echo {"profiles":{}} > optifine\launcher_profiles.json
 md optifine\versions\%c%
 copy json\%c%.json optifine\versions
 copy versions\%c%\client.jar optifine\versions\%c%\%c%.jar
-start https://google.com/search?q=optifine+%c%&btnI
+start "" "https://google.com/search?q=optifine+%c%&btnI"
 @echo.
 @echo install optifine to "%cd%\optifine" before continuing
 @pause
+copy optifine\libraries\optifine\
 goto exit
