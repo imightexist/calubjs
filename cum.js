@@ -12,7 +12,21 @@ if (Object.keys(c).includes("arguments")){
     c.arguments.game.forEach(function(g){
       a += " "+g
     })
+  }else if (Object.keys(c).includes("minecraftArguments"){
+    let h = a
+    c.minecraftArguments.split(" ").forEach(function(g){
+      if (!(h.includes(g)) && !(g.startsWith("${")){
+        a += " "+g
+      }
+    })
   }
+}else if (Object.keys(c).includes("minecraftArguments"){
+  let h = a
+  c.minecraftArguments.split(" ").forEach(function(g){
+    if (!(h.includes(g)) && !(g.startsWith("${")){
+      a += " "+g
+    }
+  })
 }
 if (Object.keys(c).includes("mainClass")){
   a = a.replaceAll(f.mainClass,c.mainClass)
