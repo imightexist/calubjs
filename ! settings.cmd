@@ -63,23 +63,23 @@ echo notch > auth\token.txt
 echo 0 > auth\expire.txt
 echo true > auth\expired.txt
 goto exit
-:8
+:6
 del /q json/cache/*.*
 goto exit
-:9
+:7
 @set /p b=username: 
 ::echo %b% > auth\offline.txt
 echo %b% > auth\username.txt
 echo  %b% > auth\uuid.txt
 echo %b% > auth\token.txt
 goto exit
-:11
+:9
 @set /p c=minecraft version (you must have it downloaded first): 
-if exist versions\%c% goto 11b
+if exist versions\%c% goto 9b
 @echo.
 @echo download %c% first
 goto exit
-:11b
+:9b
 md optifine
 md optifine\versions
 echo {"profiles":{}} > optifine\launcher_profiles.json
