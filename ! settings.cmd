@@ -77,5 +77,12 @@ md optifine
 md optifine\versions
 echo {"profiles":{}} > optifine\launcher_profiles.json
 @echo.
-@set /p c=minecraft version (you must have minecraft downloaded first): 
+@set /p c=minecraft version (you must have it downloaded first): 
+md optifine\versions\%c%
+copy json\%c%.json optifine\versions
+copy versions\%c%\client.jar optifine\versions\%c%\%c%.jar
+start https://optifine.net
+@echo.
+@echo install optifine to "%cd%\optifine" before continuing
+@pause
 goto exit
