@@ -11,7 +11,7 @@ let beta = require('./json/beta_manifest.json')
 //let version;
 function indev(a){
     if (Object.keys(beta.versions).includes(a)){
-        return beta.versions[a]
+        return [beta.versions[a]]
     }
     return null;
 }
