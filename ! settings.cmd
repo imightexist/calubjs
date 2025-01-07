@@ -94,6 +94,7 @@ echo %cd%\optifine | clip
 rd optifine\versions\%c% /s /q
 dir optifine\versions /b > optifine\real.txt
 set /p d=<optifine\real.txt
+rd versions\%d% /s /q
 md versions\%d%
 md versions\%d%\natives
 copy /y versions\%c%\*.* versions\%d%
