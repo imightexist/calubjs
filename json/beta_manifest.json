@@ -420,6 +420,11 @@
       "type":"infdev",
       "url":"http://archive.org/download/Minecraft-JE-Infdev/inf-20100616/inf-20100616.json"
     },
+    "inf-20100616":{
+      "id":"inf-20100616-1808",
+      "type":"infdev",
+      "url":"http://archive.org/download/Minecraft-JE-Infdev/inf-20100616/inf-20100616.json"
+    },
     "inf-20100617-1205":{
       "id":"inf-20100617-1205",
       "type":"infdev",
