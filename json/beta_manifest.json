@@ -527,87 +527,87 @@
     },
     "b1.8-pre1-1":{
       "id":"b1.8-pre1-1",
-      "type":"beta",
+      "type":"prerelease",
       "url":"https://archive.org/download/Minecraft-JSONs/b1.8-pre1-1.json"
     },
     "b1.8-pre1-2":{
       "id":"b1.8-pre1-2",
-      "type":"beta",
+      "type":"prerelease",
       "url":"https://archive.org/download/Minecraft-JSONs/b1.8-pre1-2.json"
     },
     "b1.8-pre1":{
       "id":"b1.8-pre1-2",
-      "type":"beta",
+      "type":"prerelease",
       "url":"https://archive.org/download/Minecraft-JSONs/b1.8-pre1-2.json"
     },
     "b1.8-pre2":{
       "id":"b1.8-pre2",
-      "type":"beta",
+      "type":"prerelease",
       "url":"https://archive.org/download/Minecraft-JSONs/b1.8-pre2.json"
     },
     "b1.9-pre1":{
       "id":"b1.9-pre1",
-      "type":"beta",
+      "type":"prerelease",
       "url":"https://meta.omniarchive.uk/versions/v1/b1.9-pre1.json"
     },
     "b1.9-pre2":{
       "id":"b1.9-pre2",
-      "type":"beta",
+      "type":"prerelease",
       "url":"https://meta.omniarchive.uk/versions/v1/b1.9-pre2.json"
     },
     "b1.9-pre3-1":{
       "id":"b1.9-pre3-1",
-      "type":"beta",
+      "type":"prerelease",
       "url":"https://archive.org/download/Minecraft-JE-Beta/Prereleases/b1.9-pre3-1/b1.9-pre3-1.json"
     },
     "b1.9-pre3-2":{
       "id":"b1.9-pre3",
-      "type":"beta",
+      "type":"prerelease",
       "url":"https://archive.org/download/Minecraft-JSONs/b1.9-pre3.json"
     },
     "b1.9-pre3":{
       "id":"b1.9-pre3",
-      "type":"beta",
+      "type":"prerelease",
       "url":"https://archive.org/download/Minecraft-JSONs/b1.9-pre3.json"
     },
     "b1.9-pre4":{
       "id":"b1.9-pre4",
-      "type":"beta",
+      "type":"prerelease",
       "url":"https://archive.org/download/Minecraft-JSONs/b1.9-pre4.json"
     },
     "b1.9-pre5":{
       "id":"b1.9-pre5",
-      "type":"beta",
+      "type":"prerelease",
       "url":"https://meta.omniarchive.uk/versions/v1/b1.9-pre5.json"
     },
     "b1.9-pre6":{
       "id":"b1.9-pre6",
-      "type":"beta",
+      "type":"prerelease",
       "url":"https://meta.omniarchive.uk/versions/v1/b1.9-pre6.json"
     },
     "1.0.0-rc1":{
       "id":"1.0.0-rc1",
-      "type":"post-1.0",
+      "type":"prerelease",
       "url":"https://meta.omniarchive.uk/versions/v1/1.0.0-rc1.json"
     },
     "1.0.0-rc2-1":{
       "id":"1.0.0-rc2-1",
-      "type":"post-1.0",
+      "type":"beta",
       "url":"https://archive.org/download/Minecraft-JE-Beta/1.0.0-rc2-1/1.0.0-rc2-1.json"
     },
     "1.0.0-rc2-2":{
       "id":"1.0.0-rc2-2",
-      "type":"post-1.0",
+      "type":"beta",
       "url":"https://archive.org/download/Minecraft-JE-Beta/1.0.0-rc2-2/1.0.0-rc2-2.json"
     },
     "1.0.0-rc2-3":{
       "id":"1.0.0-rc2-3",
-      "type":"post-1.0",
+      "type":"beta",
       "url":"https://archive.org/download/Minecraft-JE-Beta/1.0.0-rc2-3/1.0.0-rc2-3.json"
     },
     "1.0.0-rc2":{
       "id":"1.0.0-rc2-3",
-      "type":"post-1.0",
+      "type":"beta",
       "url":"https://archive.org/download/Minecraft-JE-Beta/1.0.0-rc2-3/1.0.0-rc2-3.json"
     }
   }
