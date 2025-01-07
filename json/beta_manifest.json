@@ -1,5 +1,15 @@
 {
   "versions":{
+    "c0.0.12a_03":{
+      "id":"c0.0.12a_03",
+      "type":"indev",
+      "url":"https://archive.org/download/Minecraft-JE-Classic/c0.0.12a_03/c0.0.12a_03.json"
+    },
+    "c0.0.14a_08":{
+      "id":"c0.0.14a_08",
+      "type":"indev",
+      "url":"https://meta.omniarchive.uk/versions/v1/c0.0.14a_08.json"
+    },
     "in-20091223-2":{
       "id":"in-20091223-2",
       "type":"indev",
