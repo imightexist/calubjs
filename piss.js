@@ -90,7 +90,7 @@ wget({url:'https://piston-meta.mojang.com/mc/game/version_manifest_v2.json',dest
                         if (!(Object.keys(shit.libraries[i]).includes("downloads"))){
                             if (Object.keys(shit.libraries[i]).includes("natives")){
                                 f = "https://libraries.minecraft.net/"+shit.libraries[i].name.split(":")[0].replaceAll(".","/")+"/"+shit.libraries[i].name.substring(shit.libraries[i].name.indexOf(":")+1).replaceAll(":","/")+"/"+shit.libraries[i].name.substring(shit.libraries[i].name.indexOf(":")+1).replaceAll(":","-")+"-natives-windows.jar"
-                                shit.libraries[i].downloads = {classifiers:{"native-windows":{url:f}}}
+                                shit.libraries[i].downloads = {classifiers:{"natives-windows":{url:f}}}
                             }else{
                                 f = "https://libraries.minecraft.net/"+shit.libraries[i].name.split(":")[0].replaceAll(".","/")+"/"+shit.libraries[i].name.substring(shit.libraries[i].name.indexOf(":")+1).replaceAll(":","/")+"/"+shit.libraries[i].name.substring(shit.libraries[i].name.indexOf(":")+1).replaceAll(":","-")+".jar"
                                 shit.libraries[i].downloads = {artifact:{url:f}}
