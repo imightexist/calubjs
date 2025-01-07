@@ -88,7 +88,7 @@ wget({url:'https://piston-meta.mojang.com/mc/game/version_manifest_v2.json',dest
                     }
                     for (let i = 0; i < shit.libraries.length; i++){
                         if (!(Object.keys(shit.libraries[i]).includes("downloads"))){
-                            f = "https://libraries.minecraft.net/"+shit.libraries[i].name.split(":")[0].replaceAll(".","/")+"/"+shit.libraries[i].name.substring(shit.libraries[i].name.indexOf(":")+1).replaceAll(":","/")+".jar"
+                            f = "https://libraries.minecraft.net/"+shit.libraries[i].name.split(":")[0].replaceAll(".","/")+"/"+shit.libraries[i].name.substring(shit.libraries[i].name.indexOf(":")+1).replaceAll(":","-")+".jar"
                             shit.libraries[i].downloads = {artifact:{url:f}}
                         }
                     }
