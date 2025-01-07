@@ -87,7 +87,7 @@ wget({url:'https://piston-meta.mojang.com/mc/game/version_manifest_v2.json',dest
                         shit.assetIndex = {"id": "pre-1.6", "sha1": "3d8e55480977e32acd9844e545177e69a52f594b", "size": 74091, "totalSize": 49505710, "url": "https://launchermeta.mojang.com/v1/packages/3d8e55480977e32acd9844e545177e69a52f594b/pre-1.6.json"}
                     }
                     for (let i = 0; i < shit.libraries.length; i++){
-                        if (Object.keys(shit.libraries[i]).includes("downloads")){
+                        if (!(Object.keys(shit.libraries[i]).includes("downloads"))){
                             shit.libraries[i].downloads = {artifact:{url:"https://"+shit.libraries[i].name.replaceAll(".","/").replace(":","/").replaceAll(":","-")+".jar"}}
                         }
                     }
