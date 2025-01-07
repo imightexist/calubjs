@@ -11,7 +11,7 @@ echo        (5)  http proxy (not ready yet)
 echo        (6)  delete cache
 echo        (7)  change username (offline mode)
 echo        (8)  check for updates
-echo        (9)  install mods (eg optifine/forge/fabric)
+echo        (9)  install optifine
 rem echo    (12a/o)  install fabric/forge (not ready yet)
 echo       (10)  change skin (offline mode, not ready yet)
 echo       (11)  exit
@@ -89,7 +89,7 @@ copy versions\%c%\client.jar optifine\versions\%c%\%c%.jar
 @rem start "" "https://google.com/search?q=optifine+%c%&btnI"
 echo %cd%\optifine | clip
 @echo.
-@echo install da mod to "%cd%\optifine" and wait a few secs before continuing
+@echo install to "%cd%\optifine" and wait a few secs before continuing
 @pause
 rd optifine\versions\%c% /s /q
 dir optifine\versions /b > optifine\real.txt
