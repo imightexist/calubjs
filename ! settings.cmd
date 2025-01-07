@@ -87,6 +87,7 @@ md optifine\versions\%c%
 copy json\%c%.json optifine\versions\%c%
 copy versions\%c%\client.jar optifine\versions\%c%\%c%.jar
 @rem start "" "https://google.com/search?q=optifine+%c%&btnI"
+echo %cd%\optifine | clip
 @echo.
 @echo install da mod to "%cd%\optifine" and wait a few secs after the installer closes before continuing
 @pause
