@@ -6,8 +6,15 @@ let versions;
 let user;
 let demo = fs.readFileSync('auth/demo.txt').toString();
 let allAssets = JSON.parse(fs.readFileSync('auth/sounds.txt'));
+let beta = require('json/beta_manifest.json')
 //let data = require('./data.json')
 //let version;
+function indev(a){
+    if (Object.keys(beta.versions).includes(a)){
+        return beta.versions[a]
+    }
+    return null;
+}
 if (demo.startsWith(" --demo")){
     console.log('demo mode is on! its turned on by default just in case mojan wants to go nintendo mode')
     console.log()
@@ -29,12 +36,18 @@ wget({url:'https://piston-meta.mojang.com/mc/game/version_manifest_v2.json',dest
         prompt.start()
         prompt.get(['version'], function (e2, res2) {
             console.log();
+            version = null;
             if (!(body.includes(res2.version))) {
-                console.log('fake!')
-                process.exit(1)
+                version = indev(res2.version)
+                if (version==null){
+                    console.log('fake!')
+                    process.exit(1)
+                }
             }
             let startTime = Date.now()
-            version = versions.versions.filter(function (d) { return res2.version == d.id });
+            if (version==null){
+                version = versions.versions.filter(function (d) { return res2.version == d.id });
+            }
             res2.version.replaceAll("%20"," ")
             wget({url:version[0].url,dest:'json/'}, function (e3, res3, body2) {
                 if (e3) {
