@@ -67,6 +67,17 @@ wget({url:'https://piston-meta.mojang.com/mc/game/version_manifest_v2.json',dest
                         dest: 'versions/' + res2.version
                     })*/
                     console.log("downloading client.jar")
+                    if (version[0].type=="indev"){
+
+                    }else if (version[0].type=="infdev"){
+
+                    }else if (version[0].type=="alpha"){
+
+                    }else if (version[0].type=="beta"){
+
+                    }else if (version[0].type=="post-1.0"){
+
+                    }
                     let clientDL = proc.spawn('aria2c', ['-x16', '-s16', '-m16', shit.downloads.client.url, '--dir="versions/' + res2.version + '"'], { shell: true, detached: true })
                     clientDL.on('close', function (c2) {
                         let javaDL, javaZIP;
