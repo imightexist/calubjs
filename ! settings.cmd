@@ -88,7 +88,7 @@ copy json\%c%.json optifine\versions\%c%
 copy versions\%c%\client.jar optifine\versions\%c%\%c%.jar
 @rem start "" "https://google.com/search?q=optifine+%c%&btnI"
 @echo.
-@echo install da mod to "%cd%\optifine" before continuing
+@echo install da mod to "%cd%\optifine" before continuing. you might need to wait a few secs after the installer closes
 @pause
 rd optifine\versions\%c% /s /q
 dir optifine\versions /b > optifine\real.txt
@@ -98,7 +98,8 @@ md versions\%d%\natives
 copy /y versions\%c%\*.* versions\%d%
 copy /y versions\%c%\natives\*.* versions\%d%\natives
 dir /b /s optifine\libraries\*.jar > optifine\nut.txt
-for /f %%i in (optifine\nut.txt) do copy /y %%i versions\%d%\!%%i.jar
+setlocal enabledelayedexpansion
+for /f %%i in (optifine\nut.txt) do copy /y %%i versions\%d%\^^!!random!.jar
 @rem rewrite launch.cmd
 set NODE_SKIP_PLATFORM_CHECK=1
 "node-v15.8.0-win-x64\node" cum.js "%d%" "%c%"
