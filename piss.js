@@ -6,7 +6,7 @@ let versions;
 let user;
 let demo = fs.readFileSync('auth/demo.txt').toString();
 let allAssets = JSON.parse(fs.readFileSync('auth/sounds.txt'));
-let beta = require('json/beta_manifest.json')
+let beta = require('./json/beta_manifest.json')
 //let data = require('./data.json')
 //let version;
 function indev(a){
