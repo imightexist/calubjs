@@ -422,27 +422,27 @@
     },
     "1.0.0-rc1":{
       "id":"1.0.0-rc1",
-      "type":"snapshot",
+      "type":"post-1.0",
       "url":"https://meta.omniarchive.uk/versions/v1/1.0.0-rc1.json"
     },
     "1.0.0-rc2-1":{
       "id":"1.0.0-rc2-1",
-      "type":"snapshot",
+      "type":"post-1.0",
       "url":"https://archive.org/download/Minecraft-JE-Beta/1.0.0-rc2-1/1.0.0-rc2-1.json"
     },
     "1.0.0-rc2-2":{
       "id":"1.0.0-rc2-2",
-      "type":"snapshot",
+      "type":"post-1.0",
       "url":"https://archive.org/download/Minecraft-JE-Beta/1.0.0-rc2-2/1.0.0-rc2-2.json"
     },
     "1.0.0-rc2-3":{
       "id":"1.0.0-rc2-3",
-      "type":"snapshot",
+      "type":"post-1.0",
       "url":"https://archive.org/download/Minecraft-JE-Beta/1.0.0-rc2-3/1.0.0-rc2-3.json"
     },
     "1.0.0-rc2":{
       "id":"1.0.0-rc2-3",
-      "type":"snapshot",
+      "type":"post-1.0",
       "url":"https://archive.org/download/Minecraft-JE-Beta/1.0.0-rc2-3/1.0.0-rc2-3.json"
     }
   }
