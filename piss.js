@@ -68,24 +68,29 @@ wget({url:'https://piston-meta.mojang.com/mc/game/version_manifest_v2.json',dest
                     })*/
                     console.log("downloading client.jar")
                     if (version[0].type=="indev"){
-                        shit.downloads = {client:{url:"http://archive.org/download/Minecraft-JE-Indev/"+version[0].id+"/"+version[0].id+".jar"}}
+                        shit.downloads = {client:{url:"https://archive.org/download/Minecraft-JE-Indev/"+version[0].id+"/"+version[0].id+".jar"}}
                         shit.assetIndex = {"id": "pre-1.6", "sha1": "3d8e55480977e32acd9844e545177e69a52f594b", "size": 74091, "totalSize": 49505710, "url": "https://launchermeta.mojang.com/v1/packages/3d8e55480977e32acd9844e545177e69a52f594b/pre-1.6.json"}
                     }else if (version[0].type=="infdev"){
-                        shit.downloads = {client:{url:"http://archive.org/download/Minecraft-JE-Infdev/"+version[0].id+"/"+version[0].id+".jar"}}
+                        shit.downloads = {client:{url:"https://archive.org/download/Minecraft-JE-Infdev/"+version[0].id+"/"+version[0].id+".jar"}}
                         shit.assetIndex = {"id": "pre-1.6", "sha1": "3d8e55480977e32acd9844e545177e69a52f594b", "size": 74091, "totalSize": 49505710, "url": "https://launchermeta.mojang.com/v1/packages/3d8e55480977e32acd9844e545177e69a52f594b/pre-1.6.json"}
                     }else if (version[0].type=="alpha"){
-                        shit.downloads = {client:{url:"http://archive.org/download/Minecraft-JE-Alpha/"+version[0].id+"/"+version[0].id+".jar"}}
+                        shit.downloads = {client:{url:"https://archive.org/download/Minecraft-JE-Alpha/"+version[0].id+"/"+version[0].id+".jar"}}
                         shit.assetIndex = {"id": "pre-1.6", "sha1": "3d8e55480977e32acd9844e545177e69a52f594b", "size": 74091, "totalSize": 49505710, "url": "https://launchermeta.mojang.com/v1/packages/3d8e55480977e32acd9844e545177e69a52f594b/pre-1.6.json"}
                     }else if (version[0].type=="beta"){
-                        shit.downloads = {client:{url:"http://archive.org/download/Minecraft-JE-Beta/"+version[0].id+"/"+version[0].id+".jar"}}
+                        shit.downloads = {client:{url:"https://archive.org/download/Minecraft-JE-Beta/"+version[0].id+"/"+version[0].id+".jar"}}
                         shit.assetIndex = {"id": "pre-1.6", "sha1": "3d8e55480977e32acd9844e545177e69a52f594b", "size": 74091, "totalSize": 49505710, "url": "https://launchermeta.mojang.com/v1/packages/3d8e55480977e32acd9844e545177e69a52f594b/pre-1.6.json"}
                     }else if (version[0].type=="prerelease"){
-                        shit.downloads = {client:{url:"http://archive.org/download/Minecraft-JE-Beta/Prereleases/"+version[0].id+"/"+version[0].id+".jar"}}
+                        shit.downloads = {client:{url:"https://archive.org/download/Minecraft-JE-Beta/Prereleases/"+version[0].id+"/"+version[0].id+".jar"}}
                         shit.assetIndex = {"id": "pre-1.6", "sha1": "3d8e55480977e32acd9844e545177e69a52f594b", "size": 74091, "totalSize": 49505710, "url": "https://launchermeta.mojang.com/v1/packages/3d8e55480977e32acd9844e545177e69a52f594b/pre-1.6.json"}
                     }else if (version[0].type=="classic"){
-                        shit.downloads = {client:{url:"http://archive.org/download/Minecraft-JE-Classic/"+version[0].id+"/"+version[0].id+".jar"}}
+                        shit.downloads = {client:{url:"https://archive.org/download/Minecraft-JE-Classic/"+version[0].id+"/"+version[0].id+".jar"}}
                         shit.assetIndex = {"id": "pre-1.6", "sha1": "3d8e55480977e32acd9844e545177e69a52f594b", "size": 74091, "totalSize": 49505710, "url": "https://launchermeta.mojang.com/v1/packages/3d8e55480977e32acd9844e545177e69a52f594b/pre-1.6.json"}
                     }
+                    shit.libraries.forEach(function(f){
+                        if (Object.keys(f).includes("downloads")){
+                            f.downloads = {artifact:{url:"https://"+f.name.replaceAll(".","/").replace(":","/").replaceAll(":","-")+".jar"}}
+                        }
+                    })
                     let clientDL = proc.spawn('aria2c', ['-x16', '-s16', '-m16', shit.downloads.client.url, '--dir="versions/' + res2.version + '"'], { shell: true, detached: true })
                     clientDL.on('close', function (c2) {
                         let javaDL, javaZIP;
