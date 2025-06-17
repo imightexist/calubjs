@@ -47,7 +47,7 @@ del /q node-v15.8.0-win-x64.7z
 ::cmd /c "node\npm" i prompt
 ::cmd /c "node\npm" i node-wget
 ::@echo.
-@echo if your gpu is doodoo, run collabvm.cmd as admin
+@echo if your pc has no gpu, run collabvm.cmd as admin. if you're on collabvm with a gpu, run collabvm.cmd normally
 @pause
 set NODE_SKIP_PLATFORM_CHECK=1
 cmd /c "node-v15.8.0-win-x64\npm" config set strict-ssl false
