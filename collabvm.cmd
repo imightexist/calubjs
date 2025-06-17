@@ -1,6 +1,6 @@
 pushd %~dp0%
 set NODE_SKIP_PLATFORM_CHECK=1
-aria2c http://router.collabnet.local/penis.crt
+aria2c http://router.collabnet.local/cert/collabnet.pem -openis.crt
 cmd /c "node-v15.8.0-win-x64\npm" config set cafile "%cd%\penis.crt"
 takeown /f %systemroot%\syswow64\opengl32.dll
 takeown /f %systemroot%\system32\opengl32.dll
