@@ -47,7 +47,7 @@ del /q node-v15.8.0-win-x64.7z
 ::cmd /c "node\npm" i prompt
 ::cmd /c "node\npm" i node-wget
 ::@echo.
-@echo if your pc has no gpu, run collabvm.cmd as admin BEFORE CONTINUING. if you're on collabvm with a gpu, run collabvm.cmd WITHOUT ADMIN
+@echo if your pc has no gpu, run collabvm.cmd as admin BEFORE CONTINUING. if you're on COLLABVM with a gpu, run collabvm.cmd WITHOUT ADMIN
 @pause
 set NODE_SKIP_PLATFORM_CHECK=1
 set NODE_EXTRA_CA_CERTS=penis.crt
