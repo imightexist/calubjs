@@ -1,4 +1,10 @@
 # calubjs
+- the greatest minecraft launcher of all time
+- optifine support
+- collabnet support
+- mesa (no gpu) support
+- all versions on the minecraft launcher can be downloaded
+
 the LAST version of calubcraft<br>
 the LAST version of windows
 
