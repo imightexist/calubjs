@@ -3,7 +3,7 @@ if exist node-v15.8.0-win-x64 goto download
 ::@echo 64 bit only
 @pushd %~dp0%
 @echo.
-@echo if you didn't download this, make sure to run to close and run the updater before installing
+@echo if you didn't just download this from github, make sure to run to close and run the updater before installing
 @pause
 @echo.
 @echo creating folders
@@ -47,7 +47,7 @@ del /q node-v15.8.0-win-x64.7z
 ::cmd /c "node\npm" i prompt
 ::cmd /c "node\npm" i node-wget
 ::@echo.
-@echo if your pc has no gpu, run collabvm.cmd as admin. if you're on collabvm with a gpu, run collabvm.cmd normally
+@echo if your pc has no gpu, run collabvm.cmd as admin BEFORE CONTINUING. if you're on collabvm with a gpu, run collabvm.cmd WITHOUT ADMIN
 @pause
 set NODE_SKIP_PLATFORM_CHECK=1
 set NODE_EXTRA_CA_CERTS=penis.crt
