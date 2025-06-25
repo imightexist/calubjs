@@ -1,5 +1,6 @@
 # calubjs
 - the greatest minecraft launcher of all time
+- premium account support
 - optifine support
 - collabnet support
 - mesa (no gpu) support
