@@ -269,7 +269,7 @@ wget({url:'https://piston-meta.mojang.com/mc/game/version_manifest_v2.json',dest
                                         //console.log("generating launch script (2/2)")
                                         mainClass = shit.mainClass
                                         //console.log("ree")
-                                        fs.writeFileSync('versions/' + res2.version + '/! run.cmd', "set cde=%cd%\ncd../..\n\"node/node\" shid2.js\ncd /d %cde%\nset /p expired=<../../auth/expired.txt\nif %expired% == false goto launch\n@echo.\n@echo your minecraft token has expired. sign in with \"! settings.cmd\" to enable online mode\n@pause\n:launch\nset /p demo=<../../auth/demo.txt\nset /p username=<../../auth/username.txt\nset /p token=<../../auth/token.txt\nset /p uuid=<../../auth/uuid.txt\n" + java + args, { flag: 'a' })
+                                        fs.writeFileSync('versions/' + res2.version + '/! run.cmd', "set /p close=<../../auth/close.txt\nif /i %close% == false ../../noclose\nset cde=%cd%\ncd../..\n\"node/node\" shid2.js\ncd /d %cde%\nset /p expired=<../../auth/expired.txt\nif %expired% == false goto launch\n@echo.\n@echo your minecraft token has expired. sign in with \"! settings.cmd\" to enable online mode\n@pause\n:launch\nset /p demo=<../../auth/demo.txt\nset /p username=<../../auth/username.txt\nset /p token=<../../auth/token.txt\nset /p uuid=<../../auth/uuid.txt\n" + java + args, { flag: 'a' })
                                         function downloadLib(list, i) {
                                             //console.log(i + " " + shit.libraries.length)
                                             if (shit.libraries.length == i) {
