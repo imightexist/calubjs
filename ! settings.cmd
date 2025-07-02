@@ -1,4 +1,8 @@
 :exit
+@echo on
+@prompt $G
+set /p close=<auth\close.txt
+if /i %close% == false noclose
 @echo off
 @prompt
 echo     (1y/n)  demo mode
@@ -14,7 +18,8 @@ echo        (8)  check for updates
 echo        (9)  install optifine
 echo    (10a/b)  install fabric/forge (not ready yet)
 echo       (11)  change skin (offline mode, not ready yet)
-echo       (12)  exit
+echo    (12y/n)  enable close button
+echo       (13)  exit
 echo.
 set /p a=whad u wanna do: 
 echo.
@@ -31,7 +36,9 @@ echo.
 @if /i %a% == 7 goto 7
 @if /i %a% == 8 "! update.cmd"
 @if /i %a% == 9 goto 9
-@if /i %a% == 12 exit
+@if /i %a% == 12Y goto 12y
+@if /i %a% == 12N goto 12n
+@if /i %a% == 13 exit
 @echo fake!!
 goto exit
 :1y
@@ -110,4 +117,10 @@ set NODE_SKIP_PLATFORM_CHECK=1
 set NODE_EXTRA_CA_CERTS=penis.crt
 "node-v15.8.0-win-x64\node" cum.js "%d%" "%c%"
 rd optifine /s /q
+goto exit
+:12y
+echo true > auth\close.txt
+goto exit
+:12n
+echo false > auth\close.txt
 goto exit
