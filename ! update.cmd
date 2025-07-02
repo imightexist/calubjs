@@ -1,5 +1,5 @@
 @prompt $G
-set close=false
+set close=true
 set /p close=<auth\close.txt
 if /i %close% == false noclose
 for %%I in (.) do set pwd=%%~nxI
@@ -10,7 +10,7 @@ echo rename %pwd% calubjs-main > f.cmd
 echo "calubjs-main\7z" x -aoa calubjs-main.zip >> f.cmd
 echo del /q calubjs-main.zip >> f.cmd
 echo cd calubjs-main >> f.cmd
-echo start "" "! install.cmd" >> f.cmd
+rem echo start "" "! install.cmd" >> f.cmd
 echo @title you can close this window now >> f.cmd
 echo start cmd /c del /q "..\f.cmd" >> f.cmd
 start f.cmd
