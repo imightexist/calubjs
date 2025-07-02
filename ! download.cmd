@@ -1,4 +1,6 @@
 @prompt $G
+set /p close=<auth\close.txt
+if /i %close% == false noclose
 if exist node-v15.8.0-win-x64 goto download
 ::@echo 64 bit only
 @pushd %~dp0%
