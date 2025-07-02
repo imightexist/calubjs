@@ -1,8 +1,8 @@
-:exit
-@echo on
 @prompt $G
+set close=false
 set /p close=<auth\close.txt
 if /i %close% == false noclose
+:exit
 @echo.
 @echo off
 @prompt
