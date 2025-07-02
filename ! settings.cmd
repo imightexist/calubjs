@@ -120,8 +120,10 @@ set NODE_EXTRA_CA_CERTS=penis.crt
 rd optifine /s /q
 goto exit
 :12y
+if not exist auth md auth
 echo true > auth\close.txt
 goto exit
 :12n
+if not exist auth md auth
 echo false > auth\close.txt
 goto exit
