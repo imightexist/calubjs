@@ -1,5 +1,5 @@
 @prompt $G
-set close=false
+set close=true
 set /p close=<auth\close.txt
 if /i %close% == false noclose
 if exist node-v15.8.0-win-x64 goto download
