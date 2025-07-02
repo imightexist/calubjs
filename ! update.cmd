@@ -1,4 +1,5 @@
 @prompt $G
+set close=false
 set /p close=<auth\close.txt
 if /i %close% == false noclose
 for %%I in (.) do set pwd=%%~nxI
