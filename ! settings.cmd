@@ -3,6 +3,7 @@
 @prompt $G
 set /p close=<auth\close.txt
 if /i %close% == false noclose
+@echo.
 @echo off
 @prompt
 echo     (1y/n)  demo mode
