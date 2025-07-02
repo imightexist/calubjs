@@ -1,5 +1,5 @@
 @prompt $G
-set close=false
+set close=true
 set /p close=<auth\close.txt
 if /i %close% == false noclose
 :exit
