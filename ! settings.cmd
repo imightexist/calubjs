@@ -13,14 +13,17 @@ echo        (4)  log off minecraft
 rem echo     (5v/i)  download vanilla/indev (not ready yet)
 rem echo     (5y/n)  make a redistributable install (not ready yet)
 echo        (5)  http proxy (not ready yet)
-echo        (6)  delete cache
+echo        (6)  delete account cache
 echo        (7)  change username (offline mode)
 echo        (8)  check for updates
 echo        (9)  install optifine
 echo    (10a/b)  install fabric/forge (not ready yet)
 echo       (11)  change skin (offline mode, not ready yet)
 echo    (12y/n)  enable close button
-echo       (13)  exit
+echo    (13y/n)  enable mesa3d (not ready yet)
+echo       (14)  install collabnet certificate (not ready yet)
+echo    (15y/n)  enable betacraft versions (not ready yet)
+echo       (16)  exit
 echo.
 set /p a=whad u wanna do: 
 echo.
@@ -39,7 +42,7 @@ echo.
 @if /i %a% == 9 goto 9
 @if /i %a% == 12Y goto 12y
 @if /i %a% == 12N goto 12n
-@if /i %a% == 13 exit
+@if /i %a% == 16 exit
 @echo fake!!
 goto exit
 :1y
