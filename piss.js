@@ -122,7 +122,7 @@ wget({url:'https://piston-meta.mojang.com/mc/game/version_manifest_v2.json',dest
                                 javaDL = proc.spawn('aria2c', ['-x16', '-s16', '-m16', 'https://download.oracle.com/java/17/archive/jdk-17.0.9_windows-x64_bin.zip', '--out=jdk17.zip'], { shell: true, detached: false })
                                 javaZIP = 'jdk17.zip'
                                 /*javaDL.on('close', function (c) {
-                                    proc.spawnSync('7z', ['x', javaZIP],{shell:true,detached:true})
+                                    proc.spawnSync('7z', ['x', javaZIP],{shell:true,detached:false})
                                     fs.unlinkSync(javaZIP)
                                 })*/
                                 //data.java.push(17)
@@ -138,7 +138,7 @@ wget({url:'https://piston-meta.mojang.com/mc/game/version_manifest_v2.json',dest
                                 javaDL = proc.spawn('aria2c', ['-x16', '-s16', '-m16', 'https://download.oracle.com/java/21/archive/jdk-21.0.3_windows-x64_bin.zip', '--out=jdk21.zip'], { shell: true, detached: false })
                                 javaZIP = 'jdk21.zip'
                                 /*javaDL.on('close', function (c) {
-                                    proc.spawnSync('7z', ['x', 'jre8.zip', '-ojre8'],{shell:true,detached:true})
+                                    proc.spawnSync('7z', ['x', 'jre8.zip', '-ojre8'],{shell:true,detached:false})
                                     fs.unlinkSync('jre8.zip')
                                 })*/
                                 //data.java.push(8)
@@ -164,7 +164,7 @@ wget({url:'https://piston-meta.mojang.com/mc/game/version_manifest_v2.json',dest
                                 javaDL = proc.spawn('aria2c', ['-x16', '-s16', '-m16', 'https://archive.org/download/Java_8_update_51/jre-8u51-windows-x64.zip', '--out=jre8.zip'], { shell: true, detached: false })
                                 javaZIP = 'jre8.zip'
                                 /*javaDL.on('close', function (c) {
-                                    proc.spawnSync('7z', ['x', 'jre8.zip', '-ojre8'],{shell:true,detached:true})
+                                    proc.spawnSync('7z', ['x', 'jre8.zip', '-ojre8'],{shell:true,detached:false})
                                     fs.unlinkSync('jre8.zip')
                                 })*/
                                 //data.java.push(8)
@@ -284,7 +284,7 @@ wget({url:'https://piston-meta.mojang.com/mc/game/version_manifest_v2.json',dest
                                                         console.log("downloading native jar: " + nativejar)
                                                         download = proc.spawn('aria2c', ['-x16', '-s16', '-m16', shit.libraries[i].downloads.classifiers["natives-windows"].url, '--dir="versions/' + res2.version + '"'], { shell: true, detached: false })
                                                         download.on('close',function(c3){
-                                                            proc.spawn('7z',['x','-aoa','"versions/'+res2.version+'/'+nativejar+'"','-o"versions/'+res2.version+'/natives"'],{shell:true,detached:true})
+                                                            proc.spawn('7z',['x','-aoa','"versions/'+res2.version+'/'+nativejar+'"','-o"versions/'+res2.version+'/natives"'],{shell:true,detached:false})
                                                             downloadLib(shit.libraries,++i)
                                                         })
                                                     }else{
@@ -297,9 +297,9 @@ wget({url:'https://piston-meta.mojang.com/mc/game/version_manifest_v2.json',dest
                                                                         console.log("downloading native jar: " + semen)
                                                                         download = proc.spawn('aria2c', ['-x16', '-s16', '-m16', shit.libraries[i].downloads.artifact.url, '--dir="versions/' + res2.version + '"'], { shell: true, detached: false })
                                                                         download.on('close', function (c3) {
-                                                                            //proc.spawn('7z',['x','-aoa','versions/'+res2.version+'/'+semen,'-oversions/'+res2.version+'/natives'],{shell:true,detached:true})
+                                                                            //proc.spawn('7z',['x','-aoa','versions/'+res2.version+'/'+semen,'-oversions/'+res2.version+'/natives'],{shell:true,detached:false})
                                                                             if (shit.libraries[i].name.endsWith("natives-windows")){
-                                                                                proc.spawn('7z',['x','-aoa','"versions/'+res2.version+'/'+semen+'"','-o"versions/'+res2.version+'/natives"'],{shell:true,detached:true})
+                                                                                proc.spawn('7z',['x','-aoa','"versions/'+res2.version+'/'+semen+'"','-o"versions/'+res2.version+'/natives"'],{shell:true,detached:false})
                                                                             }
                                                                             downloadLib(shit.libraries, ++i)
                                                                         })
@@ -334,9 +334,9 @@ wget({url:'https://piston-meta.mojang.com/mc/game/version_manifest_v2.json',dest
                                                                     console.log("downloading native jar: " + semen)
                                                                     download = proc.spawn('aria2c', ['-x16', '-s16', '-m16', shit.libraries[i].downloads.artifact.url, '--dir="versions/' + res2.version + '"'], { shell: true, detached: false })
                                                                     download.on('close', function (c3) {
-                                                                        //proc.spawn('7z',['x','-aoa','versions/'+res2.version+'/'+semen,'-oversions/'+res2.version+'/natives'],{shell:true,detached:true})
+                                                                        //proc.spawn('7z',['x','-aoa','versions/'+res2.version+'/'+semen,'-oversions/'+res2.version+'/natives'],{shell:true,detached:false})
                                                                         if (shit.libraries[i].name.endsWith("natives-windows")){
-                                                                            proc.spawn('7z',['x','-aoa','"versions/'+res2.version+'/'+semen+'"','-o"versions/'+res2.version+'/natives"'],{shell:true,detached:true})
+                                                                            proc.spawn('7z',['x','-aoa','"versions/'+res2.version+'/'+semen+'"','-o"versions/'+res2.version+'/natives"'],{shell:true,detached:false})
                                                                         }
                                                                         downloadLib(shit.libraries, ++i)
                                                                     })
@@ -371,9 +371,9 @@ wget({url:'https://piston-meta.mojang.com/mc/game/version_manifest_v2.json',dest
                                                                 console.log("downloading native jar: " + semen)
                                                                 download = proc.spawn('aria2c', ['-x16', '-s16', '-m16', shit.libraries[i].downloads.artifact.url, '--dir="versions/' + res2.version + '"'], { shell: true, detached: false })
                                                                 download.on('close', function (c3) {
-                                                                    //proc.spawn('7z',['x','-aoa','versions/'+res2.version+'/'+semen,'-oversions/'+res2.version+'/natives'],{shell:true,detached:true})
+                                                                    //proc.spawn('7z',['x','-aoa','versions/'+res2.version+'/'+semen,'-oversions/'+res2.version+'/natives'],{shell:true,detached:false})
                                                                     if (shit.libraries[i].name.endsWith("natives-windows")){
-                                                                        proc.spawn('7z',['x','-aoa','"versions/'+res2.version+'/'+semen+'"','-o"versions/'+res2.version+'/natives"'],{shell:true,detached:true})
+                                                                        proc.spawn('7z',['x','-aoa','"versions/'+res2.version+'/'+semen+'"','-o"versions/'+res2.version+'/natives"'],{shell:true,detached:false})
                                                                     }
                                                                     downloadLib(shit.libraries, ++i)
                                                                 })
