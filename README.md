@@ -6,6 +6,7 @@
 - mesa (no gpu) support
 - all versions on the minecraft launcher can be downloaded
 - has setting to disable close button for legacy console windows
+- experimental linux support in linucks tree (11 month old)
 
 the LAST version of calubcraft<br>
 the LAST version of windows
