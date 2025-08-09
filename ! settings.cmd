@@ -34,7 +34,7 @@ echo.
 @if /i %a% == 2Y goto 2y
 @if /i %a% == 2N goto 2n
 @if /i %a% == 3 goto 3
-@if /i %a% == 3d goto 3d
+@if /i %a% == 3D goto 3d
 @if /i %a% == 4 goto 4
 @if /i %a% == 6 goto 6
 @if /i %a% == 7 goto 7
@@ -42,6 +42,8 @@ echo.
 @if /i %a% == 9 goto 9
 @if /i %a% == 12Y goto 12y
 @if /i %a% == 12N goto 12n
+@if /i %a% == 15Y goto 15y
+@if /i %a% == 15N goto 15n
 @if /i %a% == 16 exit
 @echo fake!!
 goto exit
