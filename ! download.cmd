@@ -26,6 +26,7 @@ if not exist auth\expired.txt echo true > auth\expired.txt
 if not exist auth\sounds.txt echo false > auth\sounds.txt
 if not exist auth\demo.txt echo  --demo > auth\demo.txt
 if not exist auth\close.txt echo true > auth\close.txt
+if not exist auth\manifest.txt echo https://piston-meta.mojang.com/mc/game/version_manifest_v2.json > auth\manifest.txt
 :: @echo.
 :: @echo downloading calubcraft
 :: del "! update.cmd" /q
@@ -65,3 +66,4 @@ set NODE_EXTRA_CA_CERTS=penis.crt
 "node-v15.8.0-win-x64\node" piss.js
 pause
 @prompt
+
