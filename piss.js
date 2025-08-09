@@ -24,7 +24,7 @@ if (!allAssets){
     console.log('sounds will not be downloaded.. you can turn this on if you wanna')
     console.log()
 }
-wget({url:manifest,dest:'json/'}, function (e, res, body) {
+wget({url:manifest.replace(' \r\n',''),dest:'json/'}, function (e, res, body) {
     if (e) {
         console.log('mojang pissed himself')
         process.exit(1)
@@ -429,4 +429,5 @@ wget({url:manifest,dest:'json/'}, function (e, res, body) {
     }
 })
 //fs.unlinkSync("version_manifest_v2.json")
+
 
