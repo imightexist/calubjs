@@ -22,7 +22,7 @@ echo       (11)  change skin (offline mode, not ready yet)
 echo    (12y/n)  enable close button
 echo    (13y/n)  enable mesa3d (not ready yet)
 echo       (14)  install collabnet certificate (not ready yet)
-echo    (15y/n)  enable betacraft versions (not ready yet)
+echo    (15y/n)  enable betacraft versions
 echo       (16)  exit
 echo.
 set /p a=whad u wanna do: 
@@ -129,4 +129,12 @@ goto exit
 :12n
 if not exist auth md auth
 echo false > auth\close.txt
+goto exit
+:15y
+if not exist auth md auth
+echo https://meta.omniarchive.uk/v1/manifest.json > auth\manifest.txt
+goto exit
+:15n
+if not exist auth md auth
+echo https://piston-meta.mojang.com/mc/game/version_manifest_v2.json > auth\manifest.txt
 goto exit
