@@ -6,6 +6,7 @@ let versions;
 let user;
 let demo = fs.readFileSync('auth/demo.txt').toString();
 let allAssets = JSON.parse(fs.readFileSync('auth/sounds.txt'));
+let manifest = fs.readFileSync('auth/manifest.txt').toString()
 let beta = require('./json/beta_manifest.json')
 //let data = require('./data.json')
 //let version;
@@ -23,7 +24,7 @@ if (!allAssets){
     console.log('sounds will not be downloaded.. you can turn this on if you wanna')
     console.log()
 }
-wget({url:'https://piston-meta.mojang.com/mc/game/version_manifest_v2.json',dest:'json/'}, function (e, res, body) {
+wget({url:manifest,dest:'json/'}, function (e, res, body) {
     if (e) {
         console.log('mojang pissed himself')
         process.exit(1)
@@ -428,3 +429,4 @@ wget({url:'https://piston-meta.mojang.com/mc/game/version_manifest_v2.json',dest
     }
 })
 //fs.unlinkSync("version_manifest_v2.json")
+
