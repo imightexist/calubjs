@@ -102,7 +102,7 @@ md optifine\versions\%c%
 copy json\%c%.json optifine\versions\%c%
 copy versions\%c%\client.jar optifine\versions\%c%\%c%.jar
 @rem start "" "https://google.com/search?q=optifine+%c%&btnI"
-echo %cd%\optifine| clip
+echo.%cd%\optifine| clip
 @echo.
 @echo install to "%cd%\optifine" and wait a few secs before continuing
 @pause
