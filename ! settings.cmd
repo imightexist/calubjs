@@ -71,7 +71,7 @@ set NODE_EXTRA_CA_CERTS=penis.crt
 del /q json\cache\*.*
 goto exit
 :4
-del /q json/cache/*.*
+del /q json\cache\*.*
 echo notch > auth\username.txt
 echo  notch > auth\uuid.txt
 echo notch > auth\token.txt
@@ -79,7 +79,7 @@ echo 0 > auth\expire.txt
 echo true > auth\expired.txt
 goto exit
 :6
-del /q json/cache/*.*
+del /q json\cache\*.*
 goto exit
 :7
 @set /p b=username: 
