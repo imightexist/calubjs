@@ -1,5 +1,6 @@
 ## READ ME BITCH
-support for minecraft premium no longer works and i cant figure out why, so there will likely never be a fix for this
+- support for minecraft premium no longer works and i cant figure out why, so there will likely never be a fix for this
+- there's also a chance it will fail to download anything, i'm too lazy to fix it but ik it's not impossible to
 # calubjs
 - the greatest minecraft launcher of all time
 - ~~premium account support~~
