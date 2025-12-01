@@ -2,7 +2,7 @@
 support for minecraft premium no longer works and i cant figure out why, so there will likely never be a fix for this
 # calubjs
 - the greatest minecraft launcher of all time
-~~- premium account support~~
+- ~~premium account support~~
 - optifine support
 - collabnet support
 - mesa (no gpu) support
