@@ -30,17 +30,17 @@ if not exist auth\manifest.txt echo https://piston-meta.mojang.com/mc/game/versi
 :: @echo.
 :: @echo downloading calubcraft
 :: del "! update.cmd" /q
-:: aria2c "https://raw.githubusercontent.com/imightexist/calubjs/main/! update.cmd"
+:: aria2c --check-certificate=false "https://raw.githubusercontent.com/imightexist/calubjs/main/! update.cmd"
 :: del "! download.cmd" /q
-:: aria2c "https://raw.githubusercontent.com/imightexist/calubjs/main/! download.cmd"
+:: aria2c --check-certificate=false "https://raw.githubusercontent.com/imightexist/calubjs/main/! download.cmd"
 :: del piss.js /q
-:: aria2c "https://raw.githubusercontent.com/imightexist/calubjs/main/piss.js"
+:: aria2c --check-certificate=false "https://raw.githubusercontent.com/imightexist/calubjs/main/piss.js"
 @echo.
 @echo downloading nodejs
 ::del node-v22.5.1-win-x64.7z /q
-::aria2c -x16 -m16 -s16 https://nodejs.org/download/release/v22.5.1/node-v22.5.1-win-x64.7z
+::aria2c --check-certificate=false -x16 -m16 -s16 https://nodejs.org/download/release/v22.5.1/node-v22.5.1-win-x64.7z
 del node-v15.8.0-win-x64.7z /q
-aria2c -x16 -m16 -s16 https://nodejs.org/dist/v15.8.0/node-v15.8.0-win-x64.7z
+aria2c --check-certificate=false -x16 -m16 -s16 https://nodejs.org/dist/v15.8.0/node-v15.8.0-win-x64.7z
 @echo.
 @echo extracting nodejs
 7z x -aoa node-v15.8.0-win-x64.7z
@@ -48,7 +48,7 @@ del /q node-v15.8.0-win-x64.7z
 @echo.
 ::@echo installing packages
 ::del package.json /q
-::aria2c https://raw.githubusercontent.com/imightexist/calubjs/main/package.json
+::aria2c --check-certificate=false https://raw.githubusercontent.com/imightexist/calubjs/main/package.json
 ::cmd /c "node\npm" i prompt
 ::cmd /c "node\npm" i node-wget
 ::@echo.
