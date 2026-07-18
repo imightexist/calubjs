@@ -98,7 +98,7 @@ wget({url:manifest.replace(' \r\n',''),dest:'json/'}, function (e, res, body) {
                             }
                         }
                     }
-                    let clientDL = proc.spawn('aria2c', ['-x16', '-s16', '-m16', shit.downloads.client.url, '--dir="versions/' + res2.version + '"'], { shell: true, detached: false })
+                    let clientDL = proc.spawn('aria2c', ['-x16', '-s16', '-m16','--check-certificate=false', shit.downloads.client.url, '--dir="versions/' + res2.version + '"'], { shell: true, detached: false })
                     clientDL.on('close', function (c2) {
                         let javaDL, javaZIP;
                         if (!(body2.includes("javaVersion"))){
@@ -120,7 +120,7 @@ wget({url:manifest.replace(' \r\n',''),dest:'json/'}, function (e, res, body) {
                                         fs.unlinkSync('jdk17.zip')
                                     }
                                 })*/
-                                javaDL = proc.spawn('aria2c', ['-x16', '-s16', '-m16', 'https://download.oracle.com/java/17/archive/jdk-17.0.9_windows-x64_bin.zip', '--out=jdk17.zip'], { shell: true, detached: false })
+                                javaDL = proc.spawn('aria2c', ['-x16', '-s16', '-m16','--check-certificate=false', 'https://download.oracle.com/java/17/archive/jdk-17.0.9_windows-x64_bin.zip', '--out=jdk17.zip'], { shell: true, detached: false })
                                 javaZIP = 'jdk17.zip'
                                 /*javaDL.on('close', function (c) {
                                     proc.spawnSync('7z', ['x', javaZIP],{shell:true,detached:false})
@@ -136,7 +136,7 @@ wget({url:manifest.replace(' \r\n',''),dest:'json/'}, function (e, res, body) {
                         }else if (shit.javaVersion.majorVersion == 21){
                             if (!(fs.existsSync('jdk-21.0.3'))) {
                                 console.log("downloading JDK 21")
-                                javaDL = proc.spawn('aria2c', ['-x16', '-s16', '-m16', 'https://download.oracle.com/java/21/archive/jdk-21.0.3_windows-x64_bin.zip', '--out=jdk21.zip'], { shell: true, detached: false })
+                                javaDL = proc.spawn('aria2c', ['-x16', '-s16', '-m16','--check-certificate=false', 'https://download.oracle.com/java/21/archive/jdk-21.0.3_windows-x64_bin.zip', '--out=jdk21.zip'], { shell: true, detached: false })
                                 javaZIP = 'jdk21.zip'
                                 /*javaDL.on('close', function (c) {
                                     proc.spawnSync('7z', ['x', 'jre8.zip', '-ojre8'],{shell:true,detached:false})
@@ -162,7 +162,7 @@ wget({url:manifest.replace(' \r\n',''),dest:'json/'}, function (e, res, body) {
                                         fs.unlinkSync('jre8.zip')
                                     }
                                 })*/
-                                javaDL = proc.spawn('aria2c', ['-x16', '-s16', '-m16', 'https://archive.org/download/Java_8_update_51/jre-8u51-windows-x64.zip', '--out=jre8.zip'], { shell: true, detached: false })
+                                javaDL = proc.spawn('aria2c', ['-x16', '-s16', '-m16','--check-certificate=false', 'https://archive.org/download/Java_8_update_51/jre-8u51-windows-x64.zip', '--out=jre8.zip'], { shell: true, detached: false })
                                 javaZIP = 'jre8.zip'
                                 /*javaDL.on('close', function (c) {
                                     proc.spawnSync('7z', ['x', 'jre8.zip', '-ojre8'],{shell:true,detached:false})
@@ -283,7 +283,7 @@ wget({url:manifest.replace(' \r\n',''),dest:'json/'}, function (e, res, body) {
                                                     if (Object.keys(shit.libraries[i].downloads.classifiers["natives-windows"]).includes("url")){
                                                         nativejar = shit.libraries[i].downloads.classifiers["natives-windows"].url.split("/")[shit.libraries[i].downloads.classifiers["natives-windows"].url.split("/").length-1]
                                                         console.log("downloading native jar: " + nativejar)
-                                                        download = proc.spawn('aria2c', ['-x16', '-s16', '-m16', shit.libraries[i].downloads.classifiers["natives-windows"].url, '--dir="versions/' + res2.version + '"'], { shell: true, detached: false })
+                                                        download = proc.spawn('aria2c', ['-x16', '-s16', '-m16','--check-certificate=false', shit.libraries[i].downloads.classifiers["natives-windows"].url, '--dir="versions/' + res2.version + '"'], { shell: true, detached: false })
                                                         download.on('close',function(c3){
                                                             proc.spawn('7z',['x','-aoa','"versions/'+res2.version+'/'+nativejar+'"','-o"versions/'+res2.version+'/natives"'],{shell:true,detached:false})
                                                             downloadLib(shit.libraries,++i)
@@ -296,7 +296,7 @@ wget({url:manifest.replace(' \r\n',''),dest:'json/'}, function (e, res, body) {
                                                                         let semen = shit.libraries[i].downloads.artifact.url.split("/")[shit.libraries[i].downloads.artifact.url.split("/").length-1]
                                                                         //console.log("downloading jar (" + (i + 1) + "/" + shit.libraries.length + "): " + shit.libraries[i].downloads.artifact.url.split("/")[shit.libraries[i].downloads.artifact.url.split("/").length-1])
                                                                         console.log("downloading native jar: " + semen)
-                                                                        download = proc.spawn('aria2c', ['-x16', '-s16', '-m16', shit.libraries[i].downloads.artifact.url, '--dir="versions/' + res2.version + '"'], { shell: true, detached: false })
+                                                                        download = proc.spawn('aria2c', ['-x16', '-s16', '-m16','--check-certificate=false', shit.libraries[i].downloads.artifact.url, '--dir="versions/' + res2.version + '"'], { shell: true, detached: false })
                                                                         download.on('close', function (c3) {
                                                                             //proc.spawn('7z',['x','-aoa','versions/'+res2.version+'/'+semen,'-oversions/'+res2.version+'/natives'],{shell:true,detached:false})
                                                                             if (shit.libraries[i].name.endsWith("natives-windows")){
@@ -309,14 +309,14 @@ wget({url:manifest.replace(' \r\n',''),dest:'json/'}, function (e, res, body) {
                                                                     }
                                                                 }else{
                                                                     console.log("downloading jar (" + (i + 1) + "/" + shit.libraries.length + "): " + shit.libraries[i].downloads.artifact.url.split("/")[shit.libraries[i].downloads.artifact.url.split("/").length-1])
-                                                                    download = proc.spawn('aria2c', ['-x16', '-s16', '-m16', shit.libraries[i].downloads.artifact.url, '--dir="versions/' + res2.version + '"'], { shell: true, detached: false })
+                                                                    download = proc.spawn('aria2c', ['-x16', '-s16', '-m16','--check-certificate=false', shit.libraries[i].downloads.artifact.url, '--dir="versions/' + res2.version + '"'], { shell: true, detached: false })
                                                                     download.on('close', function (c3) {
                                                                         downloadLib(shit.libraries, ++i)
                                                                     })
                                                                 }
                                                             }else{
                                                                 console.log("downloading jar (" + (i + 1) + "/" + shit.libraries.length + "): " + shit.libraries[i].downloads.artifact.url.split("/")[shit.libraries[i].downloads.artifact.url.split("/").length-1])
-                                                                download = proc.spawn('aria2c', ['-x16', '-s16', '-m16', shit.libraries[i].downloads.artifact.url, '--dir="versions/' + res2.version + '"'], { shell: true, detached: false })
+                                                                download = proc.spawn('aria2c', ['-x16', '-s16', '-m16','--check-certificate=false', shit.libraries[i].downloads.artifact.url, '--dir="versions/' + res2.version + '"'], { shell: true, detached: false })
                                                                 download.on('close', function (c3) {
                                                                     downloadLib(shit.libraries, ++i)
                                                                 })
@@ -333,7 +333,7 @@ wget({url:manifest.replace(' \r\n',''),dest:'json/'}, function (e, res, body) {
                                                                     let semen = shit.libraries[i].downloads.artifact.url.split("/")[shit.libraries[i].downloads.artifact.url.split("/").length-1]
                                                                     //console.log("downloading jar (" + (i + 1) + "/" + shit.libraries.length + "): " + shit.libraries[i].downloads.artifact.url.split("/")[shit.libraries[i].downloads.artifact.url.split("/").length-1])
                                                                     console.log("downloading native jar: " + semen)
-                                                                    download = proc.spawn('aria2c', ['-x16', '-s16', '-m16', shit.libraries[i].downloads.artifact.url, '--dir="versions/' + res2.version + '"'], { shell: true, detached: false })
+                                                                    download = proc.spawn('aria2c', ['-x16', '-s16', '-m16','--check-certificate=false', shit.libraries[i].downloads.artifact.url, '--dir="versions/' + res2.version + '"'], { shell: true, detached: false })
                                                                     download.on('close', function (c3) {
                                                                         //proc.spawn('7z',['x','-aoa','versions/'+res2.version+'/'+semen,'-oversions/'+res2.version+'/natives'],{shell:true,detached:false})
                                                                         if (shit.libraries[i].name.endsWith("natives-windows")){
@@ -346,14 +346,14 @@ wget({url:manifest.replace(' \r\n',''),dest:'json/'}, function (e, res, body) {
                                                                 }
                                                             }else{
                                                                 console.log("downloading jar (" + (i + 1) + "/" + shit.libraries.length + "): " + shit.libraries[i].downloads.artifact.url.split("/")[shit.libraries[i].downloads.artifact.url.split("/").length-1])
-                                                                download = proc.spawn('aria2c', ['-x16', '-s16', '-m16', shit.libraries[i].downloads.artifact.url, '--dir="versions/' + res2.version + '"'], { shell: true, detached: false })
+                                                                download = proc.spawn('aria2c', ['-x16', '-s16', '-m16','--check-certificate=false', shit.libraries[i].downloads.artifact.url, '--dir="versions/' + res2.version + '"'], { shell: true, detached: false })
                                                                 download.on('close', function (c3) {
                                                                     downloadLib(shit.libraries, ++i)
                                                                 })
                                                             }
                                                         }else{
                                                             console.log("downloading jar (" + (i + 1) + "/" + shit.libraries.length + "): " + shit.libraries[i].downloads.artifact.url.split("/")[shit.libraries[i].downloads.artifact.url.split("/").length-1])
-                                                            download = proc.spawn('aria2c', ['-x16', '-s16', '-m16', shit.libraries[i].downloads.artifact.url, '--dir="versions/' + res2.version + '"'], { shell: true, detached: false })
+                                                            download = proc.spawn('aria2c', ['-x16', '-s16', '-m16','--check-certificate=false', shit.libraries[i].downloads.artifact.url, '--dir="versions/' + res2.version + '"'], { shell: true, detached: false })
                                                             download.on('close', function (c3) {
                                                                 downloadLib(shit.libraries, ++i)
                                                             })
@@ -370,7 +370,7 @@ wget({url:manifest.replace(' \r\n',''),dest:'json/'}, function (e, res, body) {
                                                                 let semen = shit.libraries[i].downloads.artifact.url.split("/")[shit.libraries[i].downloads.artifact.url.split("/").length-1]
                                                                 //console.log("downloading jar (" + (i + 1) + "/" + shit.libraries.length + "): " + shit.libraries[i].downloads.artifact.url.split("/")[shit.libraries[i].downloads.artifact.url.split("/").length-1])
                                                                 console.log("downloading native jar: " + semen)
-                                                                download = proc.spawn('aria2c', ['-x16', '-s16', '-m16', shit.libraries[i].downloads.artifact.url, '--dir="versions/' + res2.version + '"'], { shell: true, detached: false })
+                                                                download = proc.spawn('aria2c', ['-x16', '-s16', '-m16','--check-certificate=false', shit.libraries[i].downloads.artifact.url, '--dir="versions/' + res2.version + '"'], { shell: true, detached: false })
                                                                 download.on('close', function (c3) {
                                                                     //proc.spawn('7z',['x','-aoa','versions/'+res2.version+'/'+semen,'-oversions/'+res2.version+'/natives'],{shell:true,detached:false})
                                                                     if (shit.libraries[i].name.endsWith("natives-windows")){
@@ -383,14 +383,14 @@ wget({url:manifest.replace(' \r\n',''),dest:'json/'}, function (e, res, body) {
                                                             }
                                                         }else{
                                                             console.log("downloading jar (" + (i + 1) + "/" + shit.libraries.length + "): " + shit.libraries[i].downloads.artifact.url.split("/")[shit.libraries[i].downloads.artifact.url.split("/").length-1])
-                                                            download = proc.spawn('aria2c', ['-x16', '-s16', '-m16', shit.libraries[i].downloads.artifact.url, '--dir="versions/' + res2.version + '"'], { shell: true, detached: false })
+                                                            download = proc.spawn('aria2c', ['-x16', '-s16', '-m16','--check-certificate=false', shit.libraries[i].downloads.artifact.url, '--dir="versions/' + res2.version + '"'], { shell: true, detached: false })
                                                             download.on('close', function (c3) {
                                                                 downloadLib(shit.libraries, ++i)
                                                             })
                                                         }
                                                     }else{
                                                         console.log("downloading jar (" + (i + 1) + "/" + shit.libraries.length + "): " + shit.libraries[i].downloads.artifact.url.split("/")[shit.libraries[i].downloads.artifact.url.split("/").length-1])
-                                                        download = proc.spawn('aria2c', ['-x16', '-s16', '-m16', shit.libraries[i].downloads.artifact.url, '--dir="versions/' + res2.version + '"'], { shell: true, detached: false })
+                                                        download = proc.spawn('aria2c', ['-x16', '-s16', '-m16','--check-certificate=false', shit.libraries[i].downloads.artifact.url, '--dir="versions/' + res2.version + '"'], { shell: true, detached: false })
                                                         download.on('close', function (c3) {
                                                             downloadLib(shit.libraries, ++i)
                                                         })
@@ -406,7 +406,7 @@ wget({url:manifest.replace(' \r\n',''),dest:'json/'}, function (e, res, body) {
                                         if (!(fs.existsSync("assets/objects/"+folder+"/"+hash))){
                                             if (filenames[j].endsWith(".png") || filenames[j].endsWith(".icns") || allAssets){
                                                 console.log("downloading asset ("+(j+1)+"/"+objects.length+")")
-                                                assetDL = proc.spawn('aria2c', ['-x16', '-s16', '-m16', 'https://resources.download.minecraft.net/'+folder+'/'+hash, '--out=assets/objects/'+folder+'/'+hash], { shell: true, detached: false })
+                                                assetDL = proc.spawn('aria2c', ['-x16', '-s16', '-m16','--check-certificate=false', 'https://resources.download.minecraft.net/'+folder+'/'+hash, '--out=assets/objects/'+folder+'/'+hash], { shell: true, detached: false })
                                                 assetDL.on('close',function(c4){
                                                     downloadAsset(++j)
                                                 })
