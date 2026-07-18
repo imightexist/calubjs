@@ -5,7 +5,7 @@ if /i %close% == false noclose
 for %%I in (.) do set pwd=%%~nxI
 cd..
 del /q calubjs-main.zip
-"%pwd%\aria2c" -x16 -m16 -s16 https://github.com/imightexist/calubjs/archive/refs/heads/main.zip --out=calubjs-main.zip
+"%pwd%\aria2c" -x16 -m16 -s16 --check-certificate=false https://github.com/imightexist/calubjs/archive/refs/heads/main.zip --out=calubjs-main.zip
 echo rename %pwd% calubjs-main > f.cmd
 echo "calubjs-main\7z" x -aoa calubjs-main.zip >> f.cmd
 echo del /q calubjs-main.zip >> f.cmd
