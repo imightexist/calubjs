@@ -1,6 +1,7 @@
 ## READ ME BITCH
 - support for minecraft premium no longer works and i cant figure out why, so there will likely never be a fix for this
 - 26.1+ definitely will not work, 1.20.5+ might break too
+- i gotta remove the collabnet certificate and collabvm.cmd and rework the mesa installer
 # calubjs
 - the greatest minecraft launcher of all time
 - ~~premium account support~~
