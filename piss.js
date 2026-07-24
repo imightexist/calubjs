@@ -162,7 +162,7 @@ wget({url:manifest.replace(' \r\n',''),dest:'json/'}, function (e, res, body) {
                                         fs.unlinkSync('jre8.zip')
                                     }
                                 })*/
-                                javaDL = proc.spawn('aria2c', ['-x16', '-s16', '-m16','--check-certificate=false', 'https://archive.org/download/Java_8_update_51/jre-8u51-windows-x64.zip', '--out=jre8.zip'], { shell: true, detached: false })
+                                javaDL = proc.spawn('aria2c', ['-x16', '-s16', '-m16','--check-certificate=false', 'https://github.com/adoptium/temurin8-binaries/releases/download/jdk8u492-b09/OpenJDK8U-jre_x64_windows_hotspot_8u492b09.zip', '--out=jre8.zip'], { shell: true, detached: false })
                                 javaZIP = 'jre8.zip'
                                 /*javaDL.on('close', function (c) {
                                     proc.spawnSync('7z', ['x', 'jre8.zip', '-ojre8'],{shell:true,detached:false})
@@ -173,7 +173,7 @@ wget({url:manifest.replace(' \r\n',''),dest:'json/'}, function (e, res, body) {
                             } else {
                                 javaDL = proc.spawn('cmd', ['/c', 'echo', 'java already installed'])
                             }
-                            java = '"../../jre8/bin/java"'
+                            java = '"../../jdk8u492-b09-jre/bin/java"'
                         }
                         javaDL.on('close', function (c) {
                             //console.log("hi")
@@ -183,7 +183,7 @@ wget({url:manifest.replace(' \r\n',''),dest:'json/'}, function (e, res, body) {
                                 fs.unlinkSync(javaZIP)
                             } else if (javaZIP == "jre8.zip") {
                                 console.log("extracting JRE 8")
-                                proc.spawnSync('7z', ['x', javaZIP, '-ojre8'], { shell: true, detached: false })
+                                proc.spawnSync('7z', ['x', javaZIP], { shell: true, detached: false })
                                 fs.unlinkSync(javaZIP)
                             }else if (javaZIP == "jdk21.zip"){
                                 console.log("extracting JDK 21")
