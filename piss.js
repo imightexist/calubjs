@@ -149,7 +149,7 @@ wget({url:manifest.replace(' \r\n',''),dest:'json/'}, function (e, res, body) {
                             }
                             java = '"../../jdk-21.0.3/bin/java"'
                         }else if (shit.javaVersion.majorVersion == 8){
-                            if (!(fs.existsSync('jre8'))) {
+                            if (!(fs.existsSync('jdk8u492-b09-jre'))) {
                                 console.log("downloading JRE 8")
                                 /*wget({
                                     url: 'https://archive.org/download/Java_8_update_51/jre-8u51-windows-x32.zip',
