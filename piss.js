@@ -133,11 +133,11 @@ wget({url:manifest.replace(' \r\n',''),dest:'json/'}, function (e, res, body) {
                             }
                             //wget()
                             java = '"../../jdk-17.0.9/bin/java"'
-                        }else if (shit.javaVersion.majorVersion == 21){
-                            if (!(fs.existsSync('jdk-21.0.3'))) {
-                                console.log("downloading JDK 21")
-                                javaDL = proc.spawn('aria2c', ['-x16', '-s16', '-m16','--check-certificate=false', 'https://download.oracle.com/java/21/archive/jdk-21.0.3_windows-x64_bin.zip', '--out=jdk21.zip'], { shell: true, detached: false })
-                                javaZIP = 'jdk21.zip'
+                        }else if (shit.javaVersion.majorVersion >= 21){
+                            if (!(fs.existsSync('jdk-25.0.4'))) {
+                                console.log("downloading JDK 25")
+                                javaDL = proc.spawn('aria2c', ['-x16', '-s16', '-m16','--check-certificate=false', 'https://download.oracle.com/java/25/archive/jdk-25.0.4_windows-x64_bin.zip', '--out=jdk25.zip'], { shell: true, detached: false })
+                                javaZIP = 'jdk25.zip'
                                 /*javaDL.on('close', function (c) {
                                     proc.spawnSync('7z', ['x', 'jre8.zip', '-ojre8'],{shell:true,detached:false})
                                     fs.unlinkSync('jre8.zip')
@@ -147,7 +147,7 @@ wget({url:manifest.replace(' \r\n',''),dest:'json/'}, function (e, res, body) {
                             } else {
                                 javaDL = proc.spawn('cmd', ['/c', 'echo', 'java already installed'])
                             }
-                            java = '"../../jdk-21.0.3/bin/java"'
+                            java = '"../../jdk-25.0.4/bin/java"'
                         }else if (shit.javaVersion.majorVersion == 8){
                             if (!(fs.existsSync('jdk8u492-b09-jre'))) {
                                 console.log("downloading JRE 8")
@@ -185,8 +185,8 @@ wget({url:manifest.replace(' \r\n',''),dest:'json/'}, function (e, res, body) {
                                 console.log("extracting JRE 8")
                                 proc.spawnSync('7z', ['x', javaZIP], { shell: true, detached: false })
                                 fs.unlinkSync(javaZIP)
-                            }else if (javaZIP == "jdk21.zip"){
-                                console.log("extracting JDK 21")
+                            }else if (javaZIP == "jdk25.zip"){
+                                console.log("extracting JDK 25")
                                 proc.spawnSync('7z', ['x', javaZIP], { shell: true, detached: false })
                                 fs.unlinkSync(javaZIP)
                             }
