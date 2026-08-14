@@ -55,15 +55,16 @@ del /q node-v15.8.0-win-x64.7z
 @echo if your pc has no gpu, run collabvm.cmd as admin BEFORE CONTINUING. if you're on COLLABVM with a gpu, run collabvm.cmd WITHOUT ADMIN
 @pause
 set NODE_SKIP_PLATFORM_CHECK=1
-set NODE_EXTRA_CA_CERTS=penis.crt
+::set NODE_EXTRA_CA_CERTS=penis.crt
 set NODE_TLS_REJECT_UNAUTHORIZED=0
+set NPM_CONFIG_REGISTRY=http://registry.npmjs.com
 cmd /c "node-v15.8.0-win-x64\npm" config set strict-ssl false
 cmd /c "node-v15.8.0-win-x64\npm" i
 :: @echo wowza you arent a normie running this on a 32 bit vm
 ::cmd /c "! username.cmd"
 :download
 set NODE_SKIP_PLATFORM_CHECK=1
-set NODE_EXTRA_CA_CERTS=penis.crt
+::set NODE_EXTRA_CA_CERTS=penis.crt
 set NODE_TLS_REJECT_UNAUTHORIZED=0
 "node-v15.8.0-win-x64\node" piss.js
 pause
