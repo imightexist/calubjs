@@ -61,12 +61,12 @@ echo false > auth\sounds.txt
 goto exit
 :3
 set NODE_SKIP_PLATFORM_CHECK=1
-set NODE_EXTRA_CA_CERTS=penis.crt
+::set NODE_EXTRA_CA_CERTS=penis.crt
 "node-v15.8.0-win-x64\node" shid.js
 goto exit
 :3d
 set NODE_SKIP_PLATFORM_CHECK=1
-set NODE_EXTRA_CA_CERTS=penis.crt
+::set NODE_EXTRA_CA_CERTS=penis.crt
 "node-v15.8.0-win-x64\node" shid.js
 del /q json\cache\*.*
 goto exit
