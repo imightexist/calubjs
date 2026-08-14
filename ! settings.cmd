@@ -120,7 +120,7 @@ for /f %%i in (optifine\nut.txt) do copy /y %%i versions\%d%\^^!!random!.jar
 endlocal
 @rem rewrite launch.cmd
 set NODE_SKIP_PLATFORM_CHECK=1
-set NODE_EXTRA_CA_CERTS=penis.crt
+::set NODE_EXTRA_CA_CERTS=penis.crt
 "node-v15.8.0-win-x64\node" cum.js "%d%" "%c%"
 rd optifine /s /q
 goto exit
