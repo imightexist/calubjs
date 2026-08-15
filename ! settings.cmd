@@ -62,12 +62,12 @@ goto exit
 :3
 set NODE_SKIP_PLATFORM_CHECK=1
 ::set NODE_EXTRA_CA_CERTS=penis.crt
-"node-v15.8.0-win-x64\node" shid.js
+"node-v15.12.0-win-x64\node" shid.js
 goto exit
 :3d
 set NODE_SKIP_PLATFORM_CHECK=1
 ::set NODE_EXTRA_CA_CERTS=penis.crt
-"node-v15.8.0-win-x64\node" shid.js
+"node-v15.12.0-win-x64\node" shid.js
 del /q json\cache\*.*
 goto exit
 :4
@@ -121,7 +121,7 @@ endlocal
 @rem rewrite launch.cmd
 set NODE_SKIP_PLATFORM_CHECK=1
 ::set NODE_EXTRA_CA_CERTS=penis.crt
-"node-v15.8.0-win-x64\node" cum.js "%d%" "%c%"
+"node-v15.12.0-win-x64\node" cum.js "%d%" "%c%"
 rd optifine /s /q
 goto exit
 :12y
