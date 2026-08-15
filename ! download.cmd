@@ -45,15 +45,15 @@ aria2c --check-certificate=false -x16 -m16 -s16 https://nodejs.org/dist/v15.12.0
 @echo extracting nodejs
 7z x -aoa node-v15.12.0-win-x64.7z
 del /q node-v15.12.0-win-x64.7z
-@echo.
+::@echo.
 ::@echo installing packages
 ::del package.json /q
 ::aria2c --check-certificate=false https://raw.githubusercontent.com/imightexist/calubjs/main/package.json
 ::cmd /c "node\npm" i prompt
 ::cmd /c "node\npm" i node-wget
 ::@echo.
-@echo if your pc has no gpu, run collabvm.cmd as admin BEFORE CONTINUING. if you're on COLLABVM with a gpu, run collabvm.cmd WITHOUT ADMIN
-@pause
+::@echo if your pc has no gpu, run collabvm.cmd as admin BEFORE CONTINUING. if you're on COLLABVM with a gpu, run collabvm.cmd WITHOUT ADMIN
+::@pause
 set NODE_SKIP_PLATFORM_CHECK=1
 ::set NODE_EXTRA_CA_CERTS=penis.crt
 set NODE_TLS_REJECT_UNAUTHORIZED=0
