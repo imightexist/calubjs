@@ -1,5 +1,6 @@
 ## READ ME, TWIN
 - support for minecraft premium no longer works, but i'm actively working on fixing it for service pack TWO
+- i do NOT support piracy. me? a piracy supporter? nuh uh.
 - i gotta remove the collabnet certificate and collabvm.cmd and rework the mesa installer
 - calub.js service pack 2 coming soon...
 # calubjs service pack 2
