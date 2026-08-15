@@ -204,18 +204,18 @@ wget({url:manifest.replace(' \r\n',''),dest:'json/'}, function (e, res, body) {
                                         if (body2.includes("minecraftArguments")) {
                                             //last version known is 1.6.2, which isnt legacy auth soooo
                                             //uses launchwrapper
-                                            args = ' -cp "*" -Djava.library.path="'+__dirname+'\\versions\\'+res2.version+'\\natives" -Dorg.lwjgl.librarypath="'+__dirname+'\\versions\\'+res2.version+'\\natives" ' + shit.mainClass + " " + shit.minecraftArguments
+                                            args = ' -cp "*" -Djava.library.path="'+"%cd%\\..\\.."+'\\versions\\'+res2.version+'\\natives" -Dorg.lwjgl.librarypath="'+"%cd%\\..\\.."+'\\versions\\'+res2.version+'\\natives" ' + shit.mainClass + " " + shit.minecraftArguments
                                             args = args.replaceAll('${auth_player_name}', '%username%')
                                             args = args.replaceAll('${auth_access_token}', '%token%')
                                             args = args.replaceAll(' --session ${auth_session}', '')
-                                            args = args.replaceAll('${game_assets}', '"' + __dirname + '\\assets"')
-                                            args = args.replaceAll('${game_directory}', '"' + __dirname + '\\data"')
+                                            args = args.replaceAll('${game_assets}', '"' + "%cd%\\..\\.." + '\\assets"')
+                                            args = args.replaceAll('${game_directory}', '"' + "%cd%\\..\\.." + '\\data"')
                                             
                                             args = args.replaceAll('${launcher_name}', 'calubcraft')
                                             args = args.replaceAll('${launcher_version}', '21')
                                             args = args.replaceAll('${natives_directory}', 'natives')
                                             args = args.replaceAll('${version_name}', shit.id)
-                                            args = args.replaceAll('${assets_root}', '"' + __dirname + '\\assets"')
+                                            args = args.replaceAll('${assets_root}', '"' + "%cd%\\..\\.." + '\\assets"')
                                             args = args.replaceAll('${assets_index_name}', assetIndex)
                                             //args = args.replaceAll('--uuid ${auth_uuid}', '')
                                             //args = args.replaceAll(' --uuid ${auth_uuid}', '')
@@ -230,7 +230,7 @@ wget({url:manifest.replace(' \r\n',''),dest:'json/'}, function (e, res, body) {
                                             }*/
                                             //args += ' -Djava.library.path="' + __dirname + '\\natives" -Dorg.lwjgl.librarypath="' + __dirname + '\\natives"'
                                         } else {
-                                            args = ' -cp "*" -Djava.library.path="'+__dirname+'\\versions\\'+res2.version+'\\natives" ' + shit.mainClass + " "
+                                            args = ' -cp "*" -Djava.library.path="'+"%cd%\\..\\.."+'\\versions\\'+res2.version+'\\natives" ' + shit.mainClass + " "
                                             for (i = shit.arguments.game.length-1; i > -1; i-=2) {
                                                 if (typeof shit.arguments.game[i] == 'string') {
                                                     args += " "
@@ -241,11 +241,11 @@ wget({url:manifest.replace(' \r\n',''),dest:'json/'}, function (e, res, body) {
                                             }
                                             args = args.replaceAll('${launcher_name}', 'calubcraft')
                                             args = args.replaceAll('${launcher_version}', '21')
-                                            args = args.replaceAll('${natives_directory}', __dirname+'\\versions\\'+res2.version+'\\natives"')
+                                            args = args.replaceAll('${natives_directory}', "%cd%\\..\\.."+'\\versions\\'+res2.version+'\\natives"')
                                             args = args.replaceAll('${auth_player_name}', '%username%')
                                             args = args.replaceAll('${auth_access_token}', '%token%')
-                                            args = args.replaceAll('${assets_root}', '"' + __dirname + '\\assets"')
-                                            args = args.replaceAll('${game_directory}', '"' + __dirname + '\\data"')
+                                            args = args.replaceAll('${assets_root}', '"' + "%cd%\\..\\.." + '\\assets"')
+                                            args = args.replaceAll('${game_directory}', '"' + "%cd%\\..\\.." + '\\data"')
                                             args = args.replaceAll('${version_name}', shit.id)
                                             args = args.replaceAll('${assets_index_name}', assetIndex)
                                             args = args.replaceAll(' --uuid ${auth_uuid}', '%uuid%')
