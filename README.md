@@ -2,7 +2,7 @@
 - support for minecraft premium no longer works and i cant figure out why, so there will likely never be a fix for this
 - i gotta remove the collabnet certificate and collabvm.cmd and rework the mesa installer
 - calub.js service pack 2 coming soon...
-# calubjs
+# calubjs service pack 2
 - the greatest minecraft launcher of all time
 - ~~premium account support~~
 - optifine support
