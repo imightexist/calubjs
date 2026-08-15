@@ -2,7 +2,7 @@
 set close=true
 set /p close=<auth\close.txt
 if /i %close% == false noclose
-if exist node-v15.8.0-win-x64 goto download
+if exist node-v15.12.0-win-x64 goto download
 ::@echo 64 bit only
 @pushd %~dp0%
 @echo.
@@ -39,12 +39,12 @@ if not exist auth\manifest.txt echo https://piston-meta.mojang.com/mc/game/versi
 @echo downloading nodejs
 ::del node-v22.5.1-win-x64.7z /q
 ::aria2c --check-certificate=false -x16 -m16 -s16 https://nodejs.org/download/release/v22.5.1/node-v22.5.1-win-x64.7z
-del node-v15.8.0-win-x64.7z /q
-aria2c --check-certificate=false -x16 -m16 -s16 https://nodejs.org/dist/v15.8.0/node-v15.8.0-win-x64.7z
+del node-v15.12.0-win-x64.7z /q
+aria2c --check-certificate=false -x16 -m16 -s16 https://nodejs.org/dist/v15.12.0/node-v15.12.0-win-x64.7z
 @echo.
 @echo extracting nodejs
-7z x -aoa node-v15.8.0-win-x64.7z
-del /q node-v15.8.0-win-x64.7z
+7z x -aoa node-v15.12.0-win-x64.7z
+del /q node-v15.12.0-win-x64.7z
 @echo.
 ::@echo installing packages
 ::del package.json /q
@@ -58,15 +58,15 @@ set NODE_SKIP_PLATFORM_CHECK=1
 ::set NODE_EXTRA_CA_CERTS=penis.crt
 set NODE_TLS_REJECT_UNAUTHORIZED=0
 set NPM_CONFIG_REGISTRY=http://registry.npmjs.com
-cmd /c "node-v15.8.0-win-x64\npm" config set strict-ssl false
-cmd /c "node-v15.8.0-win-x64\npm" i
+cmd /c "node-v15.12.0-win-x64\npm" config set strict-ssl false
+cmd /c "node-v15.12.0-win-x64\npm" i
 :: @echo wowza you arent a normie running this on a 32 bit vm
 ::cmd /c "! username.cmd"
 :download
 set NODE_SKIP_PLATFORM_CHECK=1
 ::set NODE_EXTRA_CA_CERTS=penis.crt
 set NODE_TLS_REJECT_UNAUTHORIZED=0
-"node-v15.8.0-win-x64\node" piss.js
+"node-v15.12.0-win-x64\node" piss.js
 pause
 @prompt
 
