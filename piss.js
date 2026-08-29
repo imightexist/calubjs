@@ -406,10 +406,7 @@ wget({url:manifest.replace(' \r\n',''),dest:'json/'}, function (e, res, body) {
                                         if (!(fs.existsSync("assets/objects/"+folder+"/"+hash))){
                                             if (filenames[j].endsWith(".png") || filenames[j].endsWith(".icns") || allAssets){
                                                 console.log("downloading asset ("+(j+1)+"/"+objects.length+")")
-                                                assetDL = proc.spawn('aria2c', ['-x16', '-s16', '-m16','--check-certificate=false','--auto-file-renaming=false', 'https://resources.download.minecraft.net/'+folder+'/'+hash, '--out=assets/objects/'+folder+'/'+hash], { shell: true, detached: false })
-                                                assetDL.on('close',function(c4){
-                                                    downloadAsset(++j)
-                                                })
+                                                wget({url:'https://resources.download.minecraft.net/'+folder+'/'+hash,dest:'assets/objects/'+folder+'/'+hash},function(){downloadAsset(++j)})
                                             }else{
                                                 downloadAsset(++j)
                                             }
