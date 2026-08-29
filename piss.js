@@ -405,7 +405,7 @@ wget({url:manifest.replace(' \r\n',''),dest:'json/'}, function (e, res, body) {
                                         folder = hash.charAt(0)+hash.charAt(1)
                                         if (!(fs.existsSync("assets/objects/"+folder+"/"+hash))){
                                             if (filenames[j].endsWith(".png") || filenames[j].endsWith(".icns") || allAssets){
-                                                console.log("downloading asset ("+(j+1)+"/"+objects.length+")")
+                                                console.log("downloading asset ("+(j+1)+"/"+objects.length+"): "+filenames[j])
                                                 wget({url:'https://resources.download.minecraft.net/'+folder+'/'+hash,dest:'assets/objects/'+folder+'/'+hash},function(){downloadAsset(++j)})
                                             }else{
                                                 downloadAsset(++j)
