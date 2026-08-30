@@ -403,6 +403,7 @@ wget({url:manifest.replace(' \r\n',''),dest:'json/'}, function (e, res, body) {
                                         file = objects[j]
                                         hash = file.hash
                                         folder = hash.charAt(0)+hash.charAt(1)
+                                        fs.mkdirSync('assets/objects/'+folder, { recursive: true });
                                         if (!(fs.existsSync("assets/objects/"+folder+"/"+hash))){
                                             if (filenames[j].endsWith(".png") || filenames[j].endsWith(".icns") || allAssets){
                                                 console.log("downloading asset ("+(j+1)+"/"+objects.length+"): "+filenames[j])
